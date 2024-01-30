@@ -1,1 +1,6 @@
-# InvestEase
+# InvestEase - Simplified Investment Advisory Tool
+Develop a financial management application that uses AI to optimize investment portfolios based on user risk tolerance, financial goals, and market conditions.
+
+# Problem Statement
+In today’s rapidly evolving financial landscape, individual investors face significant challenges in managing their investment portfolios effectively. Key issues include the lack of personalized investment advice tailored to individual financial goals and risk tolerances, the complexity of understanding and adapting to dynamic market conditions, and the difficulty in accurately assessing and managing investment risks. Additionally, many individuals struggle with the time-consuming nature of active portfolio management and often fall prey to emotional investing, leading to suboptimal financial decisions. This situation is compounded by the limited accessibility of sophisticated investment strategies for the average investor and a general lack of financial literacy, particularly in navigating economic uncertainties. Therefore, there is a pressing need for an innovative solution that simplifies investment management, provides customized, data-driven investment strategies, and democratizes access to advanced financial tools, empowering individuals to make informed, rational investment decisions in a diverse range of economic environments.
+
