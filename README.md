@@ -1,4 +1,4 @@
-# InvestEase
+# InvestEase - Simplified Investment Advisory Tool
 Develop a financial management application that uses AI to optimize investment portfolios based on user risk tolerance, financial goals, and market conditions.
 
 # Problem Statement
