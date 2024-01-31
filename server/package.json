@@ -7,10 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
+    "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "mongodb": "^5.7.0",
-    "mongoose": "^7.3.4"
-  },
-  "devDependencies": {}
+    "mongoose": "^7.6.8"
+  }
 }
