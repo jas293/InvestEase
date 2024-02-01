@@ -1,0 +1,20 @@
+.signup-container, .signin-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+input[type=email], input[type=password], input[type=tel], input[type=date] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #5cb85c; /* Adjust color to match your design */
+  color: white

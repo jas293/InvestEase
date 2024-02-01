@@ -1,10 +1,12 @@
-const navbar = () => {
+// pages/Navbar.tsx
+import React from 'react';
 
-    return (
-        <div className="navbar">
-            <h1>InvestEase</h1>
-        </div>
-    )
-  }
+const Navbar = () => {
+  return (
+    <div className="navbar">
+      <h1>InvestEase</h1>
+    </div>
+  );
+}
 
-export default navbar;
+export default Navbar;
