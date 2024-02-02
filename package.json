@@ -5,8 +5,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "react-router-dom": "^6.22.0"
+  },
   "devDependencies": {
+    "@types/node": "^20.11.16",
     "concurrently": "^8.2.0",
     "prettier": "^3.0.0"
   },

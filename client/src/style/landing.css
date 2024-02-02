@@ -1,0 +1,109 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    color: #4a4a4a;
+    line-height: 1.6;
+}
+
+header {
+    background: #fff;
+    padding: 1em 2em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 1em;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007BFF;
+}
+
+.sign-in {
+    margin-left: auto;
+    padding: 0.5em 1em;
+    border: 2px solid #007BFF;
+    border-radius: 5px;
+    color: #007BFF;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sign-in:hover {
+    background-color: #007BFF;
+    color: transparent;
+}
+
+.hero {
+    background: linear-gradient(to right, #007BFF, #33AEFF);
+    text-align: center;
+    padding: 5em 1em;
+    position: relative;
+    color: white;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.hero p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 1em;
+}
+
+.cta-button {
+    background: #FFA500;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #cc8400;
+}
+
+.hero img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50%; /* Adjust this value to control how much of the right side the image should fill */
+    object-fit: cover; /* This will make the image cover the entire area without distorting the aspect ratio */
+}
