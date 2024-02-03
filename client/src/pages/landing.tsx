@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../style/landing.css';
-import portImage from '../public/port.png'; // Update the path to the image file
+import portImage from '../public/stock.svg'; // Update the path to the image file
+
 
 const landing = () => {
     return (
       <div>
         <header>
           <nav>
-            <div className="logo">InvestEase</div>
+            <div className="logo-text">InvestEase</div>
+            
             <ul className="nav-links">
               <li><a href="#">Home</a></li>
               <li><a href="#">About Us</a></li>
               <li><a href="#">Resources & Education</a></li>
-              <li><Link to="/signin" className="sign-in">Sign In</Link></li>
             </ul>
+            <button className="sign-in"><Link to="/signin">Sign In</Link></button>
           </nav>
         </header>
         <main>
@@ -23,9 +25,9 @@ const landing = () => {
             <p>Find Your Ideal Investment Route with Our Detailed Investor Survey</p>
             <p>Investment Strategies Designed to Fulfill Your Goals</p>
             <p>Take advantage of our state-of-the-art AI system that formulates personalized investment portfolios, designed according to your financial targets and risk tolerance, to boost your earnings and increase your capital.</p>
-            <button className="cta-button">Start The Quiz</button>
-            <img src={portImage} alt='Investment Portfolio' />
+            <button className="cta-button" role='button'>Start The Quiz</button>
           </section>
+          <img className='port' src={portImage}  alt='Investment Portfolio' />
         </main>
       </div>
     );
