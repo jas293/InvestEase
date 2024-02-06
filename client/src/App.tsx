@@ -1,19 +1,16 @@
-import { BrowserRouter as Router, Routes, Route,} from 'react-router-dom';
-import Navbar from './pages/navbar.tsx';
-
+import React from 'react';
+import Navbar from './pages/Navbar'; // Assuming this is the correct path
+import SignIn from './pages/SignIn'; // Assuming this is the correct path
 
 
 const App = () => {
-  return (  
-  <Router>
-    <Routes>
-    
-      <Route path="/pages" element={<Navbar />} />
+  return (
+    <>
+      <Navbar /> {/* Navbar will be displayed at the top */}
+      <SignIn /> {/* SignIn component will follow */}
+    </>
+  );
+};
 
-    </Routes>
-  </Router>
-  
-  )
-}
 
 export default App;

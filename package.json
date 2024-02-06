@@ -5,7 +5,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "react-toastify": "^10.0.4"
+  },
   "devDependencies": {
     "concurrently": "^8.2.0",
     "prettier": "^3.0.0"

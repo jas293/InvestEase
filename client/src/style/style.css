@@ -1,0 +1,97 @@
+/* style.css */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #f1f3f6; /* Background color based on the screenshot */
+  }
+  
+  
+  .form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 50px;
+  }
+  
+  
+  h1 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  
+  .login-instruction {
+    margin-bottom: 20px;
+    color: #666;
+  }
+  
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  
+  .label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  
+  .forgot-password {
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+    color: #0077ff;
+    text-decoration: none;
+  }
+  
+  
+  .sign-in-button,
+  .sign-up-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  
+  .sign-in-button {
+    background-color: #0077ff;
+    color: #fff;
+  }
+  
+  
+  .sign-up-button {
+    background-color: #22c55e;
+    color: #fff;
+  }
+  
+  
+  .divider {
+    text-align: center;
+    margin: 20px 0;
+    color: #999;
+  }
+  
+  
+  .image-container {
+    /* Add styles for the image container if needed */
+  }
+  
+  
+  
