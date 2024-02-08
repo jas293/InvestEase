@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../style/style.css'; // Make sure the path is correct
 
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
 
   const validatePassword = (password) => {
@@ -17,16 +18,18 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-
     if (!validatePassword(password)) {
       toast.error('Password must be at least 12 characters long and include uppercase, lowercase, numeric, and special characters.');
       return;
     }
-
-
-    // Here, you would handle the sign-in logic, possibly sending a request to your backend
     toast.success('Signed in successfully!');
+    // Here, you would handle the sign-in logic, possibly sending a request to your backend
+  };
+
+
+  const handleSignUpClick = () => {
+    console.log('Navigating to /signup');
+    navigate('/signup'); // This will navigate to the sign-up page
   };
 
 
@@ -37,21 +40,31 @@ const SignIn = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
-          <input type="email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            type="email"
+            id="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input
+            type="password"
+            id="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <button type="submit">Sign In</button>
       </form>
       <p>Forgot password?</p>
-      <button>Sign Up</button>
+      <button onClick={handleSignUpClick}>Sign Up</button>
     </div>
   );
 };
 
 
 export default SignIn;
-
-
