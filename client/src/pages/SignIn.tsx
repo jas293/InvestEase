@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 const SignIn = () => {
@@ -10,10 +12,14 @@ const SignIn = () => {
   const navigate = useNavigate();
 
 
+
+
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
     return regex.test(password);
   };
+
+
 
 
   const handleSubmit = (e) => {
@@ -27,10 +33,6 @@ const SignIn = () => {
   };
 
 
-  const handleSignUpClick = () => {
-    console.log('Navigating to /signup');
-    navigate('/signup'); // This will navigate to the sign-up page
-  };
 
 
   return (
@@ -59,12 +61,23 @@ const SignIn = () => {
           />
         </div>
         <button type="submit">Sign In</button>
+     
+       
+        <p><a href="./ForgetP">Forgot password?</a></p>
+
+
+
+
+        {/* Link to sign up page */}
+        <p>Need an account? <Link to="/signup" className="signup-link">Sign Up</Link></p>
       </form>
-      <p>Forgot password?</p>
-      <button onClick={handleSignUpClick}>Sign Up</button>
     </div>
   );
 };
 
 
+
+
 export default SignIn;
+
+

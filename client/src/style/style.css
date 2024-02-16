@@ -1,83 +1,48 @@
-/* Base styles for the body to ensure full height and centering */
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Arial', sans-serif; /* Use the font of your choice */
-  background-color: #f0f2f5; /* Use color from your design */
-}
-
-
-/* Styles for the sign-in container */
-.signin-container {
-  width: 100%;
-  max-width: 400px; /* Adjust width as needed */
-  padding: 2em;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-}
-
-
-/* Styles for form elements */
-.signin-container h2 {
-  color: #333;
+.signup-container, .signin-container,  .forgetp-container{
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
   text-align: center;
+  color:blueviolet;
+  font-size: large;
 }
 
 
-.signin-container form {
-  display: flex;
-  flex-direction: column;
+
+
+body, html {
+  height: 100%; /* Ensure the body covers the entire height of the page */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  background-image: url('Images/image1.jpg'); /* Path to your background image */
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the background image */
+}
+
+h1 {
+  width: 100%; /* Makes the width of the h1 element span the entire width of the screen */
+  text-align: center; /* Centers the text horizontally */
+  color: rgb(122, 226, 43); /* Sets the text color */
+  font-size: 20; /* Sets the size of the font */
+  margin-top: 0px; /* Ensures there is no space above the h1 element */
+  padding-top: 0px; /* Adjusts the padding to ensure it's at the very top */
 }
 
 
-.form-group {
-  margin-bottom: 1em;
-}
 
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5em;
-}
 
-
-.form-group input {
+input[type=email], input[type=password], input[type=tel], input[type=date] {
   width: 100%;
-  padding: 0.75em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-
-/* Styles for the buttons */
-.signin-container button {
-  padding: 1em;
-  border: none;
-  color: white;
-  background-color: #5cb85c; /* Use color from your design */
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 1em;
+button {
+  width: 100%;
+  padding: 15px;
+  background-color: #5cb85c; /* Adjust color to match your design */
+  color: white
 }
-
-
-.signin-container button:hover {
-  background-color: #4cae4c; /* Darker shade for hover effect */
-}
-
-
-/* Styles for the forgot password link */
-.signin-container p {
-  text-align: center;
-  color: #6c757d; /* Use color from your design */
-  margin-top: 1em;
-}
-
-
-/* This is just a starting point based on common practices. */
-/* You'll need to adjust the styles to match your exact design, */
-/* including the colors, fonts, and other properties. */

@@ -1,22 +1,28 @@
-// main.tsx or index.tsx
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App'; // Ensure the path to App is correct
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './pages/navbar';
+import SignIn from './pages/signin';
+import SignUp from './pages/signup';
+import ForgetP from './pages/ForgetP';
 
 
-// If you have a global stylesheet, import it here
-import './style/style.css'; // Ensure the path to your stylesheet is correct
 
 
-const rootElement = document.getElementById('root');
-if (!rootElement) throw new Error('Failed to find the root element');
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/ForgetP" element={<ForgetP />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
+  );
+};
 
 
-const root = ReactDOM.createRoot(rootElement);
 
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+export default App;

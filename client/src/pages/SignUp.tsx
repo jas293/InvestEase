@@ -1,16 +1,18 @@
-// src/pages/SignUp.tsx
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { renderIntoDocument } from 'react-dom/test-utils';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [retypePassword, setRetypePassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
+  const [error, setError] = useState('');
+
+
+  const navigate = useNavigate();
 
 
   const validatePassword = (password) => {
@@ -23,42 +25,82 @@ const SignUp = () => {
     e.preventDefault();
 
 
+    // First check if passwords match
+    if (password !== retypePassword) {
+      setError("Passwords don't match.");
+      return;
+    }
+
+
+    // Then check if the password is valid
     if (!validatePassword(password)) {
-      toast.error('Password must be at least 12 characters long and include uppercase, lowercase, numeric, and special characters.');
+      setError('Password must be at least 12 characters long and include uppercase, lowercase, numeric, and special characters.');
       return;
     }
 
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords don't match.");
-      return;
-    }
+    // If passwords match and the password is valid, clear any existing error messages
+    setError('');
 
 
-    // Add logic to handle the actual sign-up process, like sending data to a backend server
+    // TODO: Proceed with the signup process (e.g., sending data to an API)
 
 
-    toast.success('Account created successfully!');
-    navigate('/signin'); // Navigate to sign-in page on successful sign-up
+    // For demonstration purposes, log the user details
+    console.log('Sign up with:', { email, password, phoneNumber, dateOfBirth });
+
+
+    // After successful sign up, navigate to the sign-in page
+   
+    navigate('/signin');
   };
 
 
   return (
     <div className="signup-container">
-      <ToastContainer />
       <h2>Sign Up</h2>
+      {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        {/* Other form fields */}
-        <div className="form-group">
-          <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" required value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dob">Date of Birth</label>
-          <input type="date" id="dob" required value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
-        </div>
+        <input
+          type="email"
+          placeholder="Email address"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Create Password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Retype Password"
+          required
+          value={retypePassword}
+          onChange={(e) => setRetypePassword(e.target.value)}
+        />
+        <input
+          type="tel"
+          placeholder="Enter your Phone Number"
+          required
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
+        <input
+          type="date"
+          placeholder="Date of Birth"
+          required
+          value={dateOfBirth}
+          onChange={(e) => setDateOfBirth(e.target.value)}
+        />
         <button type="submit">Sign Up</button>
       </form>
+      <p>
+        Already have an account? <Link to="/">Sign in here!</Link>
+      </p>
     </div>
   );
 };

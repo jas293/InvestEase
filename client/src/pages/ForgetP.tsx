@@ -7,7 +7,7 @@ const ForgetP = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // Add logic to handle password reset here
     // This could involve sending the email to the backend server
