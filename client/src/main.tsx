@@ -1,28 +1,25 @@
+// main.tsx or index.tsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './pages/navbar';
-import SignIn from './pages/signin';
-import SignUp from './pages/signup';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './style/style.css';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import ForgetP from './pages/ForgetP';
 
 
 
 
-const App = () => {
-  return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/ForgetP" element={<ForgetP />} />
-        {/* Add more routes as needed */}
-      </Routes>
-    </Router>
-  );
-};
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
 
 
 
 
-export default App;
+const root = ReactDOM.createRoot(rootElement);
+root.render(
+  <React.StrictMode>
+    <App />
+   
+  </React.StrictMode>
+);
