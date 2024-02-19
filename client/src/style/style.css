@@ -1,48 +1,94 @@
-.signup-container, .signin-container,  .forgetp-container{
+/* Reset the margin and padding */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Set up a full-screen flex container */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  
+  /* Background gradient similar to the design */
+  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+}
+
+/* Common styles for h1 */
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5em;
+  margin-top: 0;
+  padding-top: 20px;
+}
+
+/* Container styles */
+.signup-container, .signin-container, .forgetp-container {
   max-width: 400px;
-  margin: auto;
+  margin: 20px;
   padding: 20px;
   text-align: center;
-  color:blueviolet;
-  font-size: large;
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+  border-radius: 10px;
+  /* Removing box shadow for a flat design */
+  box-shadow: none;
+  backdrop-filter: blur(4px);
 }
 
-
-
-
-body, html {
-  height: 100%; /* Ensure the body covers the entire height of the page */
-  margin: 0; /* Remove default margin */
-  padding: 0; /* Remove default padding */
-  background-image: url('Images/image1.jpg'); /* Path to your background image */
-  background-size: cover; /* Cover the entire page */
-  background-position: center; /* Center the background image */
-}
-
-h1 {
-  width: 100%; /* Makes the width of the h1 element span the entire width of the screen */
-  text-align: center; /* Centers the text horizontally */
-  color: rgb(122, 226, 43); /* Sets the text color */
-  font-size: 20; /* Sets the size of the font */
-  margin-top: 0px; /* Ensures there is no space above the h1 element */
-  padding-top: 0px; /* Adjusts the padding to ensure it's at the very top */
-}
-
-
-
-
-
+/* Input styles */
 input[type=email], input[type=password], input[type=tel], input[type=date] {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  width: calc(100% - 40px);
+  padding: 15px;
+  margin-bottom: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
 }
 
+/* Button styles */
 button {
-  width: 100%;
+  width: calc(100% - 40px);
   padding: 15px;
-  background-color: #5cb85c; /* Adjust color to match your design */
-  color: white
+  margin-top: 10px;
+  background-color: #4b6cb7; /* Button color similar to design */
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  outline: none;
 }
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #6078ea; /* Lighter shade for hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for lifted effect */
+  transform: translateY(-2px); /* Slightly raise the button */
+}
+
+/* Link styles */
+a {
+  color: #4b6cb7; /* Blue color for links for better visibility */
+  text-decoration: none;
+}
+
+/* Hover effect for links */
+a:hover {
+  text-decoration: underline; /* Underline on hover for links */
+  color: #6078ea; /* Lighter blue color for hover effect */
+}
+
+/* Error message styles */
+.error {
+  color: #ff3860;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+/* Additional styles for specific elements could be added below */

@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './pages/navbar';
-import SignIn from './pages/signin';
-import SignUp from './pages/signup';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import ForgetP from './pages/ForgetP';
+import './style/style.css';
 
 
 
