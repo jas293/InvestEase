@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import httpClient from "../httpClient";
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -22,14 +23,31 @@ const SignIn = () => {
 
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validatePassword(password)) {
       toast.error('Password must be at least 12 characters long and include uppercase, lowercase, numeric, and special characters.');
       return;
     }
-    toast.success('Signed in successfully!');
+    //toast.success('Signed in successfully!');
     // Here, you would handle the sign-in logic, possibly sending a request to your backend
+    
+    console.log(email,password);
+    
+    try{
+      const resp = await httpClient.post("//localhost:5000/login" , {
+        email,
+        password,
+      });
+
+      window.location.href = "/SignUp";
+
+    }catch(error: any){
+      if(error.response.status === 401){
+        alert("Invalid credientials");
+      }
+    }
+    
   };
 
 
@@ -39,7 +57,7 @@ const SignIn = () => {
     <div className="signin-container">
       <ToastContainer />
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onClick={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email address</label>
           <input

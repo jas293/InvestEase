@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import httpClient from "../httpClient";
 import { renderIntoDocument } from 'react-dom/test-utils';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ const SignUp = () => {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
 
@@ -44,6 +45,24 @@ const SignUp = () => {
 
 
     // TODO: Proceed with the signup process (e.g., sending data to an API)
+    try{
+      const resp = await httpClient.post("//localhost:5000/register" , {
+        email,
+        password,
+        dob: dateOfBirth,
+        phone: phoneNumber,
+      });
+
+      window.location.href = "/";
+
+    }catch(error: any){
+      if(error.response && error.response.status === 401){
+        alert("Invalid credientials");
+      }else {
+        console.error("An error occurred while signing up:", error);
+        // Handle other types of errors, such as network errors
+      }
+    }
 
 
     // For demonstration purposes, log the user details
@@ -52,7 +71,7 @@ const SignUp = () => {
 
     // After successful sign up, navigate to the sign-in page
    
-    navigate('/signin');
+    //navigate('/signin');
   };
 
 

@@ -6,9 +6,13 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "react": "^18.2.0",
+    "react-router-dom": "^6.22.1",
     "react-toastify": "^10.0.4"
   },
   "devDependencies": {
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
     "concurrently": "^8.2.0",
     "prettier": "^3.0.0"
   },
