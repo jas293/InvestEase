@@ -17,7 +17,7 @@ const SignUp: React.FC = () => {
 
 
   const validatePassword = (password: string): boolean => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/; // password requiredmnet same as sign in page.
     return regex.test(password);
   };
 
@@ -50,7 +50,7 @@ const SignUp: React.FC = () => {
     // For demonstration purposes, log the user details
     console.log('Sign up with:', { email, password, phoneNumber, dateOfBirth });
     // After successful sign up, navigate to the sign-in page
-    navigate('/');
+    navigate('/');// this is defult rn because when we will create quiz page then we will add that navigate link here. 
   };
 
   const handleSignIN = (): void => {

@@ -1,24 +1,29 @@
+/* Import Poppins font from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
+/* Reset default margin, padding, and box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Set default font family for body and input elements */
 body,
 input {
   font-family: "Poppins", sans-serif;
 }
 
+/* Styling for the main container */
 .container {
   position: relative;
   width: 100%;
   background-color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* Minimum height of 100% of the viewport height */
+  overflow: hidden; /* Hides any content that overflows the container */
 }
 
+/* Styling for the forms container */
 .forms-container {
   position: absolute;
   width: 100%;
@@ -27,18 +32,20 @@ input {
   left: 0;
 }
 
+/* Styling for the sign-in and sign-up sections */
 .signin-signup {
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* Center align */
   left: 75%;
   width: 50%;
-  transition: 1s 0.7s ease-in-out;
+  transition: 1s 0.7s ease-in-out; /* Smooth transition for any changes */
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr; /* Single column layout */
   z-index: 5;
 }
 
+/* General form styling */
 form {
   display: flex;
   align-items: center;
@@ -51,42 +58,48 @@ form {
   grid-row: 1 / 2;
 }
 
+/* Styling for sign-up form when it's not active */
 form.sign-up-form {
   opacity: 0;
   z-index: 1;
 }
 
+/* Styling for sign-in form */
 form.sign-in-form {
   z-index: 2;
 }
 
+/* Styling for form titles */
 .title {
   font-size: 2.2rem;
   color: #444;
   margin-bottom: 10px;
 }
 
+/* Styling for input fields */
 .input-field {
   max-width: 380px;
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
   height: 55px;
-  border-radius: 55px;
+  border-radius: 55px; /* Rounded corners */
   display: grid;
   grid-template-columns: 15% 85%;
   padding: 0 0.4rem;
   position: relative;
 }
 
+/* Icon inside input field styling */
 .input-field i {
   text-align: center;
-  line-height: 55px;
+  line-height: 55px; /* Align icon vertically */
   color: #acacac;
-  transition: 0.5s;
+  transition: 0.5s; /* Smooth transition for hover effects */
   font-size: 1.1rem;
 }
 
+/* Styling for input field's text input */
 .input-field input {
   background: none;
   outline: none;
@@ -97,21 +110,25 @@ form.sign-in-form {
   color: #333;
 }
 
+/* Placeholder styling */
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
 }
 
+/* Social media section text styling */
 .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
 }
 
+/* Social media icons container */
 .social-media {
   display: flex;
   justify-content: center;
 }
 
+/* Social media icons styling */
 .social-icon {
   height: 46px;
   width: 46px;
@@ -120,36 +137,41 @@ form.sign-in-form {
   align-items: center;
   margin: 0 0.45rem;
   color: #333;
-  border-radius: 50%;
+  border-radius: 50%; /* Circle shape */
   border: 1px solid #333;
   text-decoration: none;
   font-size: 1.1rem;
-  transition: 0.3s;
+  transition: 0.3s; /* Smooth transition for hover effects */
 }
 
+/* Hover effect for social icons */
 .social-icon:hover {
   color: #4481eb;
   border-color: #4481eb;
 }
 
+/* Button styling */
 .btn {
   width: 150px;
   background-color: #5995fd;
   border: none;
   outline: none;
   height: 49px;
-  border-radius: 49px;
+  border-radius: 49px; /* Rounded corners */
   color: #fff;
   text-transform: uppercase;
   font-weight: 600;
   margin: 10px 0;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.5s; /* Smooth transition for hover effects */
 }
 
+/* Hover effect for buttons */
 .btn:hover {
   background-color: #4d84e2;
 }
+
+/* Styling for the panels container */
 .panels-container {
   position: absolute;
   height: 100%;
@@ -157,9 +179,10 @@ form.sign-in-form {
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
 }
 
+/* Styling for the large circle before container */
 .container:before {
   content: "";
   position: absolute;
@@ -170,10 +193,11 @@ form.sign-in-form {
   transform: translateY(-50%);
   background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
   transition: 1.8s ease-in-out;
-  border-radius: 50%;
+  border-radius: 50%; /* Circle shape */
   z-index: 6;
 }
 
+/* Styling for images */
 .image {
   width: 80%;
   transition: transform 1.1s ease-in-out;
@@ -183,6 +207,7 @@ form.sign-in-form {
   right: 15%;
 }
 
+/* Panel styling */
 .panel {
   display: flex;
   flex-direction: column;
@@ -192,33 +217,39 @@ form.sign-in-form {
   z-index: 6;
 }
 
+/* Left panel styling */
 .left-panel {
   pointer-events: all;
   padding: 3rem 17% 2rem 12%;
 }
 
+/* Right panel styling */
 .right-panel {
   pointer-events: none;
   padding: 3rem 12% 2rem 17%;
 }
 
+/* Panel content styling */
 .panel .content {
   color: #fff;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;
 }
 
+/* Panel header styling */
 .panel h3 {
   font-weight: 600;
   line-height: 1;
   font-size: 1.5rem;
 }
 
+/* Panel paragraph styling */
 .panel p {
   font-size: 0.95rem;
   padding: 0.7rem 0;
 }
 
+/* Transparent button styling */
 .btn.transparent {
   margin: 0;
   background: none;
@@ -229,37 +260,44 @@ form.sign-in-form {
   font-size: 0.8rem;
 }
 
+/* Right panel image and content transformation */
 .right-panel .image,
 .right-panel .content {
   transform: translateX(800px);
 }
 
-/* ANIMATION */
+/* ANIMATION STYLES BELOW */
 
+/* Animation for container sign-up mode */
 .container.sign-up-mode:before {
   transform: translate(100%, -50%);
   right: 52%;
 }
 
+/* Left panel image and content animation for sign-up mode */
 .container.sign-up-mode .left-panel .image,
 .container.sign-up-mode .left-panel .content {
   transform: translateX(-800px);
 }
 
+/* Signin-signup position adjustment for sign-up mode */
 .container.sign-up-mode .signin-signup {
   left: 25%;
 }
 
+/* Sign-up form visibility in sign-up mode */
 .container.sign-up-mode form.sign-up-form {
   opacity: 1;
   z-index: 2;
 }
 
+/* Sign-in form visibility in sign-up mode */
 .container.sign-up-mode form.sign-in-form {
   opacity: 0;
   z-index: 1;
 }
 
+/* Right panel image and content animation for sign-up mode */
 .container.sign-up-mode .right-panel .image,
 .container.sign-up-mode .right-panel .content {
   transform: translateX(0%);
@@ -269,6 +307,7 @@ form.sign-in-form {
   width: 80%;
 }
 
+/* Pointer events adjustment for panels in sign-up mode */
 .container.sign-up-mode .left-panel {
   pointer-events: none;
 }
@@ -276,10 +315,14 @@ form.sign-in-form {
 .container.sign-up-mode .right-panel {
   pointer-events: all;
 }
+
+/* Adjustment for left container in sign-up mode */
 .sign-up-mode-leftcontainer{
   left: 45%;
 }
 
+/* MEDIA QUERIES BELOW */
+/* Adjustments for screens with max width of 870px */
 @media (max-width: 870px) {
   .sign-up-mode-leftcontainer{
     left: 0%;
@@ -386,6 +429,7 @@ form.sign-in-form {
   }
 }
 
+/* Adjustments for screens with max width of 570px */
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
@@ -412,8 +456,7 @@ form.sign-in-form {
   }
 }
 
-
-/* ForgetP Component Styles */
+/* Styling for the Forget Password component */
 .forgetp-container {
   position: relative;
   width: 100%;
@@ -482,6 +525,8 @@ form.sign-in-form {
 .forgetp-container p a:hover {
   text-decoration: underline;
 }
+
+/* Styling for the Forget Password hover effect */
 .frgtp span {
   padding: 5px;
 }
@@ -497,7 +542,7 @@ form.sign-in-form {
   text-decoration: underline;
 }
 
-
+/* Commented out section for app container background image */
 /* .app-container {
   background-image: url('../images/logo.png');
 } */

@@ -10,9 +10,8 @@ const ForgetP: React.FC = () => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
 
-    // Add logic to handle password reset here
-    // This could involve sending the email to the backend server
-    // which would then send a password reset link to the user
+    // Add logic to handle password reset here, this could involve sending the email to the backend server
+    // which would then send a password reset link to the user email for restet link. 
     console.log('Request password reset for:', email);
 
     // Show success message or handle errors
@@ -20,7 +19,7 @@ const ForgetP: React.FC = () => {
     navigate('/');
   };
   const handleSignUp = (): void => {
-    navigate('/signup')
+    navigate('/signup') // as defult I put sign up we can chnage logic later this commnet will help you to conncted with backend. 
   }
 
   return (

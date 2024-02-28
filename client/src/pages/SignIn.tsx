@@ -13,7 +13,7 @@ const SignIn: React.FC = () => {
   const history: NavigateFunction = useNavigate();
 
   const validatePassword = (password: string): boolean => {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/; //password requiredmnet same as sign up page.
     return regex.test(password);
   };
 
@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
   };
 
   const handleSignUp = (): void => {
-    history('/signup')
+    history('/signup') // as of now I made defult here will chnage when we will create Dashboard, history('/dashboard');
   }
   return (
     <>
