@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ForgetP = () => {
+const ForgetP: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const navigate = useNavigate();
+  
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
 
     // Add logic to handle password reset here
@@ -16,30 +17,46 @@ const ForgetP = () => {
 
     // Show success message or handle errors
     // For now, we'll just log to the console and navigate to the sign-in page
-    navigate('/signin');
+    navigate('/');
   };
+  const handleSignUp = (): void => {
+    navigate('/signup')
+  }
 
   return (
-    <div className="forgetp-container">
-      <h2>Forgot Password</h2>
-      {error && <p className="error">{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
+   
+    <>
+
+    <div className="forms-container">
+    <div className="signin-signup">
+      <form action="#" className="sign-in-form" onSubmit={handleSubmit}>
+        <h2 className="title">Forgot password</h2>
+        <div className="input-field">
+          <i className="fas fa-user"></i>
+          <input
           type="email"
           placeholder="Enter your email address"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Reset Password</button>
+        </div>
+      
+        <input type="submit" value="Reset Password" className="btn solid" />
       </form>
-      {/* <p>
-        Remembered your password? <Link to="/signin">Sign in here!</Link>
-      </p> */}
-       <p>
-        Already have an account? <Link to="/">Sign in here!</Link>
-      </p>
     </div>
+  </div><div className="panels-container">
+      <div className="panel left-panel">
+        <div className="content">
+          <h3>InvestEase</h3>
+          <p className='frgtp' onClick={handleSignUp}>"Join the world of smart investors–<span style={{textDecoration: "underline"}}>Sign Up</span>now to take control of your financial destiny and watch your investments grow!"</p>
+          <button  onClick={handleSignUp} className="btn transparent" id="sign-up-btn">
+            Sign up
+          </button>
+        </div>
+        <img src="images/undraw_investing_re_bov_grey.svg" className="image" alt="logo" />
+      </div>
+    </div></>
   );
 };
 
