@@ -110,6 +110,17 @@ answers = {
   1: "C",  # Investment horizon: 4 to 7 years
   2: "B",  # Comfort with fluctuations: Somewhat uncomfortable
   3: "C",  # Financial situation: Comfortable savings cushion
+  4: "C",  # Approach to financial decisions: Moderate risk tolerance
+  5: "C",  # Investment knowledge: Moderate understanding
+  6: "C",  # Reaction to past losses: Neutral
+  7: "C",  # Reliance on professional advice: Moderate reliance
+  8: "C",  # Investment scenario preference: Moderate potential returns with moderate risk
+  9: "B",  # Financial legacy: Moderately important
+  10: "C", # Short-term loss response: Neutral
+  11: "C", # Following financial news: Moderate interest
+  12: "C", # Investment allocation: Majority in high-risk growth stock fund
+  13: "C", # Personality description: Balanced
+  14: "C"  # Investment philosophy: Balanced approach
 }
 
 risk_tolerance = assess_risk_tolerance(answers)
