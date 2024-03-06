@@ -1,6 +1,8 @@
+//This are the modules I have installed 
 flask
 flask-bcrypt
 flask_pymongo
 python-dotenv
 flask-session
 redis
+flask-cors

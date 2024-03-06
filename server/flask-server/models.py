@@ -1,28 +1,18 @@
-from pymongo import MongoClient
+# Importing uuid4 function for generating UUIDs
 from uuid import uuid4
 
 
-# Connect to MongoDB
-client = MongoClient("mongodb+srv://pdp5:patel@cluster0.h1ybggt.mongodb.net/?retryWrites=true&w=majority")  # Update the connection string with your MongoDB URI
-db = client["db1"]  # Replace "your_database_name" with your MongoDB database name
-
-
-# Function to generate UUID
+# Function to generate UUID, which will be assigned to each authenticated user 
 def get_uuid():
     return uuid4().hex
 
 
-# Define MongoDB collection
-collection = db["userInfo"]
-
-
+#The User class is defined to use for saving and fetching user's login data to the db 
 class User:
     def __init__(self, email, password):
         self.id = get_uuid()
         self.email = email
         self.password = password
-
-
 
 
     def to_dict(self):
@@ -32,7 +22,7 @@ class User:
             "password": self.password
         }
 
-
+#The User1 class is defined to use for saving and fetching user's signup data to the db 
 class User1:
     def __init__(self, email, password, dob, phone):
         self.id = get_uuid()
@@ -40,10 +30,6 @@ class User1:
         self.password = password
         self.dob = dob
         self.phone = phone
-
-
-
-
 
 
     def to_dict(self):
