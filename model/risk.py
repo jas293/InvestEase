@@ -123,5 +123,48 @@ answers = {
   14: "C"  # Investment philosophy: Balanced approach
 }
 
+# Add a python diagram to show the result of the assessment of the risk tolerance of the investor based on the answers to the questionnaire out of 100 points.
+# The result should be a pie chart showing the percentage of the risk tolerance of the investor.
+import plotly.graph_objects as go
+
+# Define the data
+labels = ["Low Risk Tolerance", "Medium Risk Tolerance", "High Risk Tolerance"]
+values = [33, 66, 100]  # Map each risk tolerance level to a value out of 100
+
+# Assume this is the user's risk tolerance level
+user_risk_tolerance = "Medium Risk Tolerance"
+
+# Find the index of the user's risk tolerance
+user_index = labels.index(user_risk_tolerance)
+
+fig = go.Figure(go.Indicator(
+    mode = "gauge+number",
+    value = values[user_index],
+    domain = {'x': [0, 1], 'y': [0, 1]},
+    title = {'text': "Investor Risk Tolerance", 'font': {'size': 24, 'color': "darkblue"}},
+    gauge = {
+        'axis': {'range': [None, 100], 'tickwidth': 1, 'tickcolor': "darkblue"},
+        'bar': {'color': "darkblue"},
+        'bgcolor': "white",
+        'borderwidth': 2,
+        'bordercolor': "gray",
+        'steps': [
+            {'range': [0, 33], 'color': 'lightblue'},
+            {'range': [33, 66], 'color': 'skyblue'},
+            {'range': [66, 100], 'color': 'steelblue'},
+        ],
+        'threshold': {
+            'line': {'color': "red", 'width': 4},
+            'thickness': 0.75,
+            'value': values[user_index]
+        }
+    }
+))
+
+fig.update_layout(paper_bgcolor = "white", font = {'color': "darkblue", 'family': "Arial"})
+
+fig.show()
+
+
 risk_tolerance = assess_risk_tolerance(answers)
 print(f"Your risk tolerance is: {risk_tolerance}")
