@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import httpClient from "../httpClient";
 
 const ForgetP: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -7,16 +8,28 @@ const ForgetP: React.FC = () => {
   const navigate = useNavigate();
   
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     // Add logic to handle password reset here, this could involve sending the email to the backend server
+    try{
+      const resp = await httpClient.post("//localhost:5000/forget-password" , {
+        email
+      });
+
+      window.location.href = "/";
+
+    }catch(error: any){
+      if(error.response.status === 404){
+        alert("User Not Exist!");
+      }
+    }
     // which would then send a password reset link to the user email for restet link. 
     console.log('Request password reset for:', email);
 
     // Show success message or handle errors
     // For now, we'll just log to the console and navigate to the sign-in page
-    navigate('/');
+    //navigate('/');
   };
   const handleSignUp = (): void => {
     navigate('/signup') // as defult I put sign up we can chnage logic later this commnet will help you to conncted with backend. 

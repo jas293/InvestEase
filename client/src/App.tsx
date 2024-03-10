@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ForgetP from './pages/ForgetP';
+import ResetPassword from './pages/ResetPassword';
 import './style/style.css';
+import LandingPage from './pages/LandingPage';
 
 
 const App: React.FC = () => {
@@ -16,6 +18,9 @@ console.log(location)
       <Route path="/" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/ForgetP" element={<ForgetP />} />
+      <Route path="/ResetPassword" element={<ResetPassword />} />
+      <Route path="/LandingPage" element={<LandingPage />} />
+      <Route path="/ResetPassword" element={<ResetPassword />} />
     </Routes>
    </div>
    </div>

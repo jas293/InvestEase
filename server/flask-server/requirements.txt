@@ -6,3 +6,4 @@ python-dotenv
 flask-session
 redis
 flask-cors
+pyjwt

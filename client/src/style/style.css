@@ -64,6 +64,7 @@ form.sign-up-form {
   z-index: 1;
 }
 
+
 /* Styling for sign-in form */
 form.sign-in-form {
   z-index: 2;
@@ -546,3 +547,115 @@ form.sign-in-form {
 /* .app-container {
   background-image: url('../images/logo.png');
 } */
+
+/* Hide the half circle specifically on the landing page */
+.Landing-page .container:before {
+  display: none;
+}
+
+
+.image-container {
+  width: 100%;
+  height: 100vh; /* Set the height of the container to full viewport height */
+  background-image: url('../images/img3.jpg');
+  background-size: cover; /* Initially, cover the entire container */
+  background-position: center;
+}
+.image2-container{
+  width: 100%;
+  height: 100vh; /* Set the height of the container to full viewport height */
+  /*background-image: url('../images/2.png');*/
+  background-color: white;
+  background-size: cover; /* Initially, cover the entire container */
+  background-position: center;
+}
+
+.text-container header h1{
+  font-family: 'Times New Roman', serif;
+  font-size: 400%;
+  position: relative;
+  padding-top: 10%;
+  padding-left: 10%;
+  color: white;
+}
+.text-container h1 {
+  line-height: 1; /* Adjust the value to your preference */
+}
+.text-container p{
+  line-height: 1.5; /* Adjust the value to your preference */
+}
+.text-container header p{
+  position: relative;
+  font-size: 125%;
+  padding-left: 10%;
+  color: white;
+}
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+}
+.cta-buttons button {
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+.cta-buttons{
+  padding-top: 2%;
+  padding-left: 10%;
+  
+}
+
+
+/* Default button styles */
+#get-started,
+#how-it-works {
+  background-color: transparent; /* Default background color */
+  color: #fff; /* Default text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: 1px solid #fff; /* Add border and set border color */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hover effect */
+#get-started:hover,
+#how-it-works:hover {
+  background-color: #fff; /* Change background color to white on hover */
+  color: #000; /* Change font color to black on hover */
+}
+
+.image2-container .text-container{
+  width: 500px;
+  background-color: #4481eb;
+  position: relative;
+}
+.text-container h3{
+  position: relative;
+  background-color: #aaa;
+}
+.image2-container .text-container p{
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  
+
+  .text-content {
+      text-align: center;
+      padding: 0;
+  }
+  .image-content {
+      width: 300px; /* Smaller size for mobile */
+      height: 300px; /* Keep it circular */
+      right: 50%; /* Adjust as per design */
+  }
+
+  .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
