@@ -168,3 +168,36 @@ fig.show()
 
 risk_tolerance = assess_risk_tolerance(answers)
 print(f"Your risk tolerance is: {risk_tolerance}")
+
+
+def low_risk(budget):
+  symbols = ["AGG", "BND", "SPY", "VOO", "VTI", "VXUS", "BNDX", "GLD", "VNQ", "VIG"]
+  allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+  amounts = [budget * a for a in allocation]
+  for symbol, amount in zip(symbols, amounts):
+    print(f"Buy ${amount:.2f} of {symbol}")
+
+def medium_risk(budget):
+    symbols = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA", "V", "JPM", "JNJ", "UNH", "PG"]
+    allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+    amounts = [budget * a for a in allocation]
+    for symbol, amount in zip(symbols, amounts):
+        print(f"Buy ${amount:.2f} of {symbol}")
+
+def high_risk(budget):
+    symbols = ["XENE", "IOVA", "KRTX", "AUR", "AVDL", "INBX", "ENVX", "GERN", "RLAY", "VRNA"]
+    allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+    amounts = [budget * a for a in allocation]
+    for symbol, amount in zip(symbols, amounts):
+        print(f"Buy ${amount:.2f} of {symbol}")
+
+
+risk_level = 'high'
+budget = 1000
+
+if risk_level == 'low':
+    low_risk(budget)
+elif risk_level == 'medium':
+    medium_risk(budget)
+elif risk_level == 'high':
+    high_risk(budget)
