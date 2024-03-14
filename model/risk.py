@@ -1,3 +1,5 @@
+import plotly.graph_objects as go
+
 def assess_risk_tolerance(answers):
   """
   Assesses an investor's risk tolerance based on their answers to a questionnaire.
@@ -125,8 +127,6 @@ answers = {
 
 # Add a python diagram to show the result of the assessment of the risk tolerance of the investor based on the answers to the questionnaire out of 100 points.
 # The result should be a pie chart showing the percentage of the risk tolerance of the investor.
-import plotly.graph_objects as go
-
 # Define the data
 labels = ["Low Risk Tolerance", "Medium Risk Tolerance", "High Risk Tolerance"]
 values = [33, 66, 100]  # Map each risk tolerance level to a value out of 100
