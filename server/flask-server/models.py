@@ -40,3 +40,24 @@ class User1:
             "dob": self.dob,
             "phone": self.phone
         }
+    
+class Answers:
+    def __init__(self,email, answer1, answer2, answer3,answer4):
+        
+        self.email = email
+        self.answer1 = answer1
+        
+        self.answer2 = answer2
+        self.answer3 = answer3
+        self.answer4 = answer4
+        
+    
+    def to_dict(self):
+        return{
+            "email": self.email,
+            
+            "answer1": self.answer1,
+            "answer2": self.answer2,
+            "answer3": self.answer3,
+            "answer4": self.answer4
+        }

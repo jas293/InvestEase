@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import React, { useState , FormEvent, ChangeEvent} from 'react';
+import React, { useState , FormEvent, ChangeEvent, useEffect} from 'react';
 import httpClient from "../httpClient";
 import { NavigateFunction } from 'react-router-dom';
 import { useNavigate, Link } from 'react-router-dom';
@@ -14,8 +14,28 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const history: NavigateFunction = useNavigate();
-
+  //const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+/*
+  useEffect(() => {
+    // Check if the user is logged in when the component mounts
+    checkLoginStatus();
+  }, []);
+
+  const checkLoginStatus = async () => {
+    try {
+      // Make an API call to check the user's session status
+      const response = await httpClient.get("//localhost:5000/login");
+      if (response.data.isLoggedIn) {
+        setIsLoggedIn(true);
+        // User is logged in, redirect to the landing page or dashboard
+        navigate('/LandingPage');
+      }
+    } catch (error) {
+      // Handle error
+      console.error("Error checking login status:", error);
+    }
+  };*/
 
   const validatePassword = (password: string): boolean => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/; //password requiredmnet same as sign up page.
@@ -68,7 +88,8 @@ const SignIn: React.FC = () => {
         password,
       });
 
-      window.location.href = "/signup";
+      //window.location.href = "/LandingPage";
+      navigate('/LandingPage');
 
     }catch(error: any){
       if(error.response.status === 401){

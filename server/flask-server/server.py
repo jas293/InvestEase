@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask_session import Session
 from pymongo import MongoClient
-from models import User, User1
+from models import User, User1, Answers
 import secrets
 import os
 import jwt
@@ -35,6 +35,7 @@ load_dotenv()
 
 # # Initialize Flask-Session and set the session type to use filesystem
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_COOKIE_NAME'] = 'session_cookie'  # Set the custom session cookie name
 Session(app)
 
 # Initialize Bcrypt for password hashing
@@ -295,8 +296,76 @@ def reset():
         # Handle any other exceptions
         return jsonify({"status": "Something went wrong", "error": str(e)})
     
+#Route to handle questionnaire subssions
+@app.route("/questionnaire" , methods=["POST"])
+def submit_questionnaire():
+    #Receving answers from front-end
+    answer1 = request.json.get("answer1")
+    answer2 = request.json.get("answer2")
+    answer3 = request.json.get("answer3")
+    answer4 = request.json.get("answer4")
+    
+    #checking answers if any of them are null
+    if not (answer1 and answer2 and answer3 and answer4):
+        return jsonify({"error": "All answers are required"}), 400
+    
+    #Retriving user's ID from database
+    user_id = session.get("user_id")
+    
+    #Throws an error if fails to retrive the user_id
+    if not user_id:
+        return jsonify({"error":"Unauthorized"}), 401
+    
+    try:
+        
+        # Find user data in the MongoDB collection using user ID
+        user_data = collection.find_one({"_id": user_id})
 
+        #if the user is not found in DB, it will throw an error
+        if not user_data:
+            return jsonify({"error": "User not found"}), 404
+    
+        # Get the email of the logged-in user
+        email = user_data["email"]
 
+        if not email:
+            # If email is not found, add email to the user
+            collection.update_one(
+                {"_id": user_id},
+                {"$set": {"email": email}}
+            )
+    
+        # Print the user's email; for decoding purpose
+        print("User's Email:", email)
+        
+         # Check if answers already exist for the user
+        if user_data.get("answer1") is not None:
+            # Update existing answers
+            collection.update_one(
+                {"_id": user_id},
+                {"$set": {
+                    "answer1": answer1,
+                    "answer2": answer2,
+                    "answer3": answer3,
+                    "answer4": answer4
+                }}
+            )
+            return jsonify({"status": "Questionnaire answers updated successfully"}), 200
+        else:
+            # Update registration data with answers
+            collection.update_one(
+                {"_id": user_id},
+                {"$set": {
+                    "answer1": answer1,
+                    "answer2": answer2,
+                    "answer3": answer3,
+                    "answer4": answer4,
+                    "email": email  # Ensure email is included
+                }}
+            )
+            return jsonify({"status": "Questionnaire answers submitted successfully"}), 200
+    except Exception as e:
+        return jsonify({"error":str(e)}), 500
 
 # Run the Flask app
 if __name__ == "__main__":

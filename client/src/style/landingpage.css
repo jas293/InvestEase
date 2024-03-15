@@ -1,0 +1,287 @@
+.Landing-page .section-01{
+    background-color: #122246;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+  }
+  .Landing-page .section-01 .image-container{
+    display: flex;
+    position: relative;
+  }
+  .Landing-page .section-01 .background-image-1{
+    width: 40%;
+    height: 80vh;
+    margin-top: 5%;
+    margin-left: 10%;
+    background-color: transparent;
+    border-radius: 5%;
+    border: solid;
+    border-color: #fff;
+    
+  }
+  .background-image-1{
+    opacity: 0.7;
+  }
+  .Landing-page .section-01 .background-image-2{
+    margin-left: 60%;
+    margin-top: 6%;
+    /*margin-right: 10%;*/
+    width: 30%;
+    height: 75vh;
+    border-radius: 5%;
+    /*border: solid;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(6, 6, 6, 0.5); /* Add shadow */
+    filter: contrast(150%); /* Adjust the value as needed */
+    /*opacity: 0;
+    transform: scale(0.8); /* Start with a smaller scale */
+    /*animation: fadeInScale 3s ease-in-out forwards; /* Apply the animation */
+  }
+  
+  .Landing-page .section-01 .text-container{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 30%;
+    /*padding-left: 10%;*/
+    padding-top: 10%;
+    transform: translate(-50%,-50%);
+    color: white;
+    text-align: center;
+    z-index: 1;
+  }
+  .Landing-page .section-01 .text-container h1{
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 21.5%;
+    margin-top: 25%;
+    /*background-color: #000;*/
+    width: 50%;
+    font-size: 4vw;
+    text-align: left;
+    line-height: 1; /* Adjust the value to your preference */
+  }
+  .Landing-page .section-01 .text-container p{
+    /*background-color: #000;*/
+    width: 50%;
+    
+    margin-top: 3%;
+    margin-left: 21.5%;
+    text-align: left;
+    font-size: 1.5vw;
+    line-height: 1vw; /* Adjust the value to your preference */
+  }
+  .Landing-page .section-01 .text-container .buttons{
+    /*background-color: #9a3737;*/
+    width: 50%;
+    margin-left: 21.5%;
+    display: flex;
+    gap: 20px;
+    padding-top: 4vh;
+    padding-left: 0%;
+    position: relative;
+  }
+  .buttons button {
+    margin: 0 1vw;
+    width: 15vw;
+    height: 6vh;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.3vw;
+    transition: background-color 0.3s ease;
+  }
+  /* Default button styles */
+#get-started,
+#how-it-works {
+  background-color: transparent; /* Default background color */
+  color: #fff; /* Default text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: 1px solid #fff; /* Add border and set border color */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hover effect */
+#get-started:hover,
+#how-it-works:hover {
+  background-color: #fff; /* Change background color to white on hover */
+  color: #000; /* Change font color to black on hover */
+}
+
+.Landing-page .section-02{
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Landing-page .section-02 .background-img-container{
+  width: 100%;
+  height: 100vh; /* Set the height of the container to full viewport height */
+  background-image: url('../images/background_img_2.jpg');
+  background-size: cover; /* Initially, cover the entire container */
+  background-position: center;
+  
+}
+.Landing-page .section-02 .text-container{
+  margin-top: 15%;
+  margin-left: 5%;
+  padding-top: 2%;
+  background-color: rgba(37, 154, 205, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  flex: 0 0 50%; /* Take up remaining space */
+  position: absolute;
+  width: 40%;
+  height: 15%;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.Landing-page .section-02 .text-container h1{
+  padding-left: 5%;
+  padding-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  font-size: 270%;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 2.5vw; /* Adjust the value to your preference */
+}
+.Landing-page .section-02 .text-container p{
+  padding-left: 5%;
+  padding-right: 10%;
+  color: #171616;
+}
+.Landing-page .section-02 .about-us{
+  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  width: 40%;
+  height: 8%;
+  margin-left: 50%;
+  margin-top: 10%;
+  position: absolute;
+  flex: 0 0 50%; /* Set a specific width for about-us */
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  
+}
+
+.Landing-page .section-02 .about-us h3{
+  margin-left: 30%;
+  margin-top: 7%;
+  font-size: 1.5em;
+}
+.Landing-page .section-02 .about-us p{
+  margin-left: 30%;
+}
+.Landing-page .section-02 .resources{
+  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  margin-top: 25%;
+  margin-left: 50%;
+  flex: 0 0 50%; /* Calculate width for resources */
+  position: absolute;
+  height: 12%;
+  width: 40%;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  -webkit-backdrop-filter: blur(10px); /* For Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.Landing-page .section-02 .resources h3{
+  margin-left: 30%;
+  margin-top: 2%;
+  font-size: 1.5em;
+}
+.Landing-page .section-02 .resources p{
+  margin-left: 30%;
+  width: 55%;
+}
+a{
+  color: black;
+}
+
+.Landing-page .section-03{
+  background-color: #192746;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+} 
+.Landing-page .section-03 .text-container-03{
+  text-align: center;
+  /*background-color: #aaa;*/
+  padding-top: 70px;
+  
+}
+.Landing-page .section-03 .text-container-03 h2{
+  /*background-color: #f0f0f0;*/
+  display: block;
+  margin: auto;
+  width: 40%;
+  font-size: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}
+.Landing-page .section-03 .text-container-03 p{
+  font-size: 20px;
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.665);
+}
+.Landing-page .section-03 .learn-signup-invest-container{
+  display: flex;
+}
+.Landing-page .section-03 .learn{
+  /*background-color: #f0f0f0;*/
+  text-align: center;
+  padding-top: 250px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .learn h2{
+  /*background-color: #444;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .learn p{
+  /*background-color: #122246;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .sign-up{
+  /*background-color: rgb(158, 100, 25);*/
+  text-align: center;
+  padding-top: 260px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .sign-up p{
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+.Landing-page .section-03 .invest{
+  text-align: center;
+  padding-top: 250px;
+  padding-right: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .invest h2{
+  /*background-color: #444;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}
+.Landing-page .section-03 .invest p{
+  /*background-color: #122246;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}

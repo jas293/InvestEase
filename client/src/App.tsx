@@ -6,6 +6,7 @@ import ForgetP from './pages/ForgetP';
 import ResetPassword from './pages/ResetPassword';
 import './style/style.css';
 import LandingPage from './pages/LandingPage';
+import Questionnaire from './pages/Questionnaire';
 
 
 const App: React.FC = () => {
@@ -21,6 +22,8 @@ console.log(location)
       <Route path="/ResetPassword" element={<ResetPassword />} />
       <Route path="/LandingPage" element={<LandingPage />} />
       <Route path="/ResetPassword" element={<ResetPassword />} />
+      <Route path="/Questionnaire" element={<Questionnaire />} />
+      
     </Routes>
    </div>
    </div>

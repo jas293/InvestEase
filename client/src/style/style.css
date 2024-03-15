@@ -184,7 +184,7 @@ form.sign-in-form {
 }
 
 /* Styling for the large circle before container */
-.container:before {
+/*.container:before {
   content: "";
   position: absolute;
   height: 2000px;
@@ -195,7 +195,7 @@ form.sign-in-form {
   background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%; /* Circle shape */
-  z-index: 6;
+  /*z-index: 6;
 }
 
 /* Styling for images */
@@ -553,96 +553,364 @@ form.sign-in-form {
   display: none;
 }
 
-
-.image-container {
+/*.Landing-page{
+  background-color: #122246;
+}*/
+/*
+.Landing-page .section-01{
+  background-color: #122246;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
   width: 100%;
-  height: 100vh; /* Set the height of the container to full viewport height */
-  background-image: url('../images/img3.jpg');
-  background-size: cover; /* Initially, cover the entire container */
-  background-position: center;
 }
-.image2-container{
-  width: 100%;
-  height: 100vh; /* Set the height of the container to full viewport height */
-  /*background-image: url('../images/2.png');*/
-  background-color: white;
-  background-size: cover; /* Initially, cover the entire container */
-  background-position: center;
-}
-
-.text-container header h1{
-  font-family: 'Times New Roman', serif;
-  font-size: 400%;
+.Landing-page .section-01 .image-container{
+  display: flex;
   position: relative;
-  padding-top: 10%;
-  padding-left: 10%;
-  color: white;
 }
-.text-container h1 {
+.Landing-page .section-01 .background-image-1{
+  width: 40%;
+  height: 80vh;
+  margin-top: 5%;
+  margin-left: 10%;
+  background-color: transparent;
+  border-radius: 5%;
+  border: solid;
+  border-color: #fff;
+  
+}
+.background-image-1{
+  opacity: 0.7;
+}*/
+/* Define a keyframe animation */
+/*@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.5); /* Start with a smaller scale */
+  /*}
+  to {
+    opacity: 1;
+    transform: scale(1); /* End with the original scale */
+  /*}
+}*/
+/*.Landing-page .section-01 .background-image-2{
+  margin-left: 60%;
+  margin-top: 6%;
+  /*margin-right: 10%;*/
+  /*width: 30%;
+  height: 75vh;
+  border-radius: 5%;
+  /*border: solid;
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(6, 6, 6, 0.5); /* Add shadow */
+  /*filter: contrast(150%); /* Adjust the value as needed */
+  /*opacity: 0;
+  transform: scale(0.8); /* Start with a smaller scale */
+  /*animation: fadeInScale 3s ease-in-out forwards; /* Apply the animation */
+/*}
+
+.Landing-page .section-01 .text-container{
+  position: absolute;
+  margin-top: 10%;
+  margin-left: 30%;
+  /*padding-left: 10%;*/
+  /*padding-top: 10%;
+  transform: translate(-50%,-50%);
+  color: white;
+  text-align: center;
+  z-index: 1;
+}
+.Landing-page .section-01 .text-container h1{
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 21.5%;
+  margin-top: 25%;
+  /*background-color: #000;*/
+  /*width: 50%;
+  font-size: 4vw;
+  text-align: left;
   line-height: 1; /* Adjust the value to your preference */
-}
-.text-container p{
-  line-height: 1.5; /* Adjust the value to your preference */
-}
-.text-container header p{
-  position: relative;
-  font-size: 125%;
-  padding-left: 10%;
-  color: white;
-}
-.cta-buttons {
+/*}
+.Landing-page .section-01 .text-container p{
+  /*background-color: #000;*/
+  /*width: 50%;
+  
+  margin-top: 3%;
+  margin-left: 21.5%;
+  text-align: left;
+  font-size: 1.5vw;
+  line-height: 1vw; /* Adjust the value to your preference */
+/*}
+.Landing-page .section-01 .text-container .buttons{
+  /*background-color: #9a3737;*/
+  /*width: 50%;
+  margin-left: 21.5%;
   display: flex;
   gap: 20px;
+  padding-top: 4vh;
+  padding-left: 0%;
+  position: relative;
 }
-.cta-buttons button {
+.buttons button {
+  margin: 0 1vw;
+  width: 15vw;
+  height: 6vh;
   border: none;
   padding: 15px 30px;
   border-radius: 25px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 1.3vw;
   transition: background-color 0.3s ease;
-}
-.cta-buttons{
-  padding-top: 2%;
-  padding-left: 10%;
-  
 }
 
 
 /* Default button styles */
-#get-started,
+/*#get-started,
 #how-it-works {
   background-color: transparent; /* Default background color */
-  color: #fff; /* Default text color */
-  padding: 10px 20px; /* Padding for the button */
-  border: 1px solid #fff; /* Add border and set border color */
-  cursor: pointer; /* Change cursor to pointer */
-  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
-}
+  /*color: #fff; /* Default text color */
+  /*padding: 10px 20px; /* Padding for the button */
+  /*border: 1px solid #fff; /* Add border and set border color */
+  /*cursor: pointer; /* Change cursor to pointer */
+  /*transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+/*}
 
 /* Hover effect */
-#get-started:hover,
+/*#get-started:hover,
 #how-it-works:hover {
   background-color: #fff; /* Change background color to white on hover */
-  color: #000; /* Change font color to black on hover */
+  /*color: #000; /* Change font color to black on hover */
+/*}
+
+.Landing-page .section-02{
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.Landing-page .section-02 .background-img-container{
+  width: 100%;
+  height: 100vh; /* Set the height of the container to full viewport height */
+  /*background-image: url('../images/background_img_2.jpg');
+  background-size: cover; /* Initially, cover the entire container */
+  /*background-position: center;
+  
+}
+.Landing-page .section-02 .text-container{
+  margin-top: 15%;
+  margin-left: 5%;
+  padding-top: 2%;
+  background-color: rgba(37, 154, 205, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  /*flex: 0 0 50%; /* Take up remaining space */
+  /*position: absolute;
+  width: 40%;
+  height: 15%;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  /*-webkit-backdrop-filter: blur(10px); /* For Safari */
+  /*border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.Landing-page .section-02 .text-container h1{
+  padding-left: 5%;
+  padding-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 3%;
+  font-size: 270%;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 2.5vw; /* Adjust the value to your preference */
+/*}
+.Landing-page .section-02 .text-container p{
+  padding-left: 5%;
+  padding-right: 10%;
+  color: #171616;
+}
+.Landing-page .section-02 .about-us{
+  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  /*width: 40%;
+  height: 8%;
+  margin-left: 50%;
+  margin-top: 10%;
+  position: absolute;
+  flex: 0 0 50%; /* Set a specific width for about-us */
+  /*backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  /*-webkit-backdrop-filter: blur(10px); /* For Safari */
+  /*border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  
 }
 
-.image2-container .text-container{
-  width: 500px;
-  background-color: #4481eb;
-  position: relative;
+.Landing-page .section-02 .about-us h3{
+  margin-left: 30%;
+  margin-top: 7%;
+  font-size: 1.5em;
 }
-.text-container h3{
-  position: relative;
-  background-color: #aaa;
+.Landing-page .section-02 .about-us p{
+  margin-left: 30%;
 }
-.image2-container .text-container p{
-  position: relative;
+.Landing-page .section-02 .resources{
+  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
+  /*margin-top: 25%;
+  margin-left: 50%;
+  flex: 0 0 50%; /* Calculate width for resources */
+  /*position: absolute;
+  height: 12%;
+  width: 40%;
+  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+  /*-webkit-backdrop-filter: blur(10px); /* For Safari */
+  /*border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
+.Landing-page .section-02 .resources h3{
+  margin-left: 30%;
+  margin-top: 2%;
+  font-size: 1.5em;
+}
+.Landing-page .section-02 .resources p{
+  margin-left: 30%;
+  width: 55%;
+}
+a{
+  color: black;
+}
+
+.Landing-page .section-03{
+  background-color: #192746;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+} 
+.Landing-page .section-03 .text-container-03{
+  text-align: center;
+  /*background-color: #aaa;*/
+  /*padding-top: 70px;
+  
+}
+.Landing-page .section-03 .text-container-03 h2{
+  /*background-color: #f0f0f0;*/
+  /*display: block;
+  margin: auto;
+  width: 40%;
+  font-size: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}
+.Landing-page .section-03 .text-container-03 p{
+  font-size: 20px;
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.665);
+}
+.Landing-page .section-03 .learn-signup-invest-container{
+  display: flex;
+}
+.Landing-page .section-03 .learn{
+  /*background-color: #f0f0f0;*/
+  /*text-align: center;
+  padding-top: 250px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .learn h2{
+  /*background-color: #444;*/
+  /*width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .learn p{
+  /*background-color: #122246;*/
+  /*width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .sign-up{
+  /*background-color: rgb(158, 100, 25);*/
+  /*text-align: center;
+  padding-top: 260px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .sign-up p{
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+.Landing-page .section-03 .invest{
+  text-align: center;
+  padding-top: 250px;
+  padding-right: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .invest h2{
+  /*background-color: #444;*/
+  /*width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}
+.Landing-page .section-03 .invest p{
+  /*background-color: #122246;*/
+  /*width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}*/
 
 @media (max-width: 600px) {
-  
+  /*.Landing-page .section-02 {
+    flex-direction: column;
+  }
 
+  .Landing-page .section-02 .text-container,
+  .Landing-page .section-02 .about-us,
+  .Landing-page .section-02 .resources {
+    position: relative;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    height: auto;
+    flex: 0 0 100%;
+  }
+
+  .Landing-page .section-02 .text-container h1,
+  .Landing-page .section-02 .about-us h3,
+  .Landing-page .section-02 .resources h3,
+  .Landing-page .section-02 .text-container p,
+  .Landing-page .section-02 .about-us p,
+  .Landing-page .section-02 .resources p {
+    font-size: 18px;
+  }*/
+}
+
+
+/* Adjust the opacity and scale based on scroll position */
+/*@media (min-height: 600px) {
+  .background-image-2 {
+    opacity: 1; /* Adjust the opacity based on scroll position */
+    /*transform: scale(1); /* Adjust the scale based on scroll position */
+  /*}
+}*/
+@media (max-width: 600px) {
+  
+  /*.text-container {
+    width: 80%; /* Adjust width for smaller screens */
+    /*max-width: 300px; /* Set maximum width for smaller screens */
+   /* padding: 20px; /* Add padding for spacing */
+  /*}*/
+  /*.text-container h1 {
+    font-size: 5vw; /* Adjust as needed for smaller screens */
+  /*}
+  .text-container p {
+    font-size: 10vw; /* Adjust as needed for smaller screens */
+  /*}
+  .buttons button {
+    font-size: 1vw; /* Adjust as needed for smaller screens */
+    /*margin: 0.5rem; /* Adjust margin for buttons */
+    /*width: 9vw; /* Adjust width for smaller screens */
+    /*height: 5vh; /* Adjust height for smaller screens */
+  /*}*/
   .text-content {
       text-align: center;
       padding: 0;
@@ -658,4 +926,5 @@ form.sign-in-form {
       align-items: center;
   }
 }
+
 
