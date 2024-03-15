@@ -1,4 +1,8 @@
+import pandas as pd
+import yfinance as yf
+from datetime import datetime, timedelta
 import plotly.graph_objects as go
+import pymongo as pm
 
 def assess_risk_tolerance(answers):
   """
@@ -107,63 +111,78 @@ def assess_risk_tolerance(answers):
   else:
     return "High Risk Tolerance"
 
-# Example usage
-answers = {
-  1: "C",  # Investment horizon: 4 to 7 years
-  2: "B",  # Comfort with fluctuations: Somewhat uncomfortable
-  3: "C",  # Financial situation: Comfortable savings cushion
-  4: "C",  # Approach to financial decisions: Moderate risk tolerance
-  5: "C",  # Investment knowledge: Moderate understanding
-  6: "C",  # Reaction to past losses: Neutral
-  7: "C",  # Reliance on professional advice: Moderate reliance
-  8: "C",  # Investment scenario preference: Moderate potential returns with moderate risk
-  9: "B",  # Financial legacy: Moderately important
-  10: "C", # Short-term loss response: Neutral
-  11: "C", # Following financial news: Moderate interest
-  12: "C", # Investment allocation: Majority in high-risk growth stock fund
-  13: "C", # Personality description: Balanced
-  14: "C"  # Investment philosophy: Balanced approach
-}
+# Get the user's answers to the questionnaire from the mongoDB database.
+# Connect to the MongoDB database
+client = pm.MongoClient("mongodb://localhost:27017/")
+db = client["risk_analysis"]
+collection = db["questionnaire"]
+
+# Get the user's answers to the questionnaire
+answers = collection.find_one({})
+print(answers)
+
+# Assess the risk tolerance based on the user's answers
+risk_tolerance = assess_risk_tolerance(answers)
+print(f"Your risk tolerance is: {risk_tolerance}")
+
 
 # Add a python diagram to show the result of the assessment of the risk tolerance of the investor based on the answers to the questionnaire out of 100 points.
 # The result should be a pie chart showing the percentage of the risk tolerance of the investor.
+import plotly.graph_objects as go
+
 # Define the data
 labels = ["Low Risk Tolerance", "Medium Risk Tolerance", "High Risk Tolerance"]
 values = [33, 66, 100]  # Map each risk tolerance level to a value out of 100
 
-# Assume this is the user's risk tolerance level
-user_risk_tolerance = "Medium Risk Tolerance"
+# Get the user's risk tolerance from the assessment function.
+user_risk_tolerance = assess_risk_tolerance(answers)
 
 # Find the index of the user's risk tolerance
 user_index = labels.index(user_risk_tolerance)
 
 fig = go.Figure(go.Indicator(
-    mode = "gauge+number",
-    value = values[user_index],
-    domain = {'x': [0, 1], 'y': [0, 1]},
-    title = {'text': "Investor Risk Tolerance", 'font': {'size': 24, 'color': "darkblue"}},
-    gauge = {
-        'axis': {'range': [None, 100], 'tickwidth': 1, 'tickcolor': "darkblue"},
-        'bar': {'color': "darkblue"},
-        'bgcolor': "white",
-        'borderwidth': 2,
-        'bordercolor': "gray",
-        'steps': [
-            {'range': [0, 33], 'color': 'lightblue'},
-            {'range': [33, 66], 'color': 'skyblue'},
-            {'range': [66, 100], 'color': 'steelblue'},
-        ],
-        'threshold': {
-            'line': {'color': "red", 'width': 4},
-            'thickness': 0.75,
-            'value': values[user_index]
-        }
+  mode = "gauge+number",
+  value = values[user_index],
+  domain = {'x': [0, 1], 'y': [0, 1]},
+  title = {'text': "Investor Risk Tolerance", 'font': {'size': 24, 'color': "darkblue"}},
+  gauge = {
+    'axis': {'range': [None, 100], 'tickwidth': 1, 'tickcolor': "darkblue"},
+    'bar': {'color': "darkblue"},
+    'bgcolor': "white",
+    'borderwidth': 2,
+    'bordercolor': "gray",
+    'steps': [
+      {'range': [0, 33], 'color': 'lightblue'},
+      {'range': [33, 66], 'color': 'skyblue'},
+      {'range': [66, 100], 'color': 'steelblue'},
+    ],
+    'threshold': {
+      'line': {'color': "red", 'width': 4},
+      'thickness': 0.75,
+      'value': values[user_index]
     }
+  }
 ))
 
-fig.update_layout(paper_bgcolor = "white", font = {'color': "darkblue", 'family': "Arial"})
+fig.add_annotation(
+  x=0.5,
+  y=0.4,
+  text=f"Your Risk Tolerance: {user_risk_tolerance}",
+  showarrow=False,
+  font={'size': 16, 'color': 'darkblue'}
+)
 
+fig.update_layout(paper_bgcolor = "white", font = {'color': "darkblue", 'family': "Arial"})
 fig.show()
+
+html_div = fig.to_html(full_html=False, include_plotlyjs='cdn')
+print(html_div)
+
+fig.update_layout(paper_bgcolor = "white", font = {'color': "darkblue", 'family': "Arial"})
+fig.show()
+
+html_div = fig.to_html(full_html=False, include_plotlyjs='cdn')
+print(html_div)
 
 
 risk_tolerance = assess_risk_tolerance(answers)
@@ -192,12 +211,68 @@ def high_risk(budget):
         print(f"Buy ${amount:.2f} of {symbol}")
 
 
-risk_level = 'high'
+risk_level = user_risk_tolerance
 budget = 1000
 
-if risk_level == 'low':
+if risk_level == 'Low Risk Tolerance':
     low_risk(budget)
-elif risk_level == 'medium':
+elif risk_level == 'Medium Risk Tolerance':
     medium_risk(budget)
-elif risk_level == 'high':
+elif risk_level == 'High Risk Tolerance':
     high_risk(budget)
+
+
+
+
+def get_stock_info(symbols, amounts):
+    # Define the start and end dates for the 5-year period
+    end = datetime.today().strftime('%Y-%m-%d')
+    start = (datetime.today() - timedelta(days=5*365)).strftime('%Y-%m-%d')
+
+    # Initialize a DataFrame to store the stock information
+    df = pd.DataFrame(columns=['Symbol', 'Amount', 'Historical Return', 'Volatility', 'Price', '12 Month Yield'])
+
+    # Get the stock information for each symbol
+    for symbol, amount in zip(symbols, amounts):
+        # Download the historical market data
+        data = yf.download(symbol, start=start, end=end)
+
+        # Calculate the historical return, volatility, and 12 month yield
+        historical_return = (data['Close'][-1] - data['Close'][0]) / data['Close'][0]
+        volatility = data['Close'].pct_change().std()
+        price = data['Close'][-1]
+        yield_12m = (data['Close'][-1] - data['Close'][-365]) / data['Close'][-365]
+
+        # Create a DataFrame for the current symbol
+        df_symbol = pd.DataFrame({'Symbol': [symbol], 'Amount': [amount], 'Historical Return': [historical_return], 'Volatility': [volatility], 'Price': [price], '12 Month Yield': [yield_12m]})
+
+        # Add the stock information to the DataFrame
+        df = pd.concat([df, df_symbol], ignore_index=True)
+
+    # Return the DataFrame
+    return df
+
+# Define the budget and allocation
+budget = 1000
+allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+
+# Get the stock information for the symbols based on the risk level
+if risk_level == 'low':
+    symbols = ["AGG", "BND", "SPY", "VOO", "VTI", "VXUS", "BNDX", "GLD", "VNQ", "VIG"]
+elif risk_level == 'medium':
+    symbols = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA", "V", "JPM", "JNJ", "UNH", "PG"]
+elif risk_level == 'high':
+    symbols = ["XENE", "IOVA", "KRTX", "AUR", "AVDL", "INBX", "ENVX", "GERN", "RLAY", "VRNA"]
+
+# Calculate the amounts for each symbol
+amounts = [budget * a for a in allocation]
+
+df = get_stock_info(symbols, amounts)
+
+# Convert the DataFrame to HTML
+html = df.to_html()
+
+# Write the HTML to a file
+with open('stock_info.html', 'w') as f:
+    f.write(html)
+
