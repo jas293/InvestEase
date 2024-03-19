@@ -7,12 +7,11 @@ import '../style/landingpage.css'; // Import your CSS file
 import image from '../images/image.png'
 import ScrollReveal from 'scrollreveal';
 import Lottie from 'lottie-react'
-import animationData from '../assets/Animation - 1710255710277.json'
-import animationData2 from '../assets/Animation - 1710269656917.json'
-import animationLearn from '../assets/Animation - 1710272517175.json'
-import animationSignUp from '../assets/Animation - 1710272950478.json'
-import animationInvest from '../assets/Animation - 1710273499861.json'
-
+import animationData from '../assets/Animation_-_1710255710277.json';
+import animationData2 from '../assets/Animation_-_1710269656917.json';
+import animationLearn from '../assets/Animation_-_1710272517175.json';
+import animationSignUp from '../assets/Animation_-_1710272950478.json';
+import animationInvest from '../assets/Animation_-_1710273499861.json';
 
 
 
@@ -123,7 +122,9 @@ const LandingPage: React.FC = () => {
             </div>
             <div className="resources">
             <Lottie animationData={animationData2} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '140px', position:'relative',marginLeft: '-20px', marginBottom: '-150px', marginTop:'60px' }} />
-                <h3><a href="">Resources & Education</a></h3>
+            <h3>
+                <Link to="/resources">Resources & Education</Link> {/* Replace with your actual route */}
+            </h3>
                 <p>Setup target investment with sizeable amount towards achieving a goal or target. Each fantastic interest
                     on researching your goal.
                 </p>
