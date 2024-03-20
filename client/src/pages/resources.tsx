@@ -14,7 +14,7 @@ const Card = (card: any) => {
                 {card.title}
             </h3>
             <div>
-                {card.content}
+                <p>{card.content}</p>
             </div>
         </a>
     )
@@ -23,18 +23,18 @@ const Card = (card: any) => {
 const NewsCard = (news: any) => {
     return (
         <a
-            className='card'
+            className='news-card'
             href={news.url}
             target='_blank'
         >
-            <div>
+            <div className='news-image-container'>
                 <img className="news-image" src={news.urlToImage} alt="News Image" />
             </div>
             <h3>
                 {news.title}
             </h3>
             <div>
-                {news.description}
+                <p>{news.description}</p>
             </div>
         </a>
     )
@@ -225,8 +225,8 @@ export const Resources: React.FC = () => {
     const renderVideos = () => {
         const rows = [];
         let row: any|[] = [];
-        videosData.slice(0,15).forEach((video: any, index: number) => {
-          if (index > 0 && index % 4 === 0) {
+        videosData.slice(0,3).forEach((video: any, index: number) => {
+          if (index > 0 && index % 3 === 0) {
             rows.push(row);
             row = [];
           }
@@ -269,8 +269,8 @@ export const Resources: React.FC = () => {
     const renderNewsCard = () => {
         const rows = [];
         let row: any|[] = [];
-        newsArticles.slice(0,6).forEach((newsCard: any, index: number) => {
-          if (index > 0 && index % 3 === 0) {
+        newsArticles.slice(0,8).forEach((newsCard: any, index: number) => {
+          if (index > 0 && index % 4 === 0) {
             rows.push(row);
             row = [];
           }
@@ -291,35 +291,60 @@ export const Resources: React.FC = () => {
     }, [newsArticles])
 
     return (
-        <>
-        <div>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-            <div style={{backgroundColor: 'green'}}>
-                <h1>Resouces</h1>
-            </div>        
-            <div style={{backgroundColor: 'red'}}>
-                <h4>Collection of all good articles about investing</h4>
-            </div>
-            {newsLoaded && 
-            (
-                <div style={{backgroundColor: 'blue', display: 'flex', flexDirection: 'column'}}>
-                    <h1>Top News</h1>
-                    <FlexContainer>{renderNewsCard()}</FlexContainer>
+        <div className='main-resource-container'>
+            <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
+                <div className='main-heading-container'>
+                    <div className='main-heading-container-extend'>
+                    <div className='main-heading'>
+                        <h1>Resources and Education</h1>
+                    </div>        
+                    <div >
+                        <h4 className='resource-page-subheading'>Collection of all good articles about investing</h4>
+                    </div>
+                    </div>
                 </div>
-            )
-            }   
-            <div style={{backgroundColor: 'yellow', display: 'flex', flexDirection: 'column'}}>
-                <h1>Articles</h1>
-                <FlexContainer>{renderCards()}</FlexContainer>
-            </div>
-            <div style={{backgroundColor: 'orange', display: 'flex', flexDirection: 'column'}}>
-                <h1>Featured Videos</h1>
-                <FlexContainer>{renderVideos()}</FlexContainer>
+                <div className='articles-container'>
+                    <div className='articles-heading-container'>
+                        <div className='articles-heading'>
+                            <h2>Articles</h2>
+                        </div>
+                        <div>
+                            <h4 className='resource-page-subheading'>Collections of informative articles to read about investements & stocks.</h4>
+                        </div>
+                    </div>
+                    
+                    <FlexContainer>{renderCards()}</FlexContainer>
+                </div>
+                 <div className='featured-videos'>
+                    <div className='featured-videos-container'>
+                    <div className='featured-videos-heading-container'>
+                        <div className='featured-videos-heading'>
+                            <h2>Featured Videos</h2>
+                        </div>
+                        <div className='featured-videos-subheading'>
+                            <h4 className='resource-page-subheading'>Explore fearured videos to learn more about stocks & investemets.</h4>
+                        </div>
+                    </div>
+                    <FlexContainer>{renderVideos()}</FlexContainer>
+                    </div>
+                </div>
+                {newsLoaded && 
+                    (
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <div className='top-stories-headline-container'>
+                                <div className='top-stories-headline'>
+                                    <h2>Top Headlines</h2>
+                                </div>
+                                <div className='top-stories-subheading'>
+                                    <h4 className='resource-page-subheading'>Find new, handpicked news you’ll love, updated daily.</h4>
+                                </div>
+                            </div>
+                            <FlexContainer>{renderNewsCard()}</FlexContainer>
+                        </div>
+                    )
+                }   
             </div>
         </div>
-        </div>
-        </>
     )
 }
-
 export default Resources;

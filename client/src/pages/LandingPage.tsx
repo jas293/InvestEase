@@ -117,7 +117,9 @@ const LandingPage: React.FC = () => {
             <div className="about-us">
                 <Lottie animationData={animationData} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '175px', position:'relative',marginLeft: '-20px', marginBottom: '-160px' }} />
                 
-                <h3><a href="">About Us</a></h3>
+                <h3>
+                <Link to="/about-us">AboutUs</Link> 
+                </h3>
                 <p>Learn more about InvestEase</p>
             </div>
             <div className="resources">
