@@ -18,7 +18,15 @@ import animationInvest from '../assets/Animation_-_1710273499861.json';
 
 const LandingPage: React.FC = () => {
     
+    useEffect(() => {
+        // When the component mounts, add a class to the container to hide the half circle
+        document.querySelector('.container')?.classList.add('hide-half-circle');
     
+        // When the component unmounts, remove the class
+        return () => {
+          document.querySelector('.container')?.classList.remove('hide-half-circle');
+        };
+      }, []);
     /*useEffect(() => {
         // Check if user is logged in (e.g., by checking for session cookie)
         const isLoggedIn = document.cookie.includes('session_cookie='); // Assuming session cookie name is 'session'
@@ -83,10 +91,16 @@ const LandingPage: React.FC = () => {
         };
     }, []);
 
-    const handleTakeQuiz = () =>{
+    const handleSignin = () =>{
         // Redirect to the login page
-        window.location.href = '/Questionnaire';
+        window.location.href = '/SignIn';
     }
+    const handleSignup = () =>{
+        // Redirect to the login page
+        window.location.href = '/signup';
+    }
+
+    
 
     return (
  
@@ -99,8 +113,8 @@ const LandingPage: React.FC = () => {
                     <h1>Invest your savings and grow your wealth.</h1>
                     <p>Enjoy up to 100% returns on investments.</p>
                     <div className="buttons">
-                        <button id="get-started" onClick={handleTakeQuiz}>Take Quiz</button>
-                        <button id="how-it-works">How it works</button>
+                        <button id="get-started" onClick={handleSignin}>Sign In</button>
+                        <button id="how-it-works" onClick={handleSignup}>Sign Up</button>
                     </div>
                 </div>  
             </div>  
@@ -146,8 +160,11 @@ const LandingPage: React.FC = () => {
                 <p>Divide into investing with ease and clarity, tailored just for you.</p>
             </div>
             <div className="sign-up">
-            <Lottie animationData={animationSignUp} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '175px', position:'relative',marginLeft: '180px', marginTop: '-180px' }} />
-                <h2>Sign Up</h2>
+            
+            <Link to="/signup"><Lottie animationData={animationSignUp} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '175px', position:'relative',marginLeft: '180px', marginTop: '-180px' }} /></Link> {/* Replace with your actual route */}
+                <h2>
+                <Link to="/signup">Sign Up</Link> {/* Replace with your actual route */}
+                </h2>
                 <p>With a few taps, under 5 minutes you can set up a profile. Take our questionaire and get started.</p>
             </div>
             <div className="invest">

@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
         phone: phoneNumber,
       });
 
-      window.location.href = "/";
+      window.location.href = "/SignIn";
 
     }catch(error: any){
       if(error.response && error.response.status === 401){
@@ -72,7 +72,7 @@ const SignUp: React.FC = () => {
 
 
     const handleSignIN = (): void => {
-      navigate('/')
+      navigate('/SignIn')
     }
 
 

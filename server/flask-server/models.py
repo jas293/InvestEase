@@ -42,22 +42,43 @@ class User1:
         }
     
 class Answers:
-    def __init__(self,email, answer1, answer2, answer3,answer4):
+    def __init__(self,email, answer1, answer2, answer3,answer4, answer5, answer6, answer7, answer8, answer9,answer10,answer11,answer12,answer13,answer14,answer15):
         
         self.email = email
         self.answer1 = answer1
-        
         self.answer2 = answer2
         self.answer3 = answer3
         self.answer4 = answer4
+        self.answer5 = answer5
+        self.answer6 = answer6
+        self.answer7 = answer7
+        self.answer8 = answer8
+        self.answer9 = answer9
+        self.answer10 = answer10
+        self.answer11 = answer11
+        self.answer12 = answer12
+        self.answer13 = answer13
+        self.answer14 = answer14
+        self.answer15 = answer15
+        
         
     
     def to_dict(self):
         return{
             "email": self.email,
-            
             "answer1": self.answer1,
             "answer2": self.answer2,
             "answer3": self.answer3,
-            "answer4": self.answer4
+            "answer4": self.answer4,
+            "answer5": self.answer5,
+            "answer6": self.answer6,
+            "answer7": self.answer7,
+            "answer8": self.answer8,
+            "answer9": self.answer9,
+            "answer10": self.answer10,
+            "answer11": self.answer11,
+            "answer12": self.answer12,
+            "answer13": self.answer13,
+            "answer14": self.answer14,
+            "answer15": self.answer15
         }

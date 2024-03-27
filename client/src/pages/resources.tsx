@@ -59,6 +59,16 @@ const getDateString = (numOfDays: number|null|undefined = null) => {
 
 export const Resources: React.FC = () => {
 
+    useEffect(() => {
+        // When the component mounts, add a class to the container to hide the half circle
+        document.querySelector('.container')?.classList.add('hide-half-circle');
+    
+        // When the component unmounts, remove the class
+        return () => {
+          document.querySelector('.container')?.classList.remove('hide-half-circle');
+        };
+      }, []);
+
     const navigate = useNavigate();
     const [newsArticles, setNewsArticles] = useState([]);
     const [newsLoaded, setNewsLoaded] = useState(false);

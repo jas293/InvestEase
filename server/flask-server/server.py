@@ -304,9 +304,20 @@ def submit_questionnaire():
     answer2 = request.json.get("answer2")
     answer3 = request.json.get("answer3")
     answer4 = request.json.get("answer4")
+    answer5 = request.json.get("answer5")
+    answer6 = request.json.get("answer6")
+    answer7 = request.json.get("answer7")
+    answer8 = request.json.get("answer8")
+    answer9 = request.json.get("answer9")
+    answer10 = request.json.get("answer10")
+    answer11 = request.json.get("answer11")
+    answer12 = request.json.get("answer12")
+    answer13 = request.json.get("answer13")
+    answer14 = request.json.get("answer14")
+    answer15 = request.json.get("answer15")
     
     #checking answers if any of them are null
-    if not (answer1 and answer2 and answer3 and answer4):
+    if not (answer1 and answer2 and answer3 and answer4 and answer5 and answer6 and answer7 and answer8 and answer9 and answer10 and answer11 and answer12 and answer13 and answer14 and answer15):
         return jsonify({"error": "All answers are required"}), 400
     
     #Retriving user's ID from database
@@ -347,7 +358,18 @@ def submit_questionnaire():
                     "answer1": answer1,
                     "answer2": answer2,
                     "answer3": answer3,
-                    "answer4": answer4
+                    "answer4": answer4,
+                    "answer5": answer5,
+                    "answer6": answer6,
+                    "answer7": answer7,
+                    "answer8": answer8,
+                    "answer9": answer9,
+                    "answer10": answer10,
+                    "answer11": answer11,
+                    "answer12": answer12,
+                    "answer13": answer13,
+                    "answer14": answer14,
+                    "answer15": answer15
                 }}
             )
             return jsonify({"status": "Questionnaire answers updated successfully"}), 200
@@ -356,11 +378,22 @@ def submit_questionnaire():
             collection.update_one(
                 {"_id": user_id},
                 {"$set": {
+                    "email": email,  # Ensure email is included
                     "answer1": answer1,
                     "answer2": answer2,
                     "answer3": answer3,
                     "answer4": answer4,
-                    "email": email  # Ensure email is included
+                    "answer5": answer5,
+                    "answer6": answer6,
+                    "answer7": answer7,
+                    "answer8": answer8,
+                    "answer9": answer9,
+                    "answer10": answer10,
+                    "answer11": answer11,
+                    "answer12": answer12,
+                    "answer13": answer13,
+                    "answer14": answer14,
+                    "answer15": answer15
                 }}
             )
             return jsonify({"status": "Questionnaire answers submitted successfully"}), 200

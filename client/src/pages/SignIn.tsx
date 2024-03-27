@@ -89,7 +89,7 @@ const SignIn: React.FC = () => {
       });
 
       //window.location.href = "/LandingPage";
-      navigate('/LandingPage');
+      navigate('/Questionnaire');
 
     }catch(error: any){
       if(error.response.status === 401){

@@ -17,7 +17,7 @@ const ForgetP: React.FC = () => {
         email
       });
 
-      window.location.href = "/";
+      window.location.href = "/SignIn";
 
     }catch(error: any){
       if(error.response.status === 404){

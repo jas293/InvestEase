@@ -1,3 +1,8 @@
+.Landing-page{
+  .container:before {
+    display: none; /* This will hide the half circle for LandingPage */
+  }
+}
 .Landing-page .section-01{
     background-color: #122246;
     padding: 0;
@@ -264,6 +269,10 @@ a{
   width: 50%;
   display: block;
   margin: auto;
+}
+.Landing-page .section-03 .sign-up a{
+  color: white;
+  text-decoration: none;
 }
 .Landing-page .section-03 .invest{
   text-align: center;

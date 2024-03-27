@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AboutUs: React.FC = () => {
     const [showMore, setShowMore] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // When the component mounts, add a class to the container to hide the half circle
+        document.querySelector('.container')?.classList.add('hide-half-circle');
+    
+        // When the component unmounts, remove the class
+        return () => {
+          document.querySelector('.container')?.classList.remove('hide-half-circle');
+        };
+      }, []);
 
     const handleLearnMoreClick = () => {
         setShowMore(!showMore); // Toggles the boolean value of showMore
