@@ -7,11 +7,12 @@ import '../style/landingpage.css'; // Import your CSS file
 import image from '../images/image.png'
 import ScrollReveal from 'scrollreveal';
 import Lottie from 'lottie-react'
-import animationData from '../assets/Animation_-_1710255710277.json';
-import animationData2 from '../assets/Animation_-_1710269656917.json';
-import animationLearn from '../assets/Animation_-_1710272517175.json';
-import animationSignUp from '../assets/Animation_-_1710272950478.json';
-import animationInvest from '../assets/Animation_-_1710273499861.json';
+import animationData from '../assets/Animation - 1710255710277.json'
+import animationData2 from '../assets/Animation - 1710269656917.json'
+import animationLearn from '../assets/Animation - 1710272517175.json'
+import animationSignUp from '../assets/Animation - 1710272950478.json'
+import animationInvest from '../assets/Animation - 1710273499861.json'
+
 
 
 
