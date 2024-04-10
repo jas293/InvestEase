@@ -9,7 +9,7 @@ import LandingPage from './pages/LandingPage';
 import Questionnaire from './pages/Questionnaire';
 import { Resources } from './pages/resources';
 import AboutUs from './pages/AboutUs';
-
+import Dashboard from './pages/Dashboard';
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -27,7 +27,7 @@ console.log(location)
       <Route path="/Questionnaire" element={<Questionnaire />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/about-us" element={<AboutUs />} />
-      
+      <Route path="/Dashboard" element={<Dashboard />} />
     </Routes>
    </div>
    </div>
@@ -38,5 +38,3 @@ console.log(location)
 
 
 export default App;
-
-
