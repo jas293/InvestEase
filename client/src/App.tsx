@@ -10,6 +10,7 @@ import Questionnaire from './pages/Questionnaire';
 import { Resources } from './pages/resources';
 import AboutUs from './pages/AboutUs';
 import Dashboard from './pages/Dashboard';
+import { Settings } from './pages/settings';
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -28,6 +29,7 @@ console.log(location)
       <Route path="/resources" element={<Resources />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/settings" element={<Settings />} />
     </Routes>
    </div>
    </div>
