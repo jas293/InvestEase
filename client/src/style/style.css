@@ -1121,7 +1121,7 @@ a.card:hover{
 }
 
 .video-thumbnail {
-  width: calc(33.33% - 20px);
+  min-width: 30%;
   background-color: #222;
   border-radius: 0.5rem;
   box-sizing: border-box;

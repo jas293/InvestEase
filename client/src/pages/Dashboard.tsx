@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { createChart, ColorType } from 'lightweight-charts';
+import { useNavigate, Link } from 'react-router-dom';
 import '../style/dashboard.css';
 import { time } from 'console';
 
@@ -133,7 +134,7 @@ const StockDashboard = () => {
     // getStocksList();
     // getCompanyData()
 
-    // getStocksInformation();
+    //getStocksInformation();
 
     // When the component unmounts, remove the class
     return () => {
@@ -145,7 +146,7 @@ const StockDashboard = () => {
     let stockCompanyInfo: CompanyInfomaton[] = [];
     const response = Promise.all(
       STOCK_SYMBOL_LIST.map(async symb => {
-        const url = `https://financialmodelingprep.com/api/v3/profile/${symb}?apikey=Df8uducDQ6NTqsctUQPRV4SjLVueNT5A`;
+        const url = `https://financialmodelingprep.com/api/v3/profile/${symb}?apikey=Dyp3TT8Lv8XQIATP59v7Y4eIr9Fl9h1E`;
         const requestOptions = {
           method: 'GET',
           redirect: 'follow'
@@ -169,13 +170,14 @@ const StockDashboard = () => {
     ).then((result) => {
       console.log("Company Info Fetched", stockCompanyInfo);
       setStockCompanyInfoData(stockCompanyInfo);
+      getData(stockCompanyInfo[0].symbol)
       setCurrentStockData(stockCompanyInfo[0]);
     })
 
   }
 
   const getCompanyData: Function = async () => {
-    const url = 'https://financialmodelingprep.com/api/v3/profile/AAPL?apikey=Df8uducDQ6NTqsctUQPRV4SjLVueNT5A';
+    const url = 'https://financialmodelingprep.com/api/v3/profile/AAPL?apikey=Dyp3TT8Lv8XQIATP59v7Y4eIr9Fl9h1E';
     const requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -250,12 +252,12 @@ const StockDashboard = () => {
   }
   
 
-  const getData: Function = async () => {
+  const getData: Function = async (symbol: String) => {
     
     // var request = require('request');
 
     // replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-    var url = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&interval=5min&apikey=4NYJP7J4NKNDWEWF';
+    var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&interval=5min&apikey=4NYJP7J4NKNDWEWF`;
 
     var requestOptions = {
       method: 'GET',
@@ -283,6 +285,17 @@ const StockDashboard = () => {
           console.log("New Object");
           console.log(newData);
           setData([...newData]);
+          let companyInfoCurrent: CompanyInfomaton | undefined =  stockCompanyInfoData.find((company) => company.symbol === symbol);
+          if (companyInfoCurrent === undefined) {
+            companyInfoCurrent = {
+              'symbol': '',
+              'change': 0,
+              'price': '',
+              'stockImageUrl': '',
+              'companyName': ''
+            };
+          }
+          setCurrentStockData(companyInfoCurrent);
       })
       .catch(error => console.log('error', error));
   }
@@ -295,10 +308,10 @@ const StockDashboard = () => {
         </header>
         <nav>
           <ul>
-            <li>Home</li>
-            <li>Dashboard</li>
-            <li>News</li>
-            <li>Settings</li>
+            <li><Link style={{textDecoration: 'none'}} to="/LandingPage">Home</Link></li>
+            <li><Link style={{textDecoration: 'none'}} to="/about-us">About us</Link></li>
+            <li><Link style={{textDecoration: 'none'}} to="/resources">News</Link></li>
+            <li><Link style={{textDecoration: 'none'}} to="/settings">Settings</Link></li>
           </ul>
         </nav>
       </aside>
@@ -312,7 +325,7 @@ const StockDashboard = () => {
             <div className="stock-info">
                   {stockCompanyInfoData && stockCompanyInfoData.length > 0 && (
                     stockCompanyInfoData.map((companyInfo: CompanyInfomaton) => {
-                      return <div className="stock-item">
+                      return <a className="stock-item" onClick={() => getData(companyInfo.symbol)}>
                         <div className='stock-item-row-container'>
                           <div>
                             <img src={companyInfo.stockImageUrl.toString()} style={{maxWidth: '2rem'}} />
@@ -338,7 +351,7 @@ const StockDashboard = () => {
                             {Number(companyInfo.change) < 0 ? <i className="fas  fa-long-arrow-down"></i> : <i className="fas  fa-long-arrow-up"></i>}
                           </div>
                         </div>
-                      </div>
+                      </a>
                     })
                   )}
             </div>
@@ -385,7 +398,7 @@ const StockDashboard = () => {
             <div id='watchlist-item-container'>
               {watchlist.length > 0 && (
                 watchlist.map((item: CompanyInfomaton) => {
-                  return <div className="watch-item">
+                  return <a className="watch-item" onClick={() => getData(item.symbol)}>
                     <div className='watchlist-stock-name-img-container'>
                       <div className='watchlist-image-container'>
                         <img src={item.stockImageUrl.toString()} style={{maxWidth: '2.5rem'}}/>
@@ -408,7 +421,7 @@ const StockDashboard = () => {
                         {/* {Number(item.change) < 0 ? <i className="fas  fa-long-arrow-down"></i> : <i className="fas  fa-long-arrow-up"></i>} */}
                       </div>
                     </div>
-                  </div>
+                  </a>
                 })
               )}
             </div>
