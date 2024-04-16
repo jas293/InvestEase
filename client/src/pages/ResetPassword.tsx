@@ -28,6 +28,7 @@ const ResetPassword: React.FC = () => {
     }
   }, []);
 
+  /*Setup requirements for the password*/
   const validatePassword = (password: string): boolean => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/; // password requiredmnet same as sign in page.
     return regex.test(password);
@@ -70,7 +71,7 @@ const ResetPassword: React.FC = () => {
         password
       });
       //console.log(email);
-      window.location.href = "/";
+      window.location.href = "/SignIn";
 
     }catch(error: any){
       if(error.response && error.response.status === 401){

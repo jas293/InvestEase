@@ -155,7 +155,8 @@ form.sign-in-form {
 /* Button styling */
 .btn {
   width: 150px;
-  background-color: #5995fd;
+  /*background-color: #5995fd;*/
+  background-color: #122246;
   border: none;
   outline: none;
   height: 49px;
@@ -193,7 +194,8 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);
+  /*background-image: linear-gradient(-45deg, #4481eb 0%, #04befe 100%);*/
+  background-image: linear-gradient(-45deg, #122246 0%, #122246 100%);
   transition: 1.8s ease-in-out;
   border-radius: 50%; /* Circle shape */
   z-index: 6;
@@ -867,20 +869,50 @@ a{
 .questionnaire{
   padding: 0;
   margin: 0;
-  height: 100vh;
-  background-image: linear-gradient(#d8c7ff, #19006c);
-  padding-top: 60px;
+  height:auto;
+  /*background-image: linear-gradient(#d8c7ff, #19006c);
+  background-color: #6c6ce0;*/
+
+  /*padding-top: 60px;*/
+}
+.header{
+  /*margin-top: 5px;*/
+  height: 9%;
+  display: flex;
+  position: fixed;
+  background-color: rgba(2, 10, 44, 0.882);
+  width: 100%;
+  
+}
+.header h2{
+  margin-left: 25px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 35px;
+  align-content: center;
+  color: white;
+}
+.header a{
+  align-content: center;
+  margin-left: auto;
+  margin-right:30px;
+  text-decoration: none;
+  color: white;
+}
+.header a :hover{
+  text-decoration: underline;
+  color:white;
 }
 .questionnaire .quiz-card{
   margin: auto;
-  
-  background-color: white;
+  margin-top: 70px;
+  /*background-color: rgb(69, 65, 65);*/
   width: 60%;
   display: flex;
   flex-direction: column;
   gap: 20px;
   border-radius: 10px;
-  padding: 40px 50px;
+  padding: 30px 50px;
+  padding-top: 30px;
 }
 .quiz-card hr{
   height: 2px;
@@ -890,6 +922,13 @@ a{
 .quiz-card h2{
   font-size: 27px;
   font-weight: 500;
+  color: black;
+}
+.quiz-card p{
+  color: black;
+  margin-bottom: 10px;
+  font-size: 23px;
+  /*font-family:serif;*/
 }
 .quiz-card ul li{
   display: flex;
@@ -899,20 +938,30 @@ a{
   border: 1px solid #686868;
   border-radius: 8px;
   margin-bottom: 20px;
-  font-size: 17px;
+  font-size: 18px;
   cursor: pointer;
+  color: black;
+  /*font-family:serif;*/
+}
+.quiz-card .button-container{
+  display: flex;
 }
 .quiz-card button{
   /*margin: auto;*/
   width: 200px;
   height: 40px;
-  background-color: #553f9a;
+  /*background-color: #553f9a;
+  background-color: rgba(61, 177, 227, 0.389);*/
+  background-color: #122246;
   color: #fff;
   font-size: 25px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 20px;
   cursor: pointer;
   
+}
+.quiz-card button:hover{
+  background-color: #008CBA;
 }
 .next-btn{
   margin-left: 390px;
@@ -925,9 +974,13 @@ a{
 .quiz-card .question-num{
   margin: auto;
   font-size: 18px;
+  color: black;
 }
 .selected {
-  background-color: #8f7ccd; /* Change to desired highlight color */
+  /*background-color: #8f7ccd; *//* Change to desired highlight color 
+  background-color: rgba(61, 177, 227, 0.389);*/
+  background-color: #03215957;
+
   border: 1px solid #5b4c9a; /* Add border for highlight effect */
   /* Add any other desired styles for highlighting */
 }

@@ -11,6 +11,11 @@ from dotenv import load_dotenv, dotenv_values # For loading environment variable
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import pandas as pd
+import yfinance as yf
+from datetime import datetime, timedelta
+
+import math
 
 '''
 Generating a key which will be used as a session cookie, so when the user logsin,
@@ -37,6 +42,8 @@ load_dotenv()
 app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SESSION_COOKIE_NAME'] = 'session_cookie'  # Set the custom session cookie name
 Session(app)
+
+session_cookie = secret_key
 
 # Initialize Bcrypt for password hashing
 bcrypt = Bcrypt(app)
@@ -143,9 +150,11 @@ def login_user():
     
     # Set the user's ID in the session
     session["user_id"] = user_data["_id"]
+    '''session_cookie '''
+    '''str(user_data["_id"])'''
 
     # Return user details
-    return ({"id": user_data["_id"], "email": user_data["email"]})
+    return ({"id": user_data["_id"], "email": user_data["email"] , "token":session["user_id"]})
 
 # Route to log out a user
 @app.route("/logout" , methods=["POST"])
@@ -399,7 +408,162 @@ def submit_questionnaire():
             return jsonify({"status": "Questionnaire answers submitted successfully"}), 200
     except Exception as e:
         return jsonify({"error":str(e)}), 500
+    
+@app.route("/result" , methods=["GET"])
+def assess_risk_tolerance():
+    """
+    Assesses an investor's risk tolerance based on their answers to a questionnaire.
+    """
+    categories = {
+        'answer1': {
+            "Less than 1 year": -20,
+            "1 to 3 years": -10,
+            "4 to 7 years": 0,
+            "More than 7 years": 10
+        },
+        'answer2': {
+            "I am very uncomfortable and would prefer to avoid any potential losses": -20,
+            "I am somewhat uncomfortable but willing to accept some risk for potentially higher returns.": -10,
+            "I am comfortable with moderate fluctuations and understand the potential for short-term losses.": 0,
+            "I am comfortable with significant fluctuations and prioritize the potential for high returns, even if it means accepting higher risk": 20
+        },
+        'answer3': {
+            "I have limited savings and significant debt": -20,
+            "I have some savings and manageable debt.": -10,
+            "I have a comfortable savings cushion and no significant debt": 10,
+            "I have a substantial amount of savings and financial security": 20
+        },
+        'answer4': {
+            "I prioritize safety and security above all else, even if it means lower potential returns": -20,
+            "I prefer a balanced approach, considering both risk and potential reward.": 0,
+            "I am open to some risks for higher potential returns": 10,
+            "I actively seek high risk opportunities for substantial returns": 20
+        },
+        'answer5': {
+            "I am not familiar with any investment options": -20,
+            "I have a basic understanding of some common options": -10,
+            "I am somewhat knowledgeable about various investment options": 10,
+            "I consider myself an expert in financial markets and investments": 20
+        },
+        'answer6': {
+            "I became very anxious and sold investments immediately": -20,
+            "I felt uneasy but held onto my investments and waited for recovery": -10,
+            "I maintained my investments and looked for buying opportunities": 10,
+            "I viewed it as a major buying opportunity and invested more": 20
+        },
+        'answer7': {
+            "I rely heavily on professional advice and guidance": -20,
+            "I consider professional advice but ultimately make my own decisions": -10,
+            "Primarily relies on self-research with occasional professional advice": 10,
+            "Exclusively relies on self-research and makes independent decisions": 20
+        },
+        'answer8': {
+            "Consistent, predictable returns with minimal risk": -20,
+            "Moderate growth potential with some possibility of fluctuations": -10,
+            "High growth potential with considerable fluctuations": 10,
+            "Very high growth potential with extreme fluctuations": 20
+        },
+        'answer9': {
+            "Significant factor in investment decisions": -20,
+            "Moderate factor in investment decisions": -10,
+            "Minor factor in investment decisions": 10,
+            "This is not a significant factor in my investment decisions": 20
+        },
+        'answer10': {
+            "Very risk-averse, prioritizing safety and security": -20,
+            "Somewhat risk-averse, comfortable with some calculated risks": -10,
+            "Somewhat risk-tolerant": 10,
+            "Highly risk-tolerant": 20
+        },
+        'answer11': {
+            "I would be extremely worried and consider selling everything": -20,
+            "Would be cautious and monitor the market": -10,
+            "Would hold investments and ride out the market": 10,
+            "I would view it as a potential buying opportunity and consider adding to my investments": 20
+        },
+        'answer12': {
+            "I am not interested in following financial news or trends": -20,
+            "Occasionally follows financial news": -10,
+            "Regularly follows financial news": 10,
+            "I actively research and analyze financial news and trends to make informed decisions": 20
+        },
+        'answer13': {
+            "Invest it all in a low-risk savings account, guaranteeing a small but steady return": -20,
+            "Invest mostly in low-risk options with some growth potential": -10,
+            "Balanced investment in growth and safety": 10,
+            "Invest the majority in a high-risk growth stock fund, with a smaller portion in a low-risk bond fund": 20
+        },
+        'answer14': {
+            "I am very cautious and avoid any unnecessary financial risks": -20,
+            "Cautious but sometimes spontaneous": -10,
+            "Deliberate but flexible": 10,
+            "I am deliberate and prefer to make calculated decisions based on research": 20
+        },
+        'answer15': {
+            "My primary goal is to preserve my capital and avoid any losses ": -20,
+            "Prefers minimal financial risks": -10,
+            "Open to calculated high risks for potential high returns": 10,
+            "I am primarily driven by achieving financial goals quickly, even if it means taking substantial risks": 20
+        }
+    }
+
+    #Retriving user's ID from database
+    user_id = session.get("user_id")
+    
+    #Throws an error if fails to retrive the user_id
+    if not user_id:
+        return jsonify({"error":"Unauthorized"}), 401
+    
+    try:
+        
+        # Find user data in the MongoDB collection using user ID
+        user_data = collection.find_one({"_id": user_id})
+
+        #if the user is not found in DB, it will throw an error
+        if not user_data:
+            return jsonify({"error": "User not found"}), 404
+        
+        # Get the email of the logged-in user
+        email = user_data["email"]
+    
+        # Print the user's email; for decoding purpose
+        print("User's Email:", email)
+
+        # Initialize a dictionary to store the user's answers
+        user_answers = {}
+        
+        # Remove the fields that are not answers
+        user_answers = {key: value for key, value in user_data.items() if key.startswith('answer')}
+        
+        total_score = 0
+        for question, answer in user_answers.items():
+            if question in categories and answer in categories[question]:
+                total_score += categories[question][answer]
+
+        if total_score <= -60:
+            risk_tolerance = "Low Risk Tolerance"
+        elif total_score <= 60:
+            risk_tolerance = "Medium Risk Tolerance"
+        else:
+            risk_tolerance = "High Risk Tolerance"
+    
+        #return risk_tolerance, total_score
+        # Return the user's answers
+        #return jsonify(user_answers)
+    
+    except Exception as e:
+        return jsonify({"error":str(e)}), 500
+
+    return jsonify({
+    "email": email,
+    "risk_tolerance": risk_tolerance,
+    "total_score": total_score,
+    "user Answers": user_answers
+})
+
+    
 
 # Run the Flask app
 if __name__ == "__main__":
     app.run(debug=True)
+

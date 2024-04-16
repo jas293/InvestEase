@@ -88,8 +88,16 @@ const SignIn: React.FC = () => {
         password,
       });
 
+      // Extract token from response data
+      const token = resp.data.token;
+
+      // Store the token in local storage or session storage
+      sessionStorage.setItem('token', token); // or sessionStorage.setItem('token', token);
+
+
       //window.location.href = "/LandingPage";
       navigate('/Questionnaire');
+      
 
     }catch(error: any){
       if(error.response.status === 401){

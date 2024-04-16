@@ -68,8 +68,9 @@ const LandingPage: React.FC = () => {
             mobile: false // Whether to enable animation on mobile devices
         });
 
-        sr.reveal('.background-image-2', { delay: 400, origin: 'right', scale:0.5 });
-        sr.reveal('.text-container', { delay: 400, origin: 'left', scale: 0.6 }); // Adjust scale as needed
+        {sr.reveal('.background-image-2', { delay: 400, origin: 'right', scale:0.5 });}
+        sr.reveal('.section-02 .background-img-container .text-container', { delay: 400, origin: 'left', scale: 0.6 }); // Adjust scale as needed
+    
         sr.reveal('.about-us', { delay: 400, origin: 'left', scale: 0.6 }); // Adjust scale as needed
         sr.reveal('.resources', { delay: 400, origin: 'left', scale: 0.6 }); // Adjust scale as needed
 
