@@ -251,11 +251,11 @@ a:hover {
 }
 
 #offer {
-    background-image: url('../../images/offerings.avif');
+    background-image: url('../../images/blueBg.avif');
 }
 
 #mission {
-    background-image: url('../../images/mission.avif');
+    background-image: url('../../images/darkBg.jpeg');
 }
 
 .item_description_container {

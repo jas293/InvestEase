@@ -3,6 +3,8 @@ import { createChart, ColorType } from 'lightweight-charts';
 import { useNavigate, Link } from 'react-router-dom';
 import '../style/dashboard.css';
 import { time } from 'console';
+import TradingViewWidget from './components/ChartWidget';
+// import ../'
 
 
 const STOCK_SYMBOL_LIST = ['AAPL', 'ABNB', 'ADBE', 'AMZN', 'CCEP', 'GOOGL', 'MSFT', 'META', 'TSLA', 'NFLX', 'NVDA', 'WDAY', 'ZS', 'WBD', 'SBUX', 'PEP', 'LULU', 'GEHC', 'EA']
@@ -84,6 +86,11 @@ const StockDashboard = () => {
     'companyName': ''
   });
 
+  useEffect(() => {
+    console.log("Current Stock data updated");
+    console.log(currentStockData);
+  },[currentStockData] )
+
   const [watchlist, setWatchlist] = useState<CompanyInfomaton[]>(
     [
       {
@@ -128,6 +135,8 @@ const StockDashboard = () => {
     // When the component mounts, add a class to the container to hide the half circle
     document.querySelector('.container')?.classList.add('hide-half-circle');
 
+    console.log("First time loading page");
+
     // getData();
     // getTopGainersAndLosersList();
 
@@ -170,7 +179,7 @@ const StockDashboard = () => {
     ).then((result) => {
       console.log("Company Info Fetched", stockCompanyInfo);
       setStockCompanyInfoData(stockCompanyInfo);
-      getData(stockCompanyInfo[0].symbol)
+      // getData(stockCompanyInfo[0].symbol)
       setCurrentStockData(stockCompanyInfo[0]);
     })
 
@@ -257,7 +266,7 @@ const StockDashboard = () => {
     // var request = require('request');
 
     // replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-    var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&interval=5min&apikey=4NYJP7J4NKNDWEWF`;
+    var url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&interval=5min&apikey=JUBNCUOA1QM4HTL5`;
 
     var requestOptions = {
       method: 'GET',
@@ -278,24 +287,13 @@ const StockDashboard = () => {
           }
           for (let i=arr.length-1; i>=0; i--) {
             const property = arr[i];
-            console.log(`${property}: ${responseStore[property]}`);
+            // console.log(`${property}: ${responseStore[property]}`);
             let newObj: {time: string, value: number} = {time: `${property}`, value: Number(responseStore[property]['4. close'])};
             newData.push(newObj)  
           }
-          console.log("New Object");
-          console.log(newData);
+          // console.log("New Object");
+          // console.log(newData);
           setData([...newData]);
-          let companyInfoCurrent: CompanyInfomaton | undefined =  stockCompanyInfoData.find((company) => company.symbol === symbol);
-          if (companyInfoCurrent === undefined) {
-            companyInfoCurrent = {
-              'symbol': '',
-              'change': 0,
-              'price': '',
-              'stockImageUrl': '',
-              'companyName': ''
-            };
-          }
-          setCurrentStockData(companyInfoCurrent);
       })
       .catch(error => console.log('error', error));
   }
@@ -304,14 +302,14 @@ const StockDashboard = () => {
     <div className="dashboard">
       <aside className="sidebar">
         <header className="sidebar-header">
-          <h2>Menu</h2>
+          <h2><i className="fas fa-line-chart"></i>Investease</h2>
         </header>
         <nav>
           <ul>
-            <li><Link style={{textDecoration: 'none'}} to="/LandingPage">Home</Link></li>
-            <li><Link style={{textDecoration: 'none'}} to="/about-us">About us</Link></li>
-            <li><Link style={{textDecoration: 'none'}} to="/resources">News</Link></li>
-            <li><Link style={{textDecoration: 'none'}} to="/settings">Settings</Link></li>
+            <li><i className="fas fa-home"></i><Link style={{textDecoration: 'none'}} to="/LandingPage">Home</Link></li>
+            <li><i className="fas fa-address-book"></i><Link style={{textDecoration: 'none'}} to="/about-us">About us</Link></li>
+            <li><i className="fas fa-newspaper"></i><Link style={{textDecoration: 'none'}} to="/resources">News</Link></li>
+            <li><i className="fas fa-gear"></i><Link style={{textDecoration: 'none'}} to="/settings">Settings</Link></li>
           </ul>
         </nav>
       </aside>
@@ -325,7 +323,31 @@ const StockDashboard = () => {
             <div className="stock-info">
                   {stockCompanyInfoData && stockCompanyInfoData.length > 0 && (
                     stockCompanyInfoData.map((companyInfo: CompanyInfomaton) => {
-                      return <a className="stock-item" onClick={() => getData(companyInfo.symbol)}>
+                      return <a className="stock-item" onClick={() => {
+                          // getData(companyInfo.symbol)
+                          console.log("Symbol Value", companyInfo.symbol);
+                          // let companyInfoCurrent: CompanyInfomaton | undefined =  stockCompanyInfoData.find((company) => {
+                          //   console.log("Company Symbol", company.symbol);
+                          //   return company.symbol === symbol
+                          // });
+                          // console.log('Current info company', companyInfoCurrent);
+                          // if (companyInfoCurrent === undefined) {
+                          //   companyInfoCurrent = {
+                          //     'symbol': '',
+                          //     'change': 0,
+                          //     'price': '',
+                          //     'stockImageUrl': '',
+                          //     'companyName': ''
+                          //   };
+                          // }
+                          setCurrentStockData({
+                            'symbol': companyInfo.symbol,
+                            'change': companyInfo.change,
+                            'companyName': companyInfo.companyName,
+                            'price': companyInfo.price,
+                            'stockImageUrl': companyInfo.stockImageUrl
+                          });
+                        }}>
                         <div className='stock-item-row-container'>
                           <div>
                             <img src={companyInfo.stockImageUrl.toString()} style={{maxWidth: '2rem'}} />
@@ -385,9 +407,13 @@ const StockDashboard = () => {
             </div>
             <div className="chart">
                 {/* Whenever a use clicks on any stock I want to show the chart of that stock here in this section inside a box styled like in the other sections. */}
-                {data && (
+                {/* {data && (
                   <ChartComponent data={data} />
+                )} */}
+                {currentStockData && currentStockData.symbol !== '' && (
+                  <TradingViewWidget symbol={currentStockData.symbol}/>
                 )}
+                
                 
             </div>
         </section>
@@ -398,7 +424,16 @@ const StockDashboard = () => {
             <div id='watchlist-item-container'>
               {watchlist.length > 0 && (
                 watchlist.map((item: CompanyInfomaton) => {
-                  return <a className="watch-item" onClick={() => getData(item.symbol)}>
+                  return <a className="watch-item" onClick={() => {
+                      // getData(item.symbol)
+                      setCurrentStockData({
+                        'symbol': item.symbol,
+                        'change': item.change,
+                        'companyName': item.companyName,
+                        'price': item.price,
+                        'stockImageUrl': item.stockImageUrl
+                      });
+                    }}>
                     <div className='watchlist-stock-name-img-container'>
                       <div className='watchlist-image-container'>
                         <img src={item.stockImageUrl.toString()} style={{maxWidth: '2.5rem'}}/>
