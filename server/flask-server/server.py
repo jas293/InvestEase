@@ -46,7 +46,7 @@ server_session = Session(app)
 app.config["JWT_SECRET"] = secret_key
 
 # Connect to the MongoDB database using the URI from the environment variables
-client = MongoClient(os.getenv("ATLAS_URI"))
+client = MongoClient("mongodb+srv://pdp5:patel@cluster0.h1ybggt.mongodb.net/?retryWrites=true&w=majority")
 
 # Connect to the 'db1' database
 db = client.db1
@@ -72,6 +72,50 @@ def get_current_user():
 
 
     return jsonify({"id": user_data["_id"], "email": user_data["email"]})
+
+# Route to get the current user's information such as ID and Email
+@app.route("/getUser/<id>")
+def get_current_user_info(id):
+    print("Get User Info")
+    print(id)
+    user_id = id
+
+    # Check if the user is authenticated
+    if not user_id:
+        return jsonify({"error": "Unauthorized"}), 401
+   
+    # Find user data in the MongoDB collection
+    user_data = collection.find_one({"_id": user_id})
+
+    # If user data is not found, return an error
+    if not user_data:
+        return jsonify({"error": "User not found"}), 404
+
+
+    return jsonify(user_data)
+
+# Route to update the current user's information such as ID and Email
+@app.route("/updateUser/<id>", methods = ["PUT"])
+def update_current_user_info(id):
+
+    try:
+        print("Start Updating user")
+        userInfo = request.json["user"]
+
+        print(userInfo)
+        if not userInfo:
+            return jsonify({"error": "No data received"}), 404
+        if userInfo.get("_id") is None:
+            return jsonify({"error": "No _id specified"}), 404
+        
+
+        collection.update_one({'_id':userInfo.get("_id")}, {"$set": userInfo}, upsert=False)
+
+        return({"message": "record updated"})
+        
+    except Exception as e:
+        print(e) # Print any exception occurred for debugging
+        return "Error occurred" # Return generic error message
 
 
 # Route to register a new user
@@ -117,6 +161,7 @@ def register():
 # Route to login a user
 @app.route("/login" , methods = ["POST"])
 def login_user():
+    print("Logging IN")
     email = request.json["email"]
     password = request.json["password"]
 

@@ -15,21 +15,53 @@ type SettingsTpe = {
 export const Settings: React.FC = () => {
 
     const [settingsInfo, setSettingsInfo] = useState<SettingsTpe>({
-        name: 'Rahul Patel',
-        phoneNumber: 9898989898,
-        email: 'rahul@yopmail.com',
-        dob: '20/10/1997'
+        name: '',
+        phoneNumber: 0,
+        email: '',
+        dob: '',
     })
+
+    const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
         // When the component mounts, add a class to the container to hide the half circle
         document.querySelector('.container')?.classList.add('hide-half-circle');
+
+        getCurrentUserInfo();
     
         // When the component unmounts, remove the class
         return () => {
           document.querySelector('.container')?.classList.remove('hide-half-circle');
         };
     }, []);
+// const userId = <getUserId>
+                            // const url = 'http://localhost:5000/updateUser/' + userId
+    const getCurrentUserInfo: Function = () => {
+        const url = 'http://localhost:5000/getUser/1aa774d1f1454c4bbd1452df8e2160dc';
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+          };
+
+        fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log("Result of user");
+            console.log(result);
+            const tempSettingsInfo: SettingsTpe = {
+                name: result.name,
+                email: result.email,
+                dob: result.dob,
+                phoneNumber: result.phone
+            }
+            setUserInfo(result);
+            setSettingsInfo(tempSettingsInfo);
+        });
+
+    }
     
 
     function getImageFileObject(imageFile: any) {
@@ -61,7 +93,7 @@ export const Settings: React.FC = () => {
                 <i className="fa fa-cog" aria-hidden="true" style={{marginRight: '1rem'}}></i>
                 Settings
             </h1>
-            <div className="user-info">Welcome, {settingsInfo.name.toString().split(" ").at(0)}!</div>
+            <div className="user-info">Welcome, {settingsInfo.name?.toString().split(" ").at(0)}!</div>
         </header>
         <section id='settings-container-div'>
             <div id='settings-heading'>
@@ -71,7 +103,12 @@ export const Settings: React.FC = () => {
                 <div id='settings-name-photo-container' className='settings-container'>
                     <div id='settings-name-container' className='input-container'>
                         <label>Name</label>
-                        <input name="name" value={settingsInfo.name.toString()}/>
+                        <input name="name" value={settingsInfo.name?.toString()} onChange={(e) => {
+                            setSettingsInfo({
+                                ...settingsInfo,
+                                name: e.target.value
+                            })
+                        }} />
                     </div>
                     <div id='settings-photo-container'>
                         <ImageUploader
@@ -84,7 +121,12 @@ export const Settings: React.FC = () => {
                 <div id='settings-email-container' className='settings-container'>
                     <div id='settings-email-div' className='input-container'>
                         <label>Email Address</label>
-                        <input name="email" value={settingsInfo.email.toString()} />
+                        <input name="email" value={settingsInfo.email.toString()} onChange={(e) => {
+                            setSettingsInfo({
+                                ...settingsInfo,
+                                email: e.target.value
+                            })
+                        }} />
                     </div>
                     {/* <div id='settings-email-verified'>
 
@@ -93,7 +135,12 @@ export const Settings: React.FC = () => {
                 <div id='settings-contact-number-container' className='settings-container'>
                     <div id='settings-phone-container' className='input-container'>
                         <label>Phone Number</label>
-                        <input name="phone" value={Number(settingsInfo.phoneNumber)} />
+                        <input name="phone" value={Number(settingsInfo.phoneNumber)} onChange={(e) => {
+                            setSettingsInfo({
+                                ...settingsInfo,
+                                phoneNumber: Number(e.target.value)
+                            })
+                        }} />
                     </div>
                     {/* <div id='settings-photo-container'>
 
@@ -102,7 +149,12 @@ export const Settings: React.FC = () => {
                 <div id='settings-dob-container' className='settings-container'>
                     <div id='settings-dob-container' className='input-container'>
                         <label>Date of Birth</label>
-                        <input name="dob" value={settingsInfo.dob.toString()} />
+                        <input name="dob" value={settingsInfo.dob.toString()} onChange={(e) => {
+                            setSettingsInfo({
+                                ...settingsInfo,
+                                dob: e.target.value
+                            })
+                        }} />
                     </div>
                     {/* <div id='settings-photo-container'>
 
@@ -110,10 +162,48 @@ export const Settings: React.FC = () => {
                 </div>
                 <div id='settings-save-container' className='settings-container'>
                     <div id='settings-save' className='input-container'>
-                        <input type='button' name="save" value='Save' />
+                        <input type='button' name="save" value='Save' onClick={() => {
+                            const userPayload = {
+                                ...userInfo,
+                                name: settingsInfo.name,
+                                email: settingsInfo.email,
+                                dob: settingsInfo.dob,
+                                phone: settingsInfo.phoneNumber
+                            }
+
+                            console.log("User info payload")
+                            console.log(userPayload)
+                            console.log({"user": userPayload})
+                            // const userId = <getUserId>
+                            // const url = 'http://localhost:5000/updateUser/' + userId
+                            const url = 'http://localhost:5000/updateUser/1aa774d1f1454c4bbd1452df8e2160dc';
+                            let myHeaders = new Headers();
+                            myHeaders.append("Content-Type", "application/json");
+                            
+                            const requestOptions = {
+                                method: 'PUT',
+                                headers: myHeaders,
+                                body: JSON.stringify({"user": userPayload}),
+                                redirect: 'follow'
+                            };
+
+                            fetch(url, requestOptions)
+                            .then((response) => response.json())
+                            .then((result) => {
+                                console.log("PUT result")
+                                console.log(result);
+                            })
+                        }} />
                     </div>
                     <div id='settings-cancel' className='input-container'>
-                        <input type='button' name="cancel" value='Cancel' />
+                        <input type='button' name="cancel" value='Cancel' onClick={() => {
+                            setSettingsInfo({
+                                name: userInfo.name || "",
+                                phoneNumber: userInfo.phone || 0,
+                                email: userInfo.email || "",
+                                dob: userInfo.dob || ""
+                            })
+                        }} />
                     </div>
                     {/* <div id='settings-photo-container'>
 

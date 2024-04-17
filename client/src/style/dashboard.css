@@ -10,7 +10,7 @@
 /* Sidebar styling for a lighter look */
 .sidebar {
   width: 20%;
-  background-color: #f9f9f9; /* Lighter background color for the sidebar */
+  background-color: #fff; /* Lighter background color for the sidebar */
   color: #333;
   padding: 40px; /* Increased padding for better spacing */
   box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
@@ -19,6 +19,14 @@
 .sidebar-header {
   font-size: 1.8em; /* Larger font size for the header */
   margin-bottom: 30px; /* Increased spacing after the header */
+
+  h2 {
+    font-size: 1.2em;
+
+    i {
+      margin-right: .5rem;
+    }
+  }
 }
 
 .sidebar ul {
@@ -31,6 +39,10 @@
   padding: 15px 0; /* Increased padding for better clickability */
   cursor: pointer;
   transition: background-color 0.3s; /* Smooth transition for hover effect */
+  
+  i {
+    margin-right: 0.5rem;
+  }
 }
 
 .sidebar li:hover {
@@ -43,7 +55,7 @@
   padding: 40px; /* Increased padding for better spacing */
   overflow-x: hidden; /* Hide horizontal scrollbar */
   position: relative;
-  background: #E9E9E9;
+  background: #F5F7F9;
 }
 
 /* Header styling */
@@ -71,7 +83,8 @@
   gap: 3rem;
   padding: 2.5rem;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  /* from 2 4 */
+  box-shadow: 0 10px 5px rgba(0,0,0,0.1); 
   overflow-x: scroll;
   border-radius: 10px;
 }
@@ -82,6 +95,13 @@
   flex-direction: column;
   justify-content: space-evenly;
   gap: .5rem;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.stock-item:hover {
+  background-color: #eaeaea; /* Subtle hover effect */
 }
 
 .portfolio{
@@ -89,7 +109,7 @@
 }
 
 .my-watchlist {
-  flex-grow: 2;
+  flex-grow: 1;
 }
 
 /* Watchlist styling adjustments */
@@ -131,7 +151,7 @@
   margin-top: 20px;
   min-height: 35rem;
   min-height: 35rem;
-  /* flex-grow: 3; */
+  flex-grow: 6;
   max-width: 70rem;
   background: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -312,6 +332,10 @@
 
 .watchlist-change.positive {
   color: #3DA864;
+}
+
+.tradingview-widget-container {
+  height: 40rem !important;
 }
 
 

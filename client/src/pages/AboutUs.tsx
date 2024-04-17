@@ -286,7 +286,7 @@ const AboutUs: React.FC = () => {
                         Let's build wealth side by side. Let's grow a financially savvy community together.
                     </div>
                     <div>
-                        <a onClick={() => { console.log("CLicked on refer link")}}> Refer </a>
+                        <a onClick={() => { alert("Stay tuned. Coming soon!")}}> Refer </a>
                     </div>
                 </div>
             </div>
@@ -294,6 +294,7 @@ const AboutUs: React.FC = () => {
                 <div className='footer-container'>
                     <a href='/LandingPage'>Home</a>
                     <a href='/resources'>Resouces</a>
+                    <a href='/Dashboard'>Dashboard</a>
                 </div>
             </div>
         </div>
