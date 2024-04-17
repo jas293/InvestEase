@@ -235,17 +235,17 @@ export const Resources: React.FC = () => {
     const renderVideos = () => {
         const rows = [];
         let row: any|[] = [];
-        videosData.slice(0,3).forEach((video: any, index: number) => {
-          if (index > 0 && index % 3 === 0) {
-            rows.push(row);
-            row = [];
-          }
+        videosData.forEach((video: any, index: number) => {
+        //   if (index > 0 && index % 3 === 0) {
+            // rows.push(row);
+            // row = [];
+        //   }
          
           row.push(<VideoThumbnail key={video.id} videoId={video.videoId} title={video.heading}  />);
         });
         rows.push(row); // Push the last row
         return rows.map((row, index) => (
-          <div key={index} className="flex-row">
+          <div key={index} className="flex-row" style={{overflowX: 'scroll'}}>
             {row}
           </div>
         ));
