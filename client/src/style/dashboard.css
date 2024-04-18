@@ -1,0 +1,341 @@
+/* Overall dashboard layout adjustments for a modern look */
+.dashboard {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a modern font */
+  color: #333; /* Dark grey color for better readability */
+  background-color: #f4f4f4; /* Light grey background for the entire dashboard */
+}
+
+/* Sidebar styling for a lighter look */
+.sidebar {
+  width: 20%;
+  background-color: #fff; /* Lighter background color for the sidebar */
+  color: #333;
+  padding: 40px; /* Increased padding for better spacing */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.sidebar-header {
+  font-size: 1.8em; /* Larger font size for the header */
+  margin-bottom: 30px; /* Increased spacing after the header */
+
+  h2 {
+    font-size: 1.2em;
+
+    i {
+      margin-right: .5rem;
+    }
+  }
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Added to reset default margin */
+}
+
+.sidebar li {
+  padding: 15px 0; /* Increased padding for better clickability */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  
+  i {
+    margin-right: 0.5rem;
+  }
+}
+
+.sidebar li:hover {
+  background-color: #eaeaea; /* Subtle hover effect */
+}
+
+/* Main content area adjustments */
+.main-content {
+  width: 80%;
+  padding: 40px; /* Increased padding for better spacing */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  position: relative;
+  background: #F5F7F9;
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px; /* Added margin to separate from content below */
+  /* background: white; */
+}
+
+/* Section styling (Portfolio, News, Stocks) */
+.portfolio, .news, .stocks {
+  margin-top: 40px; /* Increased margin for better spacing */
+}
+
+.portfolio h2, .news h2, .stocks h2 {
+  font-size: 1.5em; /* Increased font size for better visibility */
+  margin-bottom: 20px; /* Increased spacing below headers */
+}
+
+/* Stock information box adjustments */
+.stock-info {
+  display: flex;
+  gap: 3rem;
+  padding: 2.5rem;
+  background-color: #fff;
+  /* from 2 4 */
+  box-shadow: 0 10px 5px rgba(0,0,0,0.1); 
+  overflow-x: scroll;
+  border-radius: 10px;
+}
+
+.stock-item {
+  min-width: 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: .5rem;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.stock-item:hover {
+  background-color: #eaeaea; /* Subtle hover effect */
+}
+
+.portfolio{
+  margin-bottom: 40px; /* Increased margin for better spacing */
+}
+
+.my-watchlist {
+  flex-grow: 1;
+}
+
+/* Watchlist styling adjustments */
+.watchlist {
+  margin-top: 20px; /* Increased margin for better spacing */
+  max-height: 50rem;
+  overflow-y: scroll;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+.watch-info {
+  /* width: 300px;  */
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+
+.watch-item {
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 20px; Added margin for spacing between items */
+  padding-bottom: 1.2rem;
+  border-bottom: groove;
+  padding-top: 1.2rem;
+}
+
+/* Text styling adjustments */
+.watch-item p, .stock-item p {
+  font-size: 0.9em; /* Slightly smaller font size for non-header text */
+  color: #666; /* Lighter text color for less contrast */
+}
+
+.stock-chart {
+  padding: 20px;
+  margin-top: 20px;
+  min-height: 35rem;
+  min-height: 35rem;
+  flex-grow: 6;
+  max-width: 70rem;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 10px;
+
+  h2 {
+    margin-bottom: 5rem;
+  }
+}
+
+#watchlist-chart-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  overflow-x: scroll;
+}
+
+.stock-item-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h4 {
+    text-align: right;
+  }
+
+  p {
+    color: #7A7A7A;
+  }
+}
+
+.company-image-container {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  padding: .2rem;
+}
+
+.stock-change-info.stock-negative {
+  p {
+    color: #D34645 !important;
+  }
+}
+
+.stock-change-info.stock-positive {
+  p {
+    color: #3DA864 !important;
+  }
+}
+
+.stock-positive {
+  color: #3DA864 !important;
+}
+
+.stock-negative {
+  color: #D34645 !important;
+}
+
+.stock-change-info {
+  display: flex;
+  gap: .1rem;
+}
+
+.chart-heading-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  border-bottom: groove;
+  padding-bottom: 1rem;
+  border-bottom-width: medium;
+}
+
+.chart-heading-image-title-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.chart-image-container {
+  display: flex;
+  align-items: center;
+}
+
+.chart-title-sym-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.chart-price-change-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#chart-change-container {
+  border-radius: 1rem;
+  padding: 6px;
+  text-align: center;
+  font-size: small;
+  color: white !important;
+
+  i {
+    margin-left: .2rem;
+  }
+}
+
+#chart-change-container.stock-positive {
+  background: #3DA864 !important;
+}
+
+#chart-change-container.stock-negative {
+  background: #D34645 !important;
+}
+
+#chart-price-container {
+  color: #030303;
+  text-align: center;
+  font-size: larger;
+}
+
+#watchlist-item-container {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+
+.watchlist-stock-name-img-container {
+  display: flex;
+  gap: 10px;
+}
+
+.watchlist-image-container {
+  display: flex;
+  align-items: center;
+  padding: .2rem;
+  border-radius: 50%;
+}
+
+.watchlist-name-symbol-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.watchlist-symbol {
+  color: #212121;
+  font-size: larger;
+}
+
+.watchlist-name {
+  color: #848484;
+  font-size: smaller;
+}
+
+.watchlist-price-change-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+}
+
+.watchlist-price {
+  color: #212121;
+  font-size: large;
+}
+
+.watchlist-change {
+  /* color: #212121; */
+  font-size: large;
+}
+
+.watchlist-change.negative {
+  color: #D34645;
+}
+
+.watchlist-change.positive {
+  color: #3DA864;
+}
+
+.tradingview-widget-container {
+  height: 40rem !important;
+}
+
+

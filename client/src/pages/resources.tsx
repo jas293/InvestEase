@@ -1,15 +1,31 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VideoThumbnail from './videoThumbnail';
+// import '../style/aboutUs.css'
 
+const articleImagesPath = [
+    'images/pic1.jpeg',
+    'images/pic2.jpeg',
+    'images/pic3.jpeg',
+    'images/pic4.jpeg',
+    'images/pic5.jpeg',
+    'images/pic6.jpeg',
+    'images/pic7.jpg',
+    'images/pic8.avif',
+    'images/pic9.jpg',
+]
 
 const Card = (card: any) => {
+    const randomNumber = Math.floor(Math.random() * 8) + 1;
+    console.log(randomNumber);
+    console.log(articleImagesPath[randomNumber]);
     return (
         <a 
-            className='card'
+            className='card aticles-card'
             href={card.link}
             target='"_blank'
         >
+            <img src={card.imageUrl} style={{"borderRadius": "0.5rem", "width": "24.5rem", "height": "20rem"}}/>
              <h3>
                 {card.title}
             </h3>
@@ -53,7 +69,8 @@ const getDateString = (numOfDays: number|null|undefined = null) => {
     const month = currentDate.getMonth() + 1;
     const day = currentDate.getDate();
     const fullDate = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-    console.log(fullDate); // Output: YYYY-MM-DD
+    console.log('fulldate', fullDate); // Output: YYYY-MM-DD
+    return fullDate;
 }
 
 
@@ -217,12 +234,12 @@ export const Resources: React.FC = () => {
     const renderCards = () => {
         const rows = [];
         let row: any|[] = [];
-        cardData.slice(0,15).forEach((card: any, index: number) => {
-          if (index > 0 && index % 3 === 0) {
+        cardData.slice(0,14).forEach((card: any, index: number) => {
+          if (index > 0 && index % 7 === 0) {
             rows.push(row);
             row = [];
           }
-          row.push(<Card key={card.id} title={card.heading} content={card.content} link={card.link} />);
+          row.push(<Card key={card.id} title={card.heading} content={card.content} link={card.link} imageUrl={articleImagesPath[index%9]} />);
         });
         rows.push(row); // Push the last row
         return rows.map((row, index) => (
@@ -235,17 +252,17 @@ export const Resources: React.FC = () => {
     const renderVideos = () => {
         const rows = [];
         let row: any|[] = [];
-        videosData.slice(0,3).forEach((video: any, index: number) => {
-          if (index > 0 && index % 3 === 0) {
-            rows.push(row);
-            row = [];
-          }
+        videosData.forEach((video: any, index: number) => {
+        //   if (index > 0 && index % 3 === 0) {
+            // rows.push(row);
+            // row = [];
+        //   }
          
           row.push(<VideoThumbnail key={video.id} videoId={video.videoId} title={video.heading}  />);
         });
         rows.push(row); // Push the last row
         return rows.map((row, index) => (
-          <div key={index} className="flex-row">
+          <div key={index} className="flex-row" style={{gap: '20px'}}>
             {row}
           </div>
         ));
@@ -262,8 +279,12 @@ export const Resources: React.FC = () => {
             method: 'GET',
             redirect: 'follow'
           };
+
+          const fromDate = getDateString(30);
+          const toDate = getDateString();
+          console.log('Dates',fromDate, toDate);
           
-          fetch(`https://newsapi.org/v2/everything?q=stock market&from=${getDateString(19)}&to=${getDateString()}&sortBy=popularity&apiKey=001528c1abbd40de90d680eb928de0b4&domains=cnbc.com`, requestOptions)
+          fetch(`https://newsapi.org/v2/everything?q=stock market&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=001528c1abbd40de90d680eb928de0b4&domains=cnbc.com`, requestOptions)
             .then(response => response.json())
             .then(result => {
                 const newsArticles = result["articles"];
@@ -279,8 +300,8 @@ export const Resources: React.FC = () => {
     const renderNewsCard = () => {
         const rows = [];
         let row: any|[] = [];
-        newsArticles.slice(0,8).forEach((newsCard: any, index: number) => {
-          if (index > 0 && index % 4 === 0) {
+        newsArticles.forEach((newsCard: any, index: number) => {
+          if (index > 0 && index % 6 === 0) {
             rows.push(row);
             row = [];
           }
@@ -288,7 +309,7 @@ export const Resources: React.FC = () => {
         });
         rows.push(row);
         return rows.map((row, index) => (
-          <div key={index} className="flex-row">
+          <div key={index} className="flex-row" id='news-container-row'>
             {row}
           </div>
         ));
@@ -352,7 +373,14 @@ export const Resources: React.FC = () => {
                             <FlexContainer>{renderNewsCard()}</FlexContainer>
                         </div>
                     )
-                }   
+                }
+                <div id='footer-section-resources' className='about-us-section'>
+                    <div className='footer-container-resources'>
+                        <a href='/LandingPage'>Home</a>
+                        <a href='/about-us'>About us</a>
+                        <a href='/Dashboard'>Dashboard</a>
+                    </div>
+                </div>   
             </div>
         </div>
     )
