@@ -9,7 +9,15 @@ import LandingPage from './pages/LandingPage';
 import Questionnaire from './pages/Questionnaire';
 import { Resources } from './pages/resources';
 import AboutUs from './pages/AboutUs';
+<<<<<<<<< Temporary merge branch 1
+import HTMLDisplay from './pages/HTMLDisplay';
 
+
+
+=========
+import Dashboard from './pages/Dashboard';
+import { Settings } from './pages/settings';
+>>>>>>>>> Temporary merge branch 2
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -27,7 +35,14 @@ console.log(location)
       <Route path="/Questionnaire" element={<Questionnaire />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/about-us" element={<AboutUs />} />
+<<<<<<<<< Temporary merge branch 1
+      {<Route path="/HTMLDisplay" element={<HTMLDisplay />} />}
       
+      
+=========
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/settings" element={<Settings />} />
+>>>>>>>>> Temporary merge branch 2
     </Routes>
    </div>
    </div>
