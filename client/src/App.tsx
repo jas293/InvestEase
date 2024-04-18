@@ -10,8 +10,7 @@ import Questionnaire from './pages/Questionnaire';
 import { Resources } from './pages/resources';
 import AboutUs from './pages/AboutUs';
 import HTMLDisplay from './pages/HTMLDisplay';
-
-
+import Dashboard from './pages/Dashboard';
 
 
 const App: React.FC = () => {
@@ -31,8 +30,8 @@ console.log(location)
       <Route path="/resources" element={<Resources />} />
       <Route path="/about-us" element={<AboutUs />} />
       {<Route path="/HTMLDisplay" element={<HTMLDisplay />} />}
-      
-      
+      <Route path="/Dashboard" element={<Dashboard />} />
+    
     </Routes>
    </div>
    </div>

@@ -111,24 +111,27 @@ def assess_risk_tolerance(answers):
   else:
     return "High Risk Tolerance"
 
-# Get the user's answers to the questionnaire from the mongoDB database.
-# Connect to the MongoDB database
-client = pm.MongoClient("mongodb://localhost:27017/")
-db = client["risk_analysis"]
-collection = db["questionnaire"]
-
-# Get the user's answers to the questionnaire
-answers = collection.find_one({})
-print(answers)
-
-# Assess the risk tolerance based on the user's answers
-risk_tolerance = assess_risk_tolerance(answers)
-print(f"Your risk tolerance is: {risk_tolerance}")
-
+# Example usage
+answers = {
+  1: "C",  # Investment horizon: 4 to 7 years
+  2: "B",  # Comfort with fluctuations: Somewhat uncomfortable
+  3: "C",  # Financial situation: Comfortable savings cushion
+  4: "C",  # Approach to financial decisions: Moderate risk tolerance
+  5: "C",  # Investment knowledge: Moderate understanding
+  6: "C",  # Reaction to past losses: Neutral
+  7: "C",  # Reliance on professional advice: Moderate reliance
+  8: "C",  # Investment scenario preference: Moderate potential returns with moderate risk
+  9: "B",  # Financial legacy: Moderately important
+  10: "C", # Short-term loss response: Neutral
+  11: "C", # Following financial news: Moderate interest
+  12: "C", # Investment allocation: Majority in high-risk growth stock fund
+  13: "C", # Personality description: Balanced
+  14: "C"  # Investment philosophy: Balanced approach
+}
 
 # Add a python diagram to show the result of the assessment of the risk tolerance of the investor based on the answers to the questionnaire out of 100 points.
 # The result should be a pie chart showing the percentage of the risk tolerance of the investor.
-import plotly.graph_objects as go
+
 
 # Define the data
 labels = ["Low Risk Tolerance", "Medium Risk Tolerance", "High Risk Tolerance"]
@@ -257,11 +260,11 @@ budget = 1000
 allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
 
 # Get the stock information for the symbols based on the risk level
-if risk_level == 'low':
+if risk_level.lower() == 'low risk tolerance':
     symbols = ["AGG", "BND", "SPY", "VOO", "VTI", "VXUS", "BNDX", "GLD", "VNQ", "VIG"]
-elif risk_level == 'medium':
+elif risk_level.lower() == 'medium risk tolerance':
     symbols = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA", "V", "JPM", "JNJ", "UNH", "PG"]
-elif risk_level == 'high':
+elif risk_level.lower() == 'high risk tolerance':
     symbols = ["XENE", "IOVA", "KRTX", "AUR", "AVDL", "INBX", "ENVX", "GERN", "RLAY", "VRNA"]
 
 # Calculate the amounts for each symbol
@@ -273,6 +276,6 @@ df = get_stock_info(symbols, amounts)
 html = df.to_html()
 
 # Write the HTML to a file
-with open('stock_info.html', 'w') as f:
+with open('stock_info1.html', 'w') as f:
     f.write(html)
 
