@@ -1371,7 +1371,6 @@ body {
   padding: 0;
 }
 
-
 /* About Us Container */
 .about-us-container {
   background-color: #ffffff;
@@ -1582,4 +1581,12 @@ body {
       text-decoration: underline;
   }
 
+}
+
+.main-content-settings {
+  width: 80%;
+  padding: 40px; /* Increased padding for better spacing */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  position: relative;
+  margin: 0 auto;
 }

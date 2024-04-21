@@ -34,8 +34,7 @@ export const Settings: React.FC = () => {
           document.querySelector('.container')?.classList.remove('hide-half-circle');
         };
     }, []);
-// const userId = <getUserId>
-                            // const url = 'http://localhost:5000/updateUser/' + userId
+
     const getCurrentUserInfo: Function = () => {
         const url = 'http://localhost:5000/getUser/1aa774d1f1454c4bbd1452df8e2160dc';
         var myHeaders = new Headers();
@@ -74,7 +73,7 @@ export const Settings: React.FC = () => {
 
     return (
         <div className="dashboard">
-      <aside className="sidebar">
+      {/* <aside className="sidebar">
         <header className="sidebar-header">
           <h2>Menu</h2>
         </header>
@@ -86,14 +85,14 @@ export const Settings: React.FC = () => {
             <li>Settings</li>
           </ul>
         </nav>
-      </aside>
-      <main className="main-content">
+      </aside> */}
+      <main className="main-content-settings">
         <header className="header">
             <h1>
                 <i className="fa fa-cog" aria-hidden="true" style={{marginRight: '1rem'}}></i>
                 Settings
             </h1>
-            <div className="user-info">Welcome, {settingsInfo.name?.toString().split(" ").at(0)}!</div>
+            <div className="user-info">Welcome, {settingsInfo.name.toString()?.split(" ").at(0)}!</div>
         </header>
         <section id='settings-container-div'>
             <div id='settings-heading'>
@@ -121,7 +120,7 @@ export const Settings: React.FC = () => {
                 <div id='settings-email-container' className='settings-container'>
                     <div id='settings-email-div' className='input-container'>
                         <label>Email Address</label>
-                        <input name="email" value={settingsInfo.email.toString()} onChange={(e) => {
+                        <input name="email" value={settingsInfo.email?.toString()} onChange={(e) => {
                             setSettingsInfo({
                                 ...settingsInfo,
                                 email: e.target.value
@@ -149,7 +148,7 @@ export const Settings: React.FC = () => {
                 <div id='settings-dob-container' className='settings-container'>
                     <div id='settings-dob-container' className='input-container'>
                         <label>Date of Birth</label>
-                        <input name="dob" value={settingsInfo.dob.toString()} onChange={(e) => {
+                        <input name="dob" value={settingsInfo.dob?.toString()} onChange={(e) => {
                             setSettingsInfo({
                                 ...settingsInfo,
                                 dob: e.target.value
@@ -174,6 +173,7 @@ export const Settings: React.FC = () => {
                             console.log("User info payload")
                             console.log(userPayload)
                             console.log({"user": userPayload})
+
                             // const userId = <getUserId>
                             // const url = 'http://localhost:5000/updateUser/' + userId
                             const url = 'http://localhost:5000/updateUser/1aa774d1f1454c4bbd1452df8e2160dc';

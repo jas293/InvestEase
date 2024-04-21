@@ -262,7 +262,7 @@ export const Resources: React.FC = () => {
         });
         rows.push(row); // Push the last row
         return rows.map((row, index) => (
-          <div key={index} className="flex-row" style={{overflowX: 'scroll', gap: '20px'}}>
+          <div key={index} className="flex-row" style={{gap: '20px'}}>
             {row}
           </div>
         ));
