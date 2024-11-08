@@ -1,0 +1,339 @@
+.Landing-page{
+  .container:before {
+    display: none; /* This will hide the half circle for LandingPage */
+  }
+}
+.Landing-page .section-01{
+    background-color: white;
+    /*background-color: rgba(2, 10, 44, 0.882);*/
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    
+  }
+  
+  .Landing-page .section-01 .image-container{
+    display: flex;
+    position: relative;
+  }
+  .Landing-page .section-01 .background-image-1{
+    width: 40%;
+    height: 80vh;
+    margin-top: 5%;
+    margin-left: 10%;
+    background-color: transparent;
+    border-radius: 5%;
+    border: solid;
+    border-color: #192746;
+    
+  }
+  .background-image-1{
+    opacity: 0.7;
+  }
+  
+  .Landing-page .section-01 .background-image-2{
+    margin-left: 60%;
+    margin-top: 6%;
+    /*margin-right: 10%;*/
+    width: 30%;
+    height: 75vh;
+    border-radius: 5%;
+    /*border: solid;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(6, 6, 6, 0.5); /* Add shadow */
+    filter: contrast(150%); /* Adjust the value as needed */
+    /*opacity: 0;
+    transform: scale(0.8); /* Start with a smaller scale */
+    /*animation: fadeInScale 3s ease-in-out forwards; /* Apply the animation */
+  }
+  
+  .Landing-page .section-01 .text-container{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 30%;
+    /*padding-left: 10%;*/
+    padding-top: 10%;
+    transform: translate(-50%,-50%);
+    color: #192746;
+    text-align: center;
+    z-index: 1;
+  }
+  .Landing-page .section-01 .text-container h1{
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 21.5%;
+    margin-top: 25%;
+    /*background-color: #000;*/
+    width: 50%;
+    font-size: 4vw;
+    text-align: left;
+    line-height: 1; /* Adjust the value to your preference */
+  }
+  .Landing-page .section-01 .text-container p{
+    /*background-color: #000;*/
+    width: 50%;
+    
+    margin-top: 3%;
+    margin-left: 21.5%;
+    text-align: left;
+    font-size: 1.5vw;
+    line-height: 1vw; /* Adjust the value to your preference */
+  }
+  .Landing-page .section-01 .text-container .buttons{
+    /*background-color: #9a3737;*/
+    width: 50%;
+    margin-left: 21.5%;
+    display: flex;
+    gap: 20px;
+    padding-top: 4vh;
+    padding-left: 0%;
+    position: relative;
+  }
+  .buttons button {
+    margin: 0 1vw;
+    width: 15vw;
+    height: 6vh;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.3vw;
+    transition: background-color 0.3s ease;
+  }
+  /* Default button styles */
+#get-started,
+#how-it-works {
+  background-color: transparent; /* Default background color */
+  color: #192746; /* Default text color */
+  padding: 10px 20px; /* Padding for the button */
+  border: 1px solid #192746; /* Add border and set border color */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
+}
+
+/* Hover effect */
+#get-started:hover,
+#how-it-works:hover {
+  background-color: #5485ef87; /* Change background color to white on hover */
+  color: white; /* Change font color to black on hover */
+}
+
+.Landing-page .section-02{
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.price-container {
+  margin: 0 auto;
+  padding: 50px 0 0;
+  max-width: 960px;
+  width: 100%;
+
+}
+.price-background {
+  padding: 0 25px 25px;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .price-background {
+    padding: 0 0 25px;
+  }
+}
+
+.pricing-table {
+  box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 900px) {
+  .pricing-table {
+    flex-direction: row;
+  }
+}
+
+.pricing-table * {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pricing-plan {
+  border-bottom: 1px solid #e1f1ff;
+  padding: 25px;
+}
+
+.pricing-plan:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 900px) {
+  .pricing-plan {
+    border-bottom: none;
+    border-right: 1px solid #e1f1ff;
+    flex-basis: 33%;
+    padding: 25px 50px;
+  }
+
+  .pricing-plan:last-child {
+    border-right: none;
+  }
+}
+
+.pricing-img {
+  margin-bottom: 25px;
+  max-width: 100%;
+}
+
+.pricing-header {
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.pricing-features {
+  color: #016FF9;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 50px 0 25px;
+}
+
+.pricing-features-item {
+  border-top: 1px solid #e1f1ff;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 15px 0;
+}
+
+.pricing-features-item:last-child {
+  border-bottom: 1px solid #e1f1ff;
+}
+
+.pricing-price {
+  color: #016FF9;
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pricing-button {
+  border: 1px solid #9dd1ff;
+  border-radius: 10px;
+  color: #348EFE;
+  display: inline-block;
+  margin: 25px 0;
+  padding: 15px 35px;
+  text-decoration: none;
+  transition: all 150ms ease-in-out;
+}
+
+.pricing-button:hover,
+.pricing-button:focus {
+  background-color: #e1f1ff;
+}
+
+.pricing-button.is-featured {
+  background-color: #48aaff;
+  color: #fff;
+}
+
+.pricing-button.is-featured:hover,
+.pricing-button.is-featured:active {
+  background-color: #269aff;
+}
+
+
+a{
+  color: #fff;
+}
+
+.Landing-page .section-03{
+  /*background-color: #fff;*/
+  background-color: rgba(2, 10, 44, 0.882);
+
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+} 
+.Landing-page .section-03 .text-container-03{
+  text-align: center;
+  /*background-color: #aaa;*/
+  padding-top: 70px;
+  
+}
+.Landing-page .section-03 .text-container-03 h2{
+  /*background-color: #f0f0f0;*/
+  display: block;
+  margin: auto;
+  width: 40%;
+  font-size: 50px;
+  font-family: 'Times New Roman', Times, serif;
+  color:white;
+}
+.Landing-page .section-03 .text-container-03 p{
+  font-size: 20px;
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.665);
+}
+.Landing-page .section-03 .learn-signup-invest-container{
+  display: flex;
+}
+.Landing-page .section-03 .learn{
+  /*background-color: #f0f0f0;*/
+  text-align: center;
+  padding-top: 250px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .learn h2{
+  /*background-color: #444;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .learn p{
+  /*background-color: #122246;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-left: 50%;
+}
+.Landing-page .section-03 .sign-up{
+  /*background-color: rgb(158, 100, 25);*/
+  text-align: center;
+  padding-top: 260px;
+  padding-left: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .sign-up p{
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+.Landing-page .section-03 .sign-up a{
+  color: white;
+  text-decoration: none;
+}
+.Landing-page .section-03 .invest{
+  text-align: center;
+  padding-top: 250px;
+  padding-right: 50px;
+  color: #f0f0f0;
+}
+.Landing-page .section-03 .invest h2{
+  /*background-color: #444;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}
+.Landing-page .section-03 .invest p{
+  /*background-color: #122246;*/
+  width: 50%;
+  display: block;
+  margin: auto;
+  margin-right: 40%;
+}

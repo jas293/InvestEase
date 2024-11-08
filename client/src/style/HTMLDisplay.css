@@ -1,0 +1,99 @@
+body{
+    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+.resultPage{
+    /*background-color: blueviolet;*/
+    /*padding-bottom: 10px;*/
+    
+  background-color: #fff;
+  box-shadow: none; /* Remove if you don't want shadows inside the chart */
+}
+.resultPage .pageName{
+    margin-left: 2px;
+}
+.resultPage .questionnaire_header h3{
+    width: 5%;
+    
+    color: white;
+    align-content: center;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    
+}
+.resultPage .questionnaire_header h3:hover{
+    text-decoration: underline;
+    color:white;
+    cursor: pointer;
+}
+.resultPage .pageName{
+    padding-top: 80px;
+    padding-left: 20px;
+    /*text-decoration: underline;*/
+}
+.resultPage .error_message{
+    text-align: center;
+    padding-top: 100px;
+    color: red;
+}
+.resultPage .plotContainer{
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+}
+.stocksTable table{
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    table-layout: auto;
+}
+.stocksTable table, th, td {
+    border:1px solid black;
+    /*background-color: blueviolet;*/
+    
+}
+.stocksTable td{
+    padding: 20px 10px;
+}
+.index{
+    background-color: lightcyan;
+}
+.stocksTable td:hover{
+    background-color: lightseagreen;
+    color: #fcfcfc;
+    font-weight: bold;
+  
+    box-shadow: #000000 -1px 1px, #000000 -2px 2px, #000000 -3px 3px, #000000 -4px 4px, #000000 -5px 5px, #000000 -6px 6px;
+    transform: translate3d(6px, -6px, 0);
+  
+    transition-delay: 0s;
+    transition-duration: 0.4s;
+    transition-property: all;
+    transition-timing-function: line;
+}
+.stocksTable th{
+    padding: 25px 15px;
+    background-color: lightcyan;
+    color: black;
+    text-transform: uppercase;
+      
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.stocksTable table{
+    width: 90%;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 70px;
+    margin-bottom: 0px;
+    margin-right: 35px;
+}

@@ -5,8 +5,28 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.6.8",
+    "lottie-react": "^2.4.0",
+    "plotly.js": "^2.31.1",
+    "react": "^18.2.0",
+<<<<<<< HEAD
+    "react-image-upload": "^3.0.1",
+    "react-plotly.js": "^2.6.0",
+=======
+>>>>>>> a829166ea1234b178bbb3b26d15d37cd18f45fcc
+    "react-router-dom": "^6.22.1",
+    "react-toastify": "^10.0.4",
+    "react-youtube": "^10.1.0",
+    "scrollreveal": "^4.0.9"
+  },
   "devDependencies": {
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "@types/react-plotly.js": "^2.6.3",
+    "@types/scrollreveal": "^0.0.11",
     "concurrently": "^8.2.0",
     "prettier": "^3.0.0"
   },
