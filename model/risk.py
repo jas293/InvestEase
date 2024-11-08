@@ -123,22 +123,24 @@ def assess_risk_tolerance(answers):
   else:
     return "High Risk Tolerance"
 
-# Function to fetch answers and process them
-def fetch_and_process_answers():
-    answers = collection.find()  # Fetch answers from MongoDB
-    results = []
-    for answer in answers:
-        result = assess_risk_tolerance(answer)  # Assuming this function processes each answer
-        results.append(result)
-    return results
+# Get the user's answers to the questionnaire from the mongoDB database.
+# Connect to the MongoDB database
+client = pm.MongoClient("mongodb://localhost:27017/")
+db = client["risk_analysis"]
+collection = db["questionnaire"]
 
-results = fetch_and_process_answers()
-for result in results:
-    print(result) 
-    
+# Get the user's answers to the questionnaire
+answers = collection.find_one({})
+print(answers)
+
+# Assess the risk tolerance based on the user's answers
+risk_tolerance = assess_risk_tolerance(answers)
+print(f"Your risk tolerance is: {risk_tolerance}")
+
+
 # Add a python diagram to show the result of the assessment of the risk tolerance of the investor based on the answers to the questionnaire out of 100 points.
 # The result should be a pie chart showing the percentage of the risk tolerance of the investor.
-import plotly.graph_objects as go
+
 
 # Define the data
 labels = ["Low Risk Tolerance", "Medium Risk Tolerance", "High Risk Tolerance"]
@@ -365,5 +367,5 @@ html_table = '<div class="container">' + html_table + '</div>'
 html = css + html_div + html_table
 
 # Write the HTML to a file
-with open('stock_info.html', 'w') as f:
+with open('stock_info1.html', 'w') as f:
     f.write(html)
