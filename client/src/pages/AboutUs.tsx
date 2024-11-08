@@ -292,7 +292,7 @@ const AboutUs: React.FC = () => {
             </div>
             <div id='footer-section' className='about-us-section'>
                 <div className='footer-container'>
-                    <a href='/LandingPage'>Home</a>
+                    <a href='/'>Home</a>
                     <a href='/resources'>Resouces</a>
                     <a href='/Dashboard'>Dashboard</a>
                 </div>

@@ -9,6 +9,11 @@ import LandingPage from './pages/LandingPage';
 import Questionnaire from './pages/Questionnaire';
 import { Resources } from './pages/resources';
 import AboutUs from './pages/AboutUs';
+import HTMLDisplay from './pages/HTMLDisplay';
+import Dashboard from './pages/Dashboard';
+import { Settings } from './pages/settings';
+import ComingSoon from './pages/comingsoon';
+
 
 
 const App: React.FC = () => {
@@ -27,6 +32,10 @@ console.log(location)
       <Route path="/Questionnaire" element={<Questionnaire />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/HTMLDisplay" element={<HTMLDisplay />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/comingsoon" element={<ComingSoon />} />
       
     </Routes>
    </div>

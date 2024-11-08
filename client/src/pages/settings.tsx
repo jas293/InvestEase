@@ -1,8 +1,13 @@
 import React, { useState , useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../style/dashboard.css'
 import '../style/style.css'
-import ImageUploader from 'react-image-upload'
 import 'react-image-upload/dist/index.css'
+import ImageUploader from 'react-image-upload';
+import httpClient from "../httpClient";
+
+
+
 
 
 type SettingsTpe = {
@@ -13,30 +18,68 @@ type SettingsTpe = {
 }
 
 export const Settings: React.FC = () => {
-
+    
     const [settingsInfo, setSettingsInfo] = useState<SettingsTpe>({
         name: '',
         phoneNumber: 0,
         email: '',
         dob: '',
-    })
+    });
+
+    const [userId , setUserID] = useState('');
 
     const [userInfo, setUserInfo] = useState({});
+    const [authenticated, setAuthenticated] = useState(false);
 
     useEffect(() => {
         // When the component mounts, add a class to the container to hide the half circle
         document.querySelector('.container')?.classList.add('hide-half-circle');
-
-        getCurrentUserInfo();
-    
+        /*getUserID();
+        getCurrentUserInfo();*/
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+        if (token) {
+            getUserID();
+            setAuthenticated(true);
+        } else {
+            setAuthenticated(false);
+        }
+        
         // When the component unmounts, remove the class
         return () => {
           document.querySelector('.container')?.classList.remove('hide-half-circle');
+
         };
     }, []);
 
+
+    useEffect(() => {
+        document.querySelector('.container')?.classList.add('hide-half-circle');
+        getUserID();
+    }, []);
+
+    useEffect(() => {
+        getCurrentUserInfo();
+    }, [userId]);
+        
+// const userId = <getUserId>
+                            // const url = 'http://localhost:5000/updateUser/' + userId
+
+                            const getUserID = () => {
+                                httpClient.get('http://localhost:5000/@me')
+                                    .then(response => {
+                                        const userData = response.data;
+                                        console.log('User ID:', userData.id);
+                                        setUserID(userData.id); // Update the state with the user ID
+                                        
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching user ID:', error);
+                                    });
+                            };
+
+
     const getCurrentUserInfo: Function = () => {
-        const url = 'http://localhost:5000/getUser/1aa774d1f1454c4bbd1452df8e2160dc';
+        const url = `http://localhost:5000/getUser/${userId}`;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         const requestOptions = {
@@ -61,7 +104,6 @@ export const Settings: React.FC = () => {
         });
 
     }
-    
 
     function getImageFileObject(imageFile: any) {
         console.log({ imageFile })
@@ -70,6 +112,19 @@ export const Settings: React.FC = () => {
       function runAfterImageDelete(file: any) {
         console.log({ file })
       }
+      if (!authenticated) {
+        return (
+            <div className='resultPage'>
+                <div className="questionnaire_header">
+                    <h2>InvestEase</h2>
+                    <Link to="/SignIn"><h3>Login</h3></Link>
+                    {/*<input type='link' value="Logout" onClick={handleSubmit}className="handlesubmit" />*/}
+                </div>
+                
+                <h2 className='error_message'>Please Login!!</h2>
+            </div>
+        );
+    }
 
     return (
         <div className="dashboard">
@@ -92,7 +147,15 @@ export const Settings: React.FC = () => {
                 <i className="fa fa-cog" aria-hidden="true" style={{marginRight: '1rem'}}></i>
                 Settings
             </h1>
-            <div className="user-info">Welcome, {settingsInfo.name.toString()?.split(" ").at(0)}!</div>
+            {/*<div className="user-info">Welcome, {settingsInfo.name.toString()?.split(" ").at(0)}!</div>*/}
+
+            {/*<div className="user-info">Welcome, {settingsInfo.name?.toString().split(" ").at(0)}!</div>*/}
+            {/* Updated: Added null check*/}
+            {/*<div className="user-info">Welcome, {settingsInfo.name ? settingsInfo.name.toString().split(" ").at(0) : 'Guest'}!</div>*/}
+            
+
+            {<div className="user-info">Welcome, {settingsInfo.name || settingsInfo.email}!</div>}
+
         </header>
         <section id='settings-container-div'>
             <div id='settings-heading'>
@@ -102,12 +165,21 @@ export const Settings: React.FC = () => {
                 <div id='settings-name-photo-container' className='settings-container'>
                     <div id='settings-name-container' className='input-container'>
                         <label>Name</label>
-                        <input name="name" value={settingsInfo.name?.toString()} onChange={(e) => {
+                        
+                        {/*<input name="name" value={settingsInfo.name?.toString()} onChange={(e) => {
                             setSettingsInfo({
                                 ...settingsInfo,
                                 name: e.target.value
                             })
-                        }} />
+                        }} />*/}
+                        {/* Updated: Added null check */}
+                        <input name="name" value={settingsInfo.name || ''} onChange={(e) => {
+                                    setSettingsInfo({
+                                        ...settingsInfo,
+                                        name: e.target.value
+                                    })
+                                }} />
+                        
                     </div>
                     <div id='settings-photo-container'>
                         <ImageUploader
@@ -120,26 +192,42 @@ export const Settings: React.FC = () => {
                 <div id='settings-email-container' className='settings-container'>
                     <div id='settings-email-div' className='input-container'>
                         <label>Email Address</label>
-                        <input name="email" value={settingsInfo.email?.toString()} onChange={(e) => {
+
+                        {/*<input name="email" value={settingsInfo.email?.toString()} onChange={(e) => {}}*/}
+
+                        {/*<input name="email" value={settingsInfo.email.toString()} onChange={(e) => {
+
                             setSettingsInfo({
                                 ...settingsInfo,
                                 email: e.target.value
                             })
-                        }} />
+                        }} />*/}
+                         {/* Updated: Added null check */}
+                         <input name="email" value={settingsInfo.email || ''} onChange={(e) => {
+                                    setSettingsInfo({
+                                        ...settingsInfo,
+                                        email: e.target.value
+                                    })
+                        }}/>
                     </div>
-                    {/* <div id='settings-email-verified'>
-
-                    </div> */}
+                    {/* <div id='settings-email-verified'></div> */}
                 </div>
                 <div id='settings-contact-number-container' className='settings-container'>
                     <div id='settings-phone-container' className='input-container'>
                         <label>Phone Number</label>
-                        <input name="phone" value={Number(settingsInfo.phoneNumber)} onChange={(e) => {
+                        {/*<input name="phone" value={Number(settingsInfo.phoneNumber)} onChange={(e) => {
                             setSettingsInfo({
                                 ...settingsInfo,
                                 phoneNumber: Number(e.target.value)
                             })
-                        }} />
+                        }} />*/}
+                        {/* Updated: Added null check */}
+                        <input name="phone" value={settingsInfo.phoneNumber || ''} onChange={(e) => {
+                                    setSettingsInfo({
+                                        ...settingsInfo,
+                                        phoneNumber: Number(e.target.value)
+                                    })
+                                }} />
                     </div>
                     {/* <div id='settings-photo-container'>
 
@@ -148,12 +236,23 @@ export const Settings: React.FC = () => {
                 <div id='settings-dob-container' className='settings-container'>
                     <div id='settings-dob-container' className='input-container'>
                         <label>Date of Birth</label>
-                        <input name="dob" value={settingsInfo.dob?.toString()} onChange={(e) => {
+
+                        {/*<input name="dob" value={settingsInfo.dob?.toString()} onChange={(e) => {}}*/}
+
+                        {/*<input name="dob" value={settingsInfo.dob.toString()} onChange={(e) => {
+
                             setSettingsInfo({
                                 ...settingsInfo,
                                 dob: e.target.value
                             })
-                        }} />
+                        }} />*/}
+                        {/* Updated: Added null check */}
+                        <input name="dob" value={settingsInfo.dob || ''} onChange={(e) => {
+                                    setSettingsInfo({
+                                        ...settingsInfo,
+                                        dob: e.target.value
+                                    })
+                                }} />
                     </div>
                     {/* <div id='settings-photo-container'>
 
@@ -176,7 +275,7 @@ export const Settings: React.FC = () => {
 
                             // const userId = <getUserId>
                             // const url = 'http://localhost:5000/updateUser/' + userId
-                            const url = 'http://localhost:5000/updateUser/1aa774d1f1454c4bbd1452df8e2160dc';
+                            const url = `http://localhost:5000/updateUser/${userId}`;
                             let myHeaders = new Headers();
                             myHeaders.append("Content-Type", "application/json");
                             

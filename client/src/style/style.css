@@ -875,7 +875,7 @@ a{
 
   /*padding-top: 60px;*/
 }
-.header{
+.questionnaire_header{
   /*margin-top: 5px;*/
   height: 9%;
   display: flex;
@@ -884,21 +884,21 @@ a{
   width: 100%;
   
 }
-.header h2{
+.questionnaire_header h2{
   margin-left: 25px;
   font-family: 'Times New Roman', Times, serif;
   font-size: 35px;
   align-content: center;
   color: white;
 }
-.header a{
+.questionnaire_header a{
   align-content: center;
   margin-left: auto;
   margin-right:30px;
   text-decoration: none;
   color: white;
 }
-.header a :hover{
+.questionnaire_header a :hover{
   text-decoration: underline;
   color:white;
 }

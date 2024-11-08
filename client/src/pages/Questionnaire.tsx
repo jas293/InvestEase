@@ -6,9 +6,16 @@ import httpClient from "../httpClient";
 
 
 const Questionnaire: React.FC = () => {
+    const [authenticated, setAuthenticated] = useState(false);
+
     useEffect(() => {
         // When the component mounts, add a class to the container to hide the half circle
         document.querySelector('.container')?.classList.add('hide-half-circle');
+
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+        if(token){
+            setAuthenticated(true);
+        }
     
         // When the component unmounts, remove the class
         return () => {
@@ -207,13 +214,24 @@ const Questionnaire: React.FC = () => {
             toast.error(message);
         }
     };
+    if (!authenticated) {
+        return (
+            <div className='resultPage'>
+                <div className="questionnaire_header">
+                    <h2>InvestEase</h2>
+                    <Link to="/SignIn"><h3>Login</h3></Link>
+                </div>
+                <h2 className='error_message'>Please Login!!</h2>
+            </div>
+        );
+      }
 
     return (
         <>
             <ToastContainer />
-            <div className="header">
+            <div className="questionnaire_header">
                 <h2>InvestEase</h2>
-                <Link to="/"><h3>Home</h3></Link>
+                <Link to="/Dashboard"><h3>Home</h3></Link>
             </div>
 
             <div className="questionnaire">

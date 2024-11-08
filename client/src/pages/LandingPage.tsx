@@ -2,11 +2,13 @@ import {React,FormEvent, useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'; // Import useHistory to handle redirects
 import { NavigateFunction } from 'react-router-dom';
 import { useNavigate, Link } from 'react-router-dom';
-import { navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../style/landingpage.css'; // Import your CSS file
 import image from '../images/image.png'
 import ScrollReveal from 'scrollreveal';
 import Lottie from 'lottie-react'
+
+
 import animationData from '../assets/Animation_-_1710255710277.json'
 import animationData2 from '../assets/Animation_-_1710269656917.json'
 import animationLearn from '../assets/Animation_-_1710272517175.json'
@@ -109,11 +111,19 @@ const LandingPage: React.FC = () => {
     <div className='Landing-page'>
     
         <section className="section-01">
+        <div className='resultPage'>
+                <div className="questionnaire_header">
+                    <h2><i className="fas fa-line-chart"></i>InvestEase</h2>
+                    
+                    {/*<input type='link' value="Logout" onClick={handleSubmit}className="handlesubmit" />*/}
+                </div>
+                
+            </div>
             <div className="image-container">
                 <img src={image} alt="" className="background-image-2" /*id="scrollImage"*/ /> 
                 <div className="text-container">
                     <h1>Invest your savings and grow your wealth.</h1>
-                    <p>Enjoy up to 100% returns on investments.</p>
+                    <p>The Easy Investment solution for you!</p>
                     <div className="buttons">
                         <button id="get-started" onClick={handleSignin}>Sign In</button>
                         <button id="how-it-works" onClick={handleSignup}>Sign Up</button>
@@ -121,35 +131,7 @@ const LandingPage: React.FC = () => {
                 </div>  
             </div>  
         </section>
-        <section className="section-02">
-            <div className="background-img-container">
-            <div className="text-container">
-                <h1>The Easy Investment solution for you!</h1>
-                <p>Take advantage of our state-of-the-art AI system that formulates personalized investment portfolios,
-                    designed according to your financial targets and risk tolerance to boost your earnings and increase
-                    your capital.
-                </p>
-            </div>
-            <div className="about-us">
-                <Lottie animationData={animationData} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '175px', position:'relative',marginLeft: '-20px', marginBottom: '-160px' }} />
-                
-                <h3>
-                <Link to="/about-us">AboutUs</Link> 
-                </h3>
-                <p>Learn more about InvestEase</p>
-            </div>
-            <div className="resources">
-            <Lottie animationData={animationData2} style={{ /*backgroundColor:'yellow',*/ width: '200px', height: '140px', position:'relative',marginLeft: '-20px', marginBottom: '-150px', marginTop:'60px' }} />
-            <h3>
-                <Link to="/resources">Resources & Education</Link> {/* Replace with your actual route */}
-            </h3>
-                <p>Setup target investment with sizeable amount towards achieving a goal or target. Each fantastic interest
-                    on researching your goal.
-                </p>
-            </div>
-            </div>
-            
-        </section>
+        
         <section className="section-03">
             <div className="text-container-03">
                 <h2>We have built a solution that makes investment as easy as 1,2,3.</h2>
@@ -178,6 +160,54 @@ const LandingPage: React.FC = () => {
             </div>
             
         </section>
+        <section className="section-02">
+        <div className="price-background">
+            <div className="price-container">
+                <div className="pricing-table">
+                    <div className="pricing-plan">
+                    <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" className="pricing-img"/>
+                    <h2 className="pricing-header">Basic</h2>
+                    <ul className="pricing-features">
+                    <li className="pricing-features-item">Ads</li>
+                    <li className="pricing-features-item">15 min-delayed data</li>
+                    <li className="pricing-features-item">Educational Resources</li>
+                    </ul>
+                    <span className="pricing-price">Free</span>
+                    <a href="/signup" className="pricing-button">Sign up</a>
+                </div>
+                
+                <div className="pricing-plan">
+                    <img src="https://s28.postimg.cc/ju5bnc3x9/plane.png" alt="" className="pricing-img"/>
+                    <h2 className="pricing-header">Premium</h2>
+                    <ul className="pricing-features">
+                    <li className="pricing-features-item">No Ads</li>
+                    <li className="pricing-features-item">15 min-delayed Data</li>
+                    <li className="pricing-features-item">Advance Indicator</li>
+                    <li className="pricing-features-item">Advance Chart</li>
+                    <li className="pricing-features-item">Enhanced Educational Resources</li>
+                    </ul>
+                    <span className="pricing-price">$9.99</span>
+                    <a href="#/" className="pricing-button is-featured">Upgrade</a>
+                </div>
+                <div className="pricing-plan">
+                <img src="https://s21.postimg.cc/tpm0cge4n/space-ship.png" alt="" className="pricing-img"/>
+                    <h2 className="pricing-header">Advanced</h2>
+                    <ul className="pricing-features">
+                    <li className="pricing-features-item">No Ads</li>
+                    <li className="pricing-features-item">Live Data</li>
+                    <li className="pricing-features-item">Advance Indicator</li>
+                    <li className="pricing-features-item">Advance Chart</li>
+                    <li className="pricing-features-item">Enhanced Educational Resources</li>
+                    <li className="pricing-features-item">AI Assistance</li>
+                    <li className="pricing-features-item">Virtual Trading</li>
+                    </ul>
+                    <span className="pricing-price">$19.99</span>
+                    <a href="#/" className="pricing-button is-featured">Upgrade</a>
+                </div>
+                </div>
+            </div>
+        </div>
+        </section>
         
     </div>
    
@@ -185,4 +215,3 @@ const LandingPage: React.FC = () => {
 }
 
 export default LandingPage
-

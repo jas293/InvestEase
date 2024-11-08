@@ -315,6 +315,8 @@ export const Resources: React.FC = () => {
         ));
     }
 
+    
+
     useEffect(() => {
         if (newsArticles && newsArticles.length > 0) {
             setNewsLoaded(true);
@@ -322,8 +324,11 @@ export const Resources: React.FC = () => {
     }, [newsArticles])
 
     return (
+        
+
         <div className='main-resource-container'>
             <div style={{display: 'flex', flexDirection: 'column', gap: '2rem'}}>
+                
                 <div className='main-heading-container'>
                     <div className='main-heading-container-extend'>
                     <div className='main-heading'>

@@ -1,0 +1,36 @@
+.coming-soon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to left, #000066, #6699FF);
+  color: white;
+  font-size: 2em;
+  
+}
+
+h1.ft {
+  text-align: center;
+  background: linear-gradient(to right, #000069, #4681f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5em;
+  background-color: aliceblue;
+  padding-top: 10px;
+}
+
+.link {
+  text-align: center;
+  background: linear-gradient(to right, #000066, #4681f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5em;
+  margin-top: 20px;
+  
+}
+
+.img-paper {
+  width: 800px; /* Adjust as needed */
+  height: auto; /* Keeps the aspect ratio of the image */
+}

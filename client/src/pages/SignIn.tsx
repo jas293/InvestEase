@@ -94,7 +94,12 @@ const SignIn: React.FC = () => {
       // Store the token in local storage or session storage
       sessionStorage.setItem('token', token); // or sessionStorage.setItem('token', token);
 
+      const data = resp.data;
 
+      if(data.answer){
+        navigate('/Dashboard');
+        return;
+      }
       //window.location.href = "/LandingPage";
       navigate('/Questionnaire');
       

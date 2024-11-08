@@ -30,7 +30,7 @@ app = Flask(__name__)
 Web browsers prevent unauthorized access to resources on a different origin(domain, protocol, or port)
 CORS support_credentials will help to connect and fetch data from front-end to backend
 '''
-CORS(app, supports_credentials=True)
+CORS(app, origins="http://localhost:5173", supports_credentials=True)
 
 # Set the secret key for the Flask app
 app.secret_key = secret_key
@@ -65,6 +65,7 @@ collection = db.userInfo
 @app.route("/@me")
 def get_current_user():
     user_id = session.get("user_id")
+    name = session.get("name")
 
     # Check if the user is authenticated
     if not user_id:
@@ -72,20 +73,27 @@ def get_current_user():
    
     # Find user data in the MongoDB collection
     user_data = collection.find_one({"_id": user_id})
+    user_name = collection.find_one({"name": name})
 
     # If user data is not found, return an error
     if not user_data:
         return jsonify({"error": "User not found"}), 404
 
+    if not user_name:
+        return jsonify({"error": "User's name not found"}), 404
 
-    return jsonify({"id": user_data["_id"], "email": user_data["email"]})
-
+    if "name" in user_data:
+        return jsonify({"id": user_data["_id"], "email": user_data["email"], "name": user_data["name"]})
+    else:
+        return jsonify({"id": user_data["_id"], "email": user_data["email"], "name": " "})
 # Route to get the current user's information such as ID and Email
 @app.route("/getUser/<id>")
 def get_current_user_info(id):
     print("Get User Info")
     print(id)
     user_id = id
+
+    #user_id = session.get("user_id")
 
     # Check if the user is authenticated
     if not user_id:
@@ -193,13 +201,27 @@ def login_user():
     if not bcrypt.check_password_hash(hashed_password, password):
         return jsonify({"error": "Unauthorized"}), 401
     
+    answer = False
+    
+    answer0 = user_data.get("answer1")
+    if answer0 is not None:
+        #return jsonify({"redirect_url": "http://localhost:5173/HTMLDisplay"})
+        answer = True
+    
+    
+    '''else:
+        return jsonify({"error": "Single answer not found"}), 404
+    '''
+
     # Set the user's ID in the session
     session["user_id"] = user_data["_id"]
     '''session_cookie '''
     '''str(user_data["_id"])'''
 
+    
+
     # Return user details
-    return ({"id": user_data["_id"], "email": user_data["email"] , "token":session["user_id"]})
+    return ({"id": user_data["_id"], "email": user_data["email"] , "token":session["user_id"], "answer": answer})
 
 # Route to log out a user
 @app.route("/logout" , methods=["POST"])
@@ -595,6 +617,73 @@ def assess_risk_tolerance():
         #return risk_tolerance, total_score
         # Return the user's answers
         #return jsonify(user_answers)
+        risk_level = risk_tolerance
+        budget = 1000
+        print (type(risk_level))
+
+        symbol_array = []
+        amount_array = []
+
+        if risk_level == 'Low Risk Tolerance':
+            #low_risk(budget)
+            symbols = ["AGG", "BND", "SPY", "VOO", "VTI", "VXUS", "BNDX", "GLD", "VNQ", "VIG"]
+            allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+            amounts = [budget * a for a in allocation]
+
+            
+
+            for symbol, amount in zip(symbols, amounts):
+                symbol_array.append(symbol)
+                amount_array.append(amount)
+                print(f"Buy ${amount:.2f} of {symbol}")
+        elif risk_level == 'Medium Risk Tolerance':
+            #medium_risk(budget)
+            symbols = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA", "V", "JPM", "JNJ", "UNH", "PG"]
+            allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+            amounts = [budget * a for a in allocation]
+            for symbol, amount in zip(symbols, amounts):
+                symbol_array.append(symbol)
+                amount_array.append(amount)
+                print(f"Buy ${amount:.2f} of {symbol}")
+        elif risk_level == 'High Risk Tolerance':
+            #high_risk(budget)
+            symbols = ["XENE", "IOVA", "KRTX", "AUR", "AVDL", "INBX", "ENVX", "GERN", "RLAY", "VRNA"]
+            allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+            amounts = [budget * a for a in allocation]
+            for symbol, amount in zip(symbols, amounts):
+                symbol_array.append(symbol)
+                amount_array.append(amount)
+                print(f"Buy ${amount:.2f} of {symbol}")
+        print (risk_level)
+
+        end = datetime.today().strftime('%Y-%m-%d')
+        start = (datetime.today() - timedelta(days=5*365)).strftime('%Y-%m-%d')
+
+        historical_returns = []
+        volatilities = []
+        prices = []
+        yields_12m = []
+
+        # Process each symbol
+        for symbol, amount in zip(symbol_array, amount_array):
+            data = yf.download(symbol, start=start, end=end)
+
+            # Ensure there's enough data to perform calculations
+            if len(data['Close']) > 0:
+                # Calculate the historical return, volatility, and 12 month yield
+                historical_return = ((data['Close'].iloc[-1] - data['Close'].iloc[0]) / data['Close'].iloc[0]) * 100
+                historical_return = round(historical_return, 2)  # Round to two decimals
+                historical_returns.append(historical_return)
+                volatility = data['Close'].pct_change().std() * (252**0.5) * 100  # Annualized
+                volatility = round(volatility, 2)  # Round to two decimals
+                volatilities.append(volatility)
+                price = data['Close'].iloc[-1]
+                price = round(price, 2)  # Round to two decimals
+                prices.append(price)
+                yield_12m = ((data['Close'].iloc[-1] - data['Close'].iloc[-252]) / data['Close'].iloc[-252]) * 100 if len(data['Close']) > 252 else 0
+                yield_12m = round(yield_12m, 2)  # Round to two decimals
+                yields_12m.append(yield_12m)
+
     
     except Exception as e:
         return jsonify({"error":str(e)}), 500
@@ -603,10 +692,68 @@ def assess_risk_tolerance():
     "email": email,
     "risk_tolerance": risk_tolerance,
     "total_score": total_score,
-    "user Answers": user_answers
-})
-
     
+    "symbol_array": symbol_array, 
+    "amount_array": amount_array,
+    "historical_returns": historical_returns,
+    "volatilities": volatilities,
+    "prices": prices,
+    "yields_12m": yields_12m
+})
+def low_risk(budget):
+  symbols = ["AGG", "BND", "SPY", "VOO", "VTI", "VXUS", "BNDX", "GLD", "VNQ", "VIG"]
+  allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+  amounts = [budget * a for a in allocation]
+  for symbol, amount in zip(symbols, amounts):
+    print(f"Buy ${amount:.2f} of {symbol}")
+
+def medium_risk(budget):
+    symbols = ["AAPL", "GOOGL", "AMZN", "MSFT", "TSLA", "V", "JPM", "JNJ", "UNH", "PG"]
+    allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+    amounts = [budget * a for a in allocation]
+    for symbol, amount in zip(symbols, amounts):
+        print(f"Buy ${amount:.2f} of {symbol}")
+
+def high_risk(budget):
+    symbols = ["XENE", "IOVA", "KRTX", "AUR", "AVDL", "INBX", "ENVX", "GERN", "RLAY", "VRNA"]
+    allocation = [0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.05, 0.05, 0.05, 0.05]
+    amounts = [budget * a for a in allocation]
+    for symbol, amount in zip(symbols, amounts):
+        print(f"Buy ${amount:.2f} of {symbol}")
+
+def get_stock_info(symbols, amounts):
+    end = datetime.today().strftime('%Y-%m-%d')
+    start = (datetime.today() - timedelta(days=5*365)).strftime('%Y-%m-%d')
+
+    # Initialize a DataFrame to store the stock information
+    df_rows = []
+
+    # Process each symbol
+    for symbol, amount in zip(symbols, amounts):
+        data = yf.download(symbol, start=start, end=end)
+
+        # Ensure there's enough data to perform calculations
+        if len(data['Close']) > 0:
+            # Calculate the historical return, volatility, and 12 month yield
+            historical_return = ((data['Close'].iloc[-1] - data['Close'].iloc[0]) / data['Close'].iloc[0]) * 100
+            volatility = data['Close'].pct_change().std() * (252**0.5) * 100  # Annualized
+            price = data['Close'].iloc[-1]
+            yield_12m = ((data['Close'].iloc[-1] - data['Close'].iloc[-252]) / data['Close'].iloc[-252]) * 100 if len(data['Close']) > 252 else 0
+
+            # Create a dictionary for the current symbol
+            df_row = {
+                'Symbol': symbol,
+                'Amount': f'${amount:.2f}',
+                'Historical Return': f'{historical_return:.2f}%',
+                'Volatility': f'{volatility:.2f}%',
+                'Price': f'${price:.2f}',
+                '12 Month Yield': f'{yield_12m:.2f}%'
+            }
+            df_rows.append(df_row)
+    '''
+    # Create a DataFrame from the list of dictionaries
+    return pd.DataFrame(df_rows) 
+    '''
 
 # Run the Flask app
 if __name__ == "__main__":

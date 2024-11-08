@@ -2,6 +2,7 @@ import React, {useState , useEffect, FormEvent} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import httpClient from "../httpClient";
 import 'react-toastify/dist/ReactToastify.css';
+import { ColorType } from 'lightweight-charts';
 
 const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState('');
@@ -113,7 +114,7 @@ const ResetPassword: React.FC = () => {
   </div>
   <div className="panels-container">
     <div className="panel left-panel">
-      <p>
+      <p style={{ color: 'white' }}>
         "Join the world of smart investors and plant the seeds of wealth today now to take control of your financial destiny and watch your investments grow! "
       </p>
       <img src="images/undraw_investing_re_bov_grey.svg" className="image" alt="logo" />

@@ -1,61 +1,108 @@
 /* Overall dashboard layout adjustments for a modern look */
-.dashboard {
-  display: flex;
+.dashboard-stock {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: auto 1fr;
   height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Use a modern font */
-  color: #333; /* Dark grey color for better readability */
-  background-color: #f4f4f4; /* Light grey background for the entire dashboard */
 }
 
 /* Sidebar styling for a lighter look */
 .sidebar {
-  width: 20%;
-  background-color: #fff; /* Lighter background color for the sidebar */
-  color: #333;
-  padding: 40px; /* Increased padding for better spacing */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgba(2, 10, 44, 0.882); /* Replaced var(--c-text-tertiary) with existing color */
+  padding: 40px;
+  grid-row: 2;
+  width: 100%;
+  border-right: #030303 2px solid; /* Add this line */
 }
 
-.sidebar-header {
-  font-size: 1.8em; /* Larger font size for the header */
-  margin-bottom: 30px; /* Increased spacing after the header */
-
-  h2 {
-    font-size: 1.2em;
-
-    i {
-      margin-right: .5rem;
-    }
-  }
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0; /* Added to reset default margin */
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  
 }
 
 .sidebar li {
-  padding: 15px 0; /* Increased padding for better clickability */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: 0.25s ease;
+  padding: 15px 0;
   cursor: pointer;
-  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  color: white;
+  font-size: large;
   
-  i {
-    margin-right: 0.5rem;
-  }
 }
 
-.sidebar li:hover {
-  background-color: #eaeaea; /* Subtle hover effect */
+.sidebar li * {
+  transition: 0.25s ease;
+  
+}
+
+.sidebar li i {
+  margin-right: 0.75rem;
+  font-size: 1.25em;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.sidebar li + li {
+  margin-top: 0.5rem;
+}
+
+.sidebar li a {
+  color: inherit; /* Make the link color the same as the parent li */
+}
+
+.sidebar li:hover,
+.sidebar li:focus {
+  transform: translateX(4px);
+  color: black; /* Change the color of the li on hover/focus */
+}
+
+.sidebar li:hover a,
+.sidebar li:focus a {
+  color: black; /* Change the color of the link on hover/focus */
+}
+
+.menu li span {
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.25s ease-in-out;
+}
+
+.menu li:hover span {
+  max-width: 200px;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(2, 10, 44, 0.882);
+  color: white;
+  padding: 20px;
+  grid-column: 1 / -1;
+  border-bottom: 2px solid black; /* Add this line */
+}
+
+.top-nav h1, .top-nav h2, .top-nav .user-info {
+  margin: 0;
 }
 
 /* Main content area adjustments */
 .main-content {
-  width: 80%;
-  padding: 40px; /* Increased padding for better spacing */
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  width: 100%;
+  padding: 50px; /* Increased padding for better spacing */
+  overflow-x: scroll; /* Hide horizontal scrollbar */
   position: relative;
-  background: #F5F7F9;
+  background: #f9f9f9; /* Lighter background color for better readability */
+  grid-column: 2;
+  
 }
 
 /* Header styling */
@@ -65,6 +112,7 @@
   align-items: center;
   margin-bottom: 40px; /* Added margin to separate from content below */
   /* background: white; */
+  grid-row: 2;
 }
 
 /* Section styling (Portfolio, News, Stocks) */
@@ -87,6 +135,8 @@
   box-shadow: 0 10px 5px rgba(0,0,0,0.1); 
   overflow-x: scroll;
   border-radius: 10px;
+  
+  border: 2px ridge rgba(2, 10, 44, 0.882); /* Added border for better separation */
 }
 
 .stock-item {
@@ -98,6 +148,7 @@
   transition: background-color 0.3s; /* Smooth transition for hover effect */
   padding: 0.5rem;
   border-radius: 12px;
+  box-shadow: 0 20px 20px rgba(0,0,0,0.1);
 }
 
 .stock-item:hover {
@@ -114,11 +165,12 @@
 
 /* Watchlist styling adjustments */
 .watchlist {
-  margin-top: 20px; /* Increased margin for better spacing */
-  max-height: 50rem;
-  overflow-y: scroll;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border-radius: 10px;
+ 
+  gap: 20px;
+  box-shadow: 0px 5px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 8px;
+  border: 2px ridge rgba(2, 10, 44, 0.882); /* Added border for better separation */
 }
 
 .watch-info {
@@ -129,15 +181,17 @@
   display: flex;
   flex-direction: column;
   gap: 20px
+  
 }
 
 .watch-item {
   display: flex;
   justify-content: space-between;
   /* margin-bottom: 20px; Added margin for spacing between items */
-  padding-bottom: 1.2rem;
+  padding-bottom: 2rem;
   border-bottom: groove;
-  padding-top: 1.2rem;
+  padding-top: 3rem;
+  
 }
 
 /* Text styling adjustments */
@@ -148,14 +202,13 @@
 
 .stock-chart {
   padding: 20px;
-  margin-top: 20px;
-  min-height: 35rem;
   min-height: 35rem;
   flex-grow: 6;
-  max-width: 70rem;
+  max-width: 50rem;
   background: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border-radius: 10px;
+  box-shadow: 10px 5px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  border: 2px ridge rgba(2, 10, 44, 0.882); /* Added border for better separation */
 
   h2 {
     margin-bottom: 5rem;
@@ -166,14 +219,14 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  overflow-x: scroll;
+  
 }
 
 .stock-item-row-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
+  color: #030303;
   h4 {
     text-align: right;
   }
@@ -338,4 +391,150 @@
   height: 40rem !important;
 }
 
+.stock-analysis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  flex-grow: 6;
+  max-width: 25rem;
+  background: white;
+  box-shadow: 10px 5px 4px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  border: 2px ridge rgba(2, 10, 44, 0.882); /* Added border for better separation */
+}
+.analysis-form input[type="text"] {
+  padding: 20px;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+.analysis-form {
+  display: flex;
+  flex-direction: row; /* Change this from column to row */
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.analysis-form .submit-button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+}
+.dropdown-content a{
+  text-decoration: none;
+}
+.dashboard-stock .dropdown-content a:hover{
+  text-decoration: underline;
+  color:rgb(21, 21, 21);
+  cursor: pointer;
+}
+/* dashboard.css */
+.user-dropdown {
+  position: relative;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #1d1c1c;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 8px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.user-dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.crypto{
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* For tablets */
+@media (max-width: 768px) {
+  .center {
+    width: 90vw;
+    height: 90vh;
+  }
+
+  .left {
+    flex: 0 0 100px;
+    width: 100px;
+  }
+
+  .right {
+    padding: 20px;
+  }
+
+  .graph {
+    width: 200px;
+    height: 100px;
+  }
+}
+
+/* For laptops */
+@media (max-width: 1366px) {
+  .center {
+    width: 80vw;
+    height: 80vh;
+  }
+
+  .left {
+    flex: 0 0 150px; /* Adjusted width */
+    width: 150px; /* Adjusted width */
+  }
+
+  .right {
+    padding: 30px; /* Adjusted padding */
+  }
+
+  .graph {
+    width: 250px; /* Adjusted width */
+    height: 150px; /* Adjusted height */
+  }
+}
+
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  .center {
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .left {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+  }
+
+  .right {
+    padding: 10px;
+  }
+
+  .graph {
+    width: 100%;
+    height: 100px;
+  }
+}

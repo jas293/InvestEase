@@ -4,12 +4,15 @@
   }
 }
 .Landing-page .section-01{
-    background-color: #122246;
+    background-color: white;
+    /*background-color: rgba(2, 10, 44, 0.882);*/
     padding: 0;
     margin: 0;
     height: 100vh;
     width: 100%;
+    
   }
+  
   .Landing-page .section-01 .image-container{
     display: flex;
     position: relative;
@@ -22,12 +25,13 @@
     background-color: transparent;
     border-radius: 5%;
     border: solid;
-    border-color: #fff;
+    border-color: #192746;
     
   }
   .background-image-1{
     opacity: 0.7;
   }
+  
   .Landing-page .section-01 .background-image-2{
     margin-left: 60%;
     margin-top: 6%;
@@ -51,7 +55,7 @@
     /*padding-left: 10%;*/
     padding-top: 10%;
     transform: translate(-50%,-50%);
-    color: white;
+    color: #192746;
     text-align: center;
     z-index: 1;
   }
@@ -100,9 +104,9 @@
 #get-started,
 #how-it-works {
   background-color: transparent; /* Default background color */
-  color: #fff; /* Default text color */
+  color: #192746; /* Default text color */
   padding: 10px 20px; /* Padding for the button */
-  border: 1px solid #fff; /* Add border and set border color */
+  border: 1px solid #192746; /* Add border and set border color */
   cursor: pointer; /* Change cursor to pointer */
   transition: background-color 0.3s, color 0.3s; /* Smooth transition for color change */
 }
@@ -110,105 +114,144 @@
 /* Hover effect */
 #get-started:hover,
 #how-it-works:hover {
-  background-color: #fff; /* Change background color to white on hover */
-  color: #000; /* Change font color to black on hover */
+  background-color: #5485ef87; /* Change background color to white on hover */
+  color: white; /* Change font color to black on hover */
 }
 
 .Landing-page .section-02{
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-.Landing-page .section-02 .background-img-container{
-  width: 100%;
-  height: 100vh; /* Set the height of the container to full viewport height */
-  background-image: url('../images/background_img_2.jpg');
-  background-size: cover; /* Initially, cover the entire container */
-  background-position: center;
-  
-}
-.Landing-page .section-02 .text-container{
-  margin-top: 15%;
-  margin-left: 5%;
-  padding-top: 2%;
-  background-color: rgba(37, 154, 205, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
-  flex: 0 0 50%; /* Take up remaining space */
-  position: absolute;
-  width: 40%;
-  height: 15%;
-  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-.Landing-page .section-02 .text-container h1{
-  padding-left: 5%;
-  padding-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 3%;
-  font-size: 270%;
-  font-family: 'Times New Roman', Times, serif;
-  line-height: 2.5vw; /* Adjust the value to your preference */
-}
-.Landing-page .section-02 .text-container p{
-  padding-left: 5%;
-  padding-right: 10%;
-  color: #171616;
-}
-.Landing-page .section-02 .about-us{
-  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
-  width: 40%;
-  height: 8%;
-  margin-left: 50%;
-  margin-top: 10%;
-  position: absolute;
-  flex: 0 0 50%; /* Set a specific width for about-us */
-  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.Landing-page .section-02 .about-us h3{
-  margin-left: 30%;
-  margin-top: 7%;
-  font-size: 1.5em;
+.price-container {
+  margin: 0 auto;
+  padding: 50px 0 0;
+  max-width: 960px;
+  width: 100%;
+
 }
-.Landing-page .section-02 .about-us p{
-  margin-left: 30%;
+.price-background {
+  padding: 0 25px 25px;
+  position: relative;
+  width: 100%;
 }
-.Landing-page .section-02 .resources{
-  background-color: rgba(17, 92, 204, 0.389); /* Use RGBA to set a background color with alpha (transparency) */
-  margin-top: 25%;
-  margin-left: 50%;
-  flex: 0 0 50%; /* Calculate width for resources */
-  position: absolute;
-  height: 12%;
-  width: 40%;
-  backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+
+@media (min-width: 900px) {
+  .price-background {
+    padding: 0 0 25px;
+  }
+}
+
+.pricing-table {
+  box-shadow: 0px 10px 13px -6px rgba(0, 0, 0, 0.08), 0px 20px 31px 3px rgba(0, 0, 0, 0.09), 0px 8px 20px 7px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: row;
+}
+
+@media (min-width: 900px) {
+  .pricing-table {
+    flex-direction: row;
+  }
+}
+
+.pricing-table * {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pricing-plan {
+  border-bottom: 1px solid #e1f1ff;
+  padding: 25px;
+}
+
+.pricing-plan:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 900px) {
+  .pricing-plan {
+    border-bottom: none;
+    border-right: 1px solid #e1f1ff;
+    flex-basis: 33%;
+    padding: 25px 50px;
+  }
+
+  .pricing-plan:last-child {
+    border-right: none;
+  }
+}
+
+.pricing-img {
+  margin-bottom: 25px;
+  max-width: 100%;
+}
+
+.pricing-header {
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.pricing-features {
+  color: #016FF9;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin: 50px 0 25px;
+}
+
+.pricing-features-item {
+  border-top: 1px solid #e1f1ff;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 15px 0;
+}
+
+.pricing-features-item:last-child {
+  border-bottom: 1px solid #e1f1ff;
+}
+
+.pricing-price {
+  color: #016FF9;
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pricing-button {
+  border: 1px solid #9dd1ff;
   border-radius: 10px;
+  color: #348EFE;
+  display: inline-block;
+  margin: 25px 0;
+  padding: 15px 35px;
+  text-decoration: none;
+  transition: all 150ms ease-in-out;
 }
-.Landing-page .section-02 .resources h3{
-  margin-left: 30%;
-  margin-top: 2%;
-  font-size: 1.5em;
+
+.pricing-button:hover,
+.pricing-button:focus {
+  background-color: #e1f1ff;
 }
-.Landing-page .section-02 .resources p{
-  margin-left: 30%;
-  width: 55%;
+
+.pricing-button.is-featured {
+  background-color: #48aaff;
+  color: #fff;
 }
+
+.pricing-button.is-featured:hover,
+.pricing-button.is-featured:active {
+  background-color: #269aff;
+}
+
+
 a{
-  color: black;
+  color: #fff;
 }
 
 .Landing-page .section-03{
-  background-color: #192746;
+  /*background-color: #fff;*/
+  background-color: rgba(2, 10, 44, 0.882);
+
   padding: 0;
   margin: 0;
   height: 100vh;
@@ -227,7 +270,7 @@ a{
   width: 40%;
   font-size: 50px;
   font-family: 'Times New Roman', Times, serif;
-  color: white;
+  color:white;
 }
 .Landing-page .section-03 .text-container-03 p{
   font-size: 20px;
