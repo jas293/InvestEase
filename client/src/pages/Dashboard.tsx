@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import '../style/dashboard.css';
+import React, { useEffect, useState } from 'react'
+import '../style/dashboard.css'
 
-const StockDashboard = () => {
+// const StockDashboard = () => {
 
-import React, { useEffect, useState, useRef } from 'react';
-import { createChart, ColorType } from 'lightweight-charts';
-import { useNavigate, Link } from 'react-router-dom';
-import '../style/dashboard.css';
-import { time } from 'console';
-import TradingViewWidget from './components/ChartWidget';
+// import React, { useEffect, useState, useRef } from 'react';
+import { createChart, ColorType } from 'lightweight-charts'
+import { useNavigate, Link } from 'react-router-dom'
+import '../style/dashboard.css'
+import { time } from 'console'
+import TradingViewWidget from './components/ChartWidget'
 // import ../'
 
 const STOCK_SYMBOL_LIST = [
@@ -425,20 +425,40 @@ const StockDashboard = () => {
         <header className="sidebar-header">
           <h2>Menu</h2>
         </header>
-        <nav>
+        {/* <nav>
           <ul>
             <li>Home</li>
             <li>Dashboard</li>
             <li>News</li>
             <li>Settings</li>
           <h2><i className="fas fa-line-chart"></i>Investease</h2>
-        </header>
+        </header> */}
         <nav>
           <ul>
-            <li><i className="fas fa-home"></i><Link style={{textDecoration: 'none'}} to="/LandingPage">Home</Link></li>
-            <li><i className="fas fa-address-book"></i><Link style={{textDecoration: 'none'}} to="/about-us">About us</Link></li>
-            <li><i className="fas fa-newspaper"></i><Link style={{textDecoration: 'none'}} to="/resources">News</Link></li>
-            <li><i className="fas fa-gear"></i><Link style={{textDecoration: 'none'}} to="/settings">Settings</Link></li>
+            <li>
+              <i className="fas fa-home"></i>
+              <Link style={{ textDecoration: 'none' }} to="/LandingPage">
+                Home
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-address-book"></i>
+              <Link style={{ textDecoration: 'none' }} to="/about-us">
+                About us
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-newspaper"></i>
+              <Link style={{ textDecoration: 'none' }} to="/resources">
+                News
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-gear"></i>
+              <Link style={{ textDecoration: 'none' }} to="/settings">
+                Settings
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>
@@ -450,192 +470,210 @@ const StockDashboard = () => {
           </div>
         </header>
         <section className="portfolio">
-            <h2>My Portfolio</h2>
-            <div className="stock-info">
-                <div className="stock-item">
-                <p>AAPL</p>
-                <p>Apple</p>
-                <p>Price: $171</p>
-                </div>
-                <div className="stock-item">
-                <p>TSLA</p>
-                <p>Tesla</p>
-                <p>Price: $900</p>
-                </div>
-                <div className="stock-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-                </div>
-                <div className="stock-item">
+          <h2>My Portfolio</h2>
+          <div className="stock-info">
+            <div className="stock-item">
+              <p>AAPL</p>
+              <p>Apple</p>
+              <p>Price: $171</p>
+            </div>
+            <div className="stock-item">
+              <p>TSLA</p>
+              <p>Tesla</p>
+              <p>Price: $900</p>
+            </div>
+            <div className="stock-item">
+              <p>MSFT</p>
+              <p>Microsoft</p>
+              <p>Price: $300</p>
+            </div>
+            <div className="stock-item">
+              <p>AMZN</p>
+              <p>Amazon</p>
+              <p>Price: $3200</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+            <div className="stock-item">
+              <p>GOOGL</p>
+              <p>Google</p>
+              <p>Price: $2000</p>
+            </div>
+          </div>
+        </section>
+        <section className="My Watchlist">
+          <div className="watchlist">
+            <div className="watch-info">
+              <h2>My Watchlist</h2>
+              <div className="watch-item">
+                <p>FB</p>
+                <p>Facebook</p>
+                <p>Price: $350</p>
+              </div>
+              <div className="watch-item">
+                <p>NFLX</p>
+                <p>Netflix</p>
+                <p>Price: $550</p>
+              </div>
+              <div className="watch-item">
                 <p>AMZN</p>
                 <p>Amazon</p>
                 <p>Price: $3200</p>
-                </div>
-                <div className="stock-item">
+              </div>
+              <div className="watch-item">
                 <p>GOOGL</p>
                 <p>Google</p>
                 <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-                <div className="stock-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-                </div>
-
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
+              <div className="watch-item">
+                <p>MSFT</p>
+                <p>Microsoft</p>
+                <p>Price: $300</p>
+              </div>
             </div>
-        </section>
-        <section className='My Watchlist'>
-        <div className="watchlist">
-            <div className="watch-info">
-            <h2>My Watchlist</h2>
-                <div className="watch-item">
-                    <p>FB</p>
-                    <p>Facebook</p>
-                    <p>Price: $350</p>
-                </div>
-                <div className="watch-item">
-                    <p>NFLX</p>
-                    <p>Netflix</p>
-                    <p>Price: $550</p>
-                </div>
-                <div className="watch-item">
-                    <p>AMZN</p>
-                    <p>Amazon</p>
-                    <p>Price: $3200</p>
-                </div>
-                <div className="watch-item">
-                    <p>GOOGL</p>
-                    <p>Google</p>
-                    <p>Price: $2000</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-                <div className="watch-item">
-                    <p>MSFT</p>
-                    <p>Microsoft</p>
-                    <p>Price: $300</p>
-                </div>
-            </div>
-        </div>
+          </div>
         </section>
         <section className="stock-chart">
-            <h2>Stock Chart</h2>
-            <div className="chart">
-                {/* Whenever a use clicks on any stock I want to show the chart of that stock here in this section inside a box styled like in the other sections. */}
-            </div>
+          <h2>Stock Chart</h2>
+          <div className="chart">
+            {/* Whenever a use clicks on any stock I want to show the chart of that stock here in this section inside a box styled like in the other sections. */}
+          </div>
         </section>
-            <h2>Stocks</h2>
-            <div className="stock-info">
-                  {stockCompanyInfoData && stockCompanyInfoData.length > 0 && (
-                    stockCompanyInfoData.map((companyInfo: CompanyInfomaton) => {
-                      return <a className="stock-item" onClick={() => {
-                          // getData(companyInfo.symbol)
-                          console.log("Symbol Value", companyInfo.symbol);
-                          // let companyInfoCurrent: CompanyInfomaton | undefined =  stockCompanyInfoData.find((company) => {
-                          //   console.log("Company Symbol", company.symbol);
-                          //   return company.symbol === symbol
-                          // });
-                          // console.log('Current info company', companyInfoCurrent);
-                          // if (companyInfoCurrent === undefined) {
-                          //   companyInfoCurrent = {
-                          //     'symbol': '',
-                          //     'change': 0,
-                          //     'price': '',
-                          //     'stockImageUrl': '',
-                          //     'companyName': ''
-                          //   };
-                          // }
-                          setCurrentStockData({
-                            'symbol': companyInfo.symbol,
-                            'change': companyInfo.change,
-                            'companyName': companyInfo.companyName,
-                            'price': companyInfo.price,
-                            'stockImageUrl': companyInfo.stockImageUrl
-                          });
-                        }}>
-                        <div className='stock-item-row-container'>
-                          <div>
-                            <img src={companyInfo.stockImageUrl.toString()} style={{maxWidth: '2rem'}} />
-                          </div>
-                          <div className='company-image-container'>
-                            <h4>{companyInfo.companyName}</h4>
-                          </div>
-                        </div>
-                        <div className='stock-item-row-container'>
-                          <div>
-                            <p>Share Price</p>
-                          </div>
-                          <div>
-                            <p style={{color: 'black'}}>{companyInfo.price}</p>
-                          </div>
-                        </div>
-                        <div className='stock-item-row-container'>
-                          <div>
-                            <p>Day's change</p>
-                          </div>
-                          <div className={Number(companyInfo.change) < 0 ? 'stock-change-info stock-negative' : ' stock-change-info stock-positive'}>
-                            <p>{companyInfo.change.toString() + '%'}</p>
-                            {Number(companyInfo.change) < 0 ? <i className="fas  fa-long-arrow-down"></i> : <i className="fas  fa-long-arrow-up"></i>}
-                          </div>
-                        </div>
-                      </a>
-                    })
-                  )}
-            </div>
+        <section>
+          <h2>Stocks</h2>
+          <div className="stock-info">
+            {stockCompanyInfoData &&
+              stockCompanyInfoData.length > 0 &&
+              stockCompanyInfoData.map((companyInfo: CompanyInfomaton) => {
+                return (
+                  <a
+                    className="stock-item"
+                    onClick={() => {
+                      // getData(companyInfo.symbol)
+                      console.log('Symbol Value', companyInfo.symbol)
+                      // let companyInfoCurrent: CompanyInfomaton | undefined =  stockCompanyInfoData.find((company) => {
+                      //   console.log("Company Symbol", company.symbol);
+                      //   return company.symbol === symbol
+                      // });
+                      // console.log('Current info company', companyInfoCurrent);
+                      // if (companyInfoCurrent === undefined) {
+                      //   companyInfoCurrent = {
+                      //     'symbol': '',
+                      //     'change': 0,
+                      //     'price': '',
+                      //     'stockImageUrl': '',
+                      //     'companyName': ''
+                      //   };
+                      // }
+                      setCurrentStockData({
+                        symbol: companyInfo.symbol,
+                        change: companyInfo.change,
+                        companyName: companyInfo.companyName,
+                        price: companyInfo.price,
+                        stockImageUrl: companyInfo.stockImageUrl,
+                      })
+                    }}
+                  >
+                    <div className="stock-item-row-container">
+                      <div>
+                        <img
+                          src={companyInfo.stockImageUrl.toString()}
+                          style={{ maxWidth: '2rem' }}
+                        />
+                      </div>
+                      <div className="company-image-container">
+                        <h4>{companyInfo.companyName}</h4>
+                      </div>
+                    </div>
+                    <div className="stock-item-row-container">
+                      <div>
+                        <p>Share Price</p>
+                      </div>
+                      <div>
+                        <p style={{ color: 'black' }}>{companyInfo.price}</p>
+                      </div>
+                    </div>
+                    <div className="stock-item-row-container">
+                      <div>
+                        <p>Day's change</p>
+                      </div>
+                      <div
+                        className={
+                          Number(companyInfo.change) < 0
+                            ? 'stock-change-info stock-negative'
+                            : ' stock-change-info stock-positive'
+                        }
+                      >
+                        <p>{companyInfo.change.toString() + '%'}</p>
+                        {Number(companyInfo.change) < 0 ? (
+                          <i className="fas  fa-long-arrow-down"></i>
+                        ) : (
+                          <i className="fas  fa-long-arrow-up"></i>
+                        )}
+                      </div>
+                    </div>
+                  </a>
+                )
+              })}
+          </div>
         </section>
         <div>
           <div id="watchlist-chart-container">
