@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import '../style/dashboard.css'
-
-// const StockDashboard = () => {
-
-// import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react'
 import { createChart, ColorType } from 'lightweight-charts'
 import { useNavigate, Link } from 'react-router-dom'
 import '../style/dashboard.css'
 import { time } from 'console'
 import TradingViewWidget from './components/ChartWidget'
+import TechnicalAnalysisWidget from './components/TechWidget'
+import httpClient from '../httpClient'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faChartLine } from '@fortawesome/free-solid-svg-icons'
+// import Crypto from './components/crypto'
 // import ../'
 
 const STOCK_SYMBOL_LIST = [
@@ -106,18 +106,13 @@ export const ChartComponent = (props) => {
 }
 
 const StockDashboard = () => {
-  const navigate = useNavigate() // Use useNavigate to get the navigation function
-
-  const [symbol, setSymbol] = useState('NVDA')
   const [authenticated, setAuthenticated] = useState(false)
+  const [userName, setUserName] = useState('User')
+  const [symbol, setSymbol] = useState('NVDA')
   const [data, setData] = useState<{ time: string; value: number }[]>([])
   const [stockCompanyInfoData, setStockCompanyInfoData] = useState<
     CompanyInfomaton[]
   >([])
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-
   const [currentStockData, setCurrentStockData] = useState<CompanyInfomaton>({
     symbol: '',
     change: 0,
@@ -174,41 +169,37 @@ const StockDashboard = () => {
     document.querySelector('.container')?.classList.add('hide-half-circle')
 
     console.log('First time loading page')
-    const token =
-      sessionStorage.getItem('token') || localStorage.getItem('token')
 
-    if (token) {
-      setAuthenticated(true)
-      fetchUserData()
-    }
     // getData();
     // getTopGainersAndLosersList();
 
     // getStocksList();
     // getCompanyData()
-
+    //THE LINE BELOW IS COMMENTED OUT BECAUSE THE API CALLS ARE LIMITED. UNCOMMENT IT TO GET THE STOCKS INFORMATION.
     //getStocksInformation()
 
+    const token =
+      sessionStorage.getItem('token') || localStorage.getItem('token')
+    if (token) {
+      setAuthenticated(true)
+    }
     // When the component unmounts, remove the class
     return () => {
       document.querySelector('.container')?.classList.remove('hide-half-circle')
     }
   }, [])
 
-  const fetchUserData = async () => {
-    try {
-      const resp = await httpClient.get('//localhost:5000/@me')
-      const userData = resp.data
-      setName(userData.name)
-      setEmail(userData.email)
-    } catch (error) {
-      if (error.response && error.response.status === 404) {
-        alert("User's Data Not Found")
-      } else {
-        console.error('An error occurred while loading user data:', error)
-      }
-    }
-  }
+  useEffect(() => {
+    // Use httpClient to make the request
+    httpClient
+      .get('/@me')
+      .then((response) => {
+        setUserName(response.data.name || ' ') // Fallback to "User" if name is missing
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error)
+      })
+  }, [])
 
   const getStocksInformation: Function = async () => {
     let stockCompanyInfo: CompanyInfomaton[] = []
@@ -260,50 +251,6 @@ const StockDashboard = () => {
         console.log(result)
         // we need symbol, price, changes, companyName, currency, image
       })
-
-    /**
-     * [
-  {
-    "symbol": "AAPL",
-    "price": 175.04,
-    "beta": 1.276,
-    "volAvg": 60278960,
-    "mktCap": 2702950176000,
-    "lastDiv": 0.96,
-    "range": "161.42-199.62",
-    "changes": 7.26,
-    "companyName": "Apple Inc.",
-    "currency": "USD",
-    "cik": "0000320193",
-    "isin": "US0378331005",
-    "cusip": "037833100",
-    "exchange": "NASDAQ Global Select",
-    "exchangeShortName": "NASDAQ",
-    "industry": "Consumer Electronics",
-    "website": "https://www.apple.com",
-    "description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, and HomePod. It also provides AppleCare support and cloud services; and operates various platforms, including the App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. In addition, the company offers various services, such as Apple Arcade, a game subscription service; Apple Fitness+, a personalized fitness service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was incorporated in 1977 and is headquartered in Cupertino, California.",
-    "ceo": "Mr. Timothy D. Cook",
-    "sector": "Technology",
-    "country": "US",
-    "fullTimeEmployees": "161000",
-    "phone": "408 996 1010",
-    "address": "One Apple Park Way",
-    "city": "Cupertino",
-    "state": "CA",
-    "zip": "95014",
-    "dcfDiff": 39.95202,
-    "dcf": 131.44797944772984,
-    "image": "https://financialmodelingprep.com/image-stock/AAPL.png",
-    "ipoDate": "1980-12-12",
-    "defaultImage": false,
-    "isEtf": false,
-    "isActivelyTrading": true,
-    "isAdr": false,
-    "isFund": false
-  }
-]
-     * 
-     */
   }
 
   const getTopGainersAndLosersList: Function = async () => {
@@ -360,6 +307,12 @@ const StockDashboard = () => {
       })
       .catch((error) => console.log('error', error))
   }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setSymbol(event.target.elements.symbolInput.value.toUpperCase())
+  }
+
   if (!authenticated) {
     return (
       <div className="resultPage">
@@ -374,65 +327,77 @@ const StockDashboard = () => {
     )
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setSymbol(event.target.elements.symbolInput.value.toUpperCase())
-  }
-
-  function removeCookie(name: string) {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
-  }
-  const handleLogoutSubmit = () => {
-    // Remove the token from session storage
-    sessionStorage.removeItem('token')
-    localStorage.removeItem('token')
-    removeCookie('session_cookie')
-    navigate('/')
+  const handleLogout = () => {
+    sessionStorage.removeItem('token') // Remove the token from sessionStorage
+    navigate('/') // Redirect to the login page
   }
 
   return (
-    <div className="dashboard-stock">
+    <div className="dashboard">
       <nav className="top-nav">
         <h2>
           <i className="fas fa-line-chart"></i>InvestEase
         </h2>
         <h1>Dashboard</h1>
-        {/*<div className="user-info">Welcome, {name || email}!</div>
-      <h3 onClick={handleLogoutSubmit}>Logout</h3>*/}
-        <div
-          className="user-dropdown"
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <span>
-            Welcome, {name.trim() ? name : email}!{' '}
-            <i className="fas fa-caret-down"></i>
-          </span>
-          {dropdownOpen && (
-            <div
-              className="dropdown-content"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
-            >
-              <Link onClick={handleLogoutSubmit} to="/">
-                Logout
-              </Link>
-            </div>
-          )}
+        {/* <div className="user-info">Welcome, User!</div> */}
+        <div className="user-info user-dropdown">
+          Welcome, {userName === ' ' ? 'User' : userName}!
+          <div className="dropdown-content">
+            <a href="/" onClick={handleLogout}>
+              Logout
+            </a>
+          </div>
         </div>
       </nav>
       <aside className="sidebar">
         <header className="sidebar-header">
           <h2>Menu</h2>
         </header>
-        {/* <nav>
+        <nav className="menu">
           <ul>
-            <li>Home</li>
-            <li>Dashboard</li>
-            <li>News</li>
-            <li>Settings</li>
-          <h2><i className="fas fa-line-chart"></i>Investease</h2>
-        </header> */}
+            <li>
+              <i className="fas fa-home"></i>
+              <Link style={{ textDecoration: 'none' }} to="/Dashboard">
+                <span>Home</span>
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-address-book"></i>
+              <Link style={{ textDecoration: 'none' }} to="/about-us">
+                <span>About us</span>
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-newspaper"></i>
+              <Link style={{ textDecoration: 'none' }} to="/resources">
+                <span>News</span>
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-gear"></i>
+              <Link style={{ textDecoration: 'none' }} to="/settings">
+                <span>Settings</span>
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-usd"></i>
+              <Link style={{ textDecoration: 'none' }} to="/comingsoon">
+                <span>Paper Trading</span>
+              </Link>
+            </li>
+            <li>
+              <i className="fas fa-chart-line"></i>
+              <Link style={{ textDecoration: 'none' }} to="/HTMLDisplay">
+                <span>Result</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      {/* <aside className="sidebar">
+        <header className="sidebar-header">
+          <h2>Menu</h2>
+        </header>
         <nav>
           <ul>
             <li>
@@ -461,143 +426,9 @@ const StockDashboard = () => {
             </li>
           </ul>
         </nav>
-      </aside>
+      </aside> */}
       <main className="main-content">
-        <header className="header">
-          <h1>Stock Dashboard</h1>
-          <div className="user-info">
-            Welcome, {name.trim() ? name : email}!
-          </div>
-        </header>
         <section className="portfolio">
-          <h2>My Portfolio</h2>
-          <div className="stock-info">
-            <div className="stock-item">
-              <p>AAPL</p>
-              <p>Apple</p>
-              <p>Price: $171</p>
-            </div>
-            <div className="stock-item">
-              <p>TSLA</p>
-              <p>Tesla</p>
-              <p>Price: $900</p>
-            </div>
-            <div className="stock-item">
-              <p>MSFT</p>
-              <p>Microsoft</p>
-              <p>Price: $300</p>
-            </div>
-            <div className="stock-item">
-              <p>AMZN</p>
-              <p>Amazon</p>
-              <p>Price: $3200</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-            <div className="stock-item">
-              <p>GOOGL</p>
-              <p>Google</p>
-              <p>Price: $2000</p>
-            </div>
-          </div>
-        </section>
-        <section className="My Watchlist">
-          <div className="watchlist">
-            <div className="watch-info">
-              <h2>My Watchlist</h2>
-              <div className="watch-item">
-                <p>FB</p>
-                <p>Facebook</p>
-                <p>Price: $350</p>
-              </div>
-              <div className="watch-item">
-                <p>NFLX</p>
-                <p>Netflix</p>
-                <p>Price: $550</p>
-              </div>
-              <div className="watch-item">
-                <p>AMZN</p>
-                <p>Amazon</p>
-                <p>Price: $3200</p>
-              </div>
-              <div className="watch-item">
-                <p>GOOGL</p>
-                <p>Google</p>
-                <p>Price: $2000</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-              <div className="watch-item">
-                <p>MSFT</p>
-                <p>Microsoft</p>
-                <p>Price: $300</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="stock-chart">
-          <h2>Stock Chart</h2>
-          <div className="chart">
-            {/* Whenever a use clicks on any stock I want to show the chart of that stock here in this section inside a box styled like in the other sections. */}
-          </div>
-        </section>
-        <section>
           <h2>Stocks</h2>
           <div className="stock-info">
             {stockCompanyInfoData &&
@@ -795,6 +626,7 @@ const StockDashboard = () => {
               </div>
             </section>
           </div>
+          <div className="crypto">{/* <Crypto /> */}</div>
         </div>
       </main>
     </div>
